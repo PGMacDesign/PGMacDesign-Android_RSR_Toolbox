@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 
+        Copyright (C) <2014>  <Patrick Gray MacDowell>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+ 
+     -->
+    <!-- This menu is for when someone hits menu/ 3 lines/ options 
+    on their android and it usually gives preferences/ about us info-->
+    
+    <item
+        android:id="@+id/aboutus"
+        android:title="About Us"
+        android:numericShortcut="1"
+        android:alphabeticShortcut="a"
+        />
+    <!-- Numeric shortcut (hit 1) or alphabetic (a) for opening -->
+        
+    <item
+        android:id="@+id/preferences"
+        android:title="Preferences"
+        />
+    
+    <item
+        android:id="@+id/send_Bug_Report"
+        android:title="Send Bug Report"
+        />
+    
+    <item
+        android:id="@+id/Exit"
+        android:title="Exit"
+        />
+    
+    
+
+</menu>

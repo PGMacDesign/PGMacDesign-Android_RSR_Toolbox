@@ -1,0 +1,402 @@
+<!-- 
+        Copyright (C) <2014>  <Patrick Gray MacDowell>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pgmacdesign.rsrtoolbox"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="18" />
+
+
+    <!-- Permissions: -->
+    
+    <!-- The wake lock is so you can keep the screen active on a certain class -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!-- This is more or less a must to do anything internet related -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- This is needed to write to the storage, not necessarily meaning the SD card -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- Allows access to the vibrate function for the notification/ status bar -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- The access network state is needed for admob -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/rsr_toolbox_logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <!-- Make a reference to the AdMob jar so adds can be used. Example located in ......-->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" >
+        </activity>
+               
+        
+        <!-- This is the first activity. It is The 'Splash Screen' seen when the app opens.-->
+        <activity
+            android:name=".SplashScreen"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        
+        <!--This is the second activity. It is the main menu. Theme has been set to light-->
+        <activity
+            android:name=".Main"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.Black">
+            <intent-filter>
+                <action android:name="com.pgmacdesign.rsrtoolbox.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!--This activity pops up a 'about us' popup with info about me/ the company-->
+        <activity
+            android:name=".AboutUs"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.Dialog"
+            >
+            <intent-filter>
+                <action android:name="com.pgmacdesign.rsrtoolbox.ABOUTUS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!-- This activity adjusts preferences within the app  -->
+        <activity
+            android:name=".Prefs"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.Dialog"
+            >
+            <intent-filter>
+                <action android:name="com.pgmacdesign.rsrtoolbox.PREFS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>        
+        
+        <!-- This activity is for sending bug reports and feedback. Separate Intent here for item opened up from within it  -->
+        <activity
+            android:name=".BugReport"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.Dialog"
+            >
+            <intent-filter>
+                <action android:name="com.pgmacdesign.rsrtoolbox.BUGREPORT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>          
+        
+        <!-- This activity is a simple calculator -->
+        <activity
+            android:name=".Calculator"
+            android:label="Calculator"  >
+        </activity>        
+        
+        <!-- This activity is for delving into commissions, amounts earned, and ways to calculate more income -->
+        <activity
+            android:name=".Commissions"
+            android:label="Commissions"  >
+        </activity>        
+        
+        <!-- This activity is designed to help make calculations with the Edge program easy and understandable -->
+        <activity
+            android:name=".Edge"
+            android:label="Edge"  >
+        </activity>        
+        
+        <!-- This activity inputs items into the Google Calendar with intention of them being followed up on. Mostly useful for Callbacks, OCCs, emails, etc -->
+        <activity
+            android:name=".FollowUp"
+            android:label="Follow-Up"  >
+        </activity>        
+        
+        <!-- This activity is to help keep 30 minute lunches timely, alert when nearing the end of lunch, and remind the user to clock in/ out -->
+        <activity
+            android:name=".LunchTimer"
+            android:label="Lunch Timer"  >
+        </activity>        
+        
+        <!-- This activity calculates the number deficit to be at a certain revenue target. Will have default values as well as input values -->
+        <activity
+            android:name=".RevenueDeficit"
+            android:label="Revenue Deficit"  >
+        </activity>        
+        
+        <!-- This activity will allow users to send the link for the application to other people via text/ email/ etc. Will have direct link to play store download -->
+        <activity
+            android:name=".ShareThisApp"
+            android:label="Share This App"  >
+        </activity>        
+        
+        <!-- This activity will list off some of the most useful SKUs that are frequently being looked up -->
+        <activity
+            android:name=".UsefulSKUs"
+            android:label="Useful SKUs"  >
+        </activity>        
+        
+        <!-- This activity calculates quota relief based upon the number of vacation/ personal days the user has taken -->
+        <activity
+            android:name=".VacationQuotaRelief"
+            android:label="Vacation Quota Relief"  >
+        </activity>        
+        
+        <!-- This activity lists off important contact numbers and email addresses that the user may find helpful-->
+        <activity
+            android:name=".ImportantContactNumbers"
+            android:label="Important Contact Numbers"  >
+        </activity>        
+        
+        <!-- This activity is a handler for the activity chosen by the user to determine which activity will open-->
+        <activity
+            android:name=".ActivityAdapter"
+            android:label="Activity Adapter"  >
+        </activity>        
+        
+        <!-- This activity Allows the user to input their work schedule into their Google calendar-->
+        <activity
+            android:name=".InputSchedule"
+            android:label="Input Schedule"  >
+        </activity>          
+        
+        <!-- This activity Allows the user to input their work schedule into their Google calendar-->
+        <activity
+            android:name=".StressRelief"
+            android:label="Stress Relief!"  >
+        </activity>  
+        
+        <!-- This activity Allows the user to input their work schedule into their Google calendar-->
+        <activity
+            android:name=".MagicBall"
+            android:label="Magic Ball"  >
+        </activity>  
+        
+        
+        
+        
+        
+        
+        <!-- All activities below this Will either be added later or deleted depending on need and time -->
+        <!-- All activities below this Will either be added later or deleted depending on need and time -->
+        <!-- All activities below this Will either be added later or deleted depending on need and time -->
+        <!-- All activities below this Will either be added later or deleted depending on need and time -->
+        
+        <!-- 
+        
+        This activity
+        <activity
+            android:name=".Data"
+            android:label="WORDS"  >
+        </activity>        
+        
+        
+         -->
+        <!-- This activity sends an email to someone with pre-designed fields. Theme is black -->
+        <activity
+            android:name=".Email"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.Black"
+            >
+        </activity>
+        
+        <!-- This activity takes a photo and then sets it as the background -->
+        <activity
+            android:name=".Camera"
+            android:label="Camera Application" 
+            android:screenOrientation="portrait"  >
+        </activity>
+        
+        <!-- This activity sends data as a bundle (package) to opened class -->
+        <activity
+            android:name=".Data"
+            android:label="Data Stuff"  >
+        </activity>
+        
+        <!-- This activity takes data from the data class and uses it. Transferred via a bundle -->
+        <activity
+            android:name=".OpenedClass"
+            android:label="Opened Class"  >
+        </activity>
+        
+        <!-- This activity has a 'falling' graphic (arrow) on a background  -->
+        <activity
+            android:name=".Graphics"
+            android:label="@string/app_name" >
+        </activity>
+        
+        <!-- This activity has a surface area for graphics setup  -->
+        <activity
+            android:name=".GraphicsSurface"
+            android:label="Graphics Canvas" >
+        </activity>
+        
+        <!-- This activity works with auditory things like short bursts, explosions, gunshots, etc -->
+        <activity
+            android:name=".SoundStuff"
+            android:label="Sound Stuff" >
+        </activity>
+        
+        <!-- This activity has a frame layout with a sliding drawer (similar to pull-down notification bar) -->
+        <activity
+            android:name=".Slider"
+            android:label="Sliding Drawer" >
+        </activity>
+        
+        <!-- This activity has tabs that can be toggled between including a stop-watch program -->
+        <activity
+            android:name=".Tabs"
+            android:label="Choose a Tab" >
+        </activity>  
+        
+        <!-- This activity creates a simple web browser -->
+        <activity
+            android:name=".SimpleBrowser"
+            android:label="SimpleBrowser" >
+        </activity>
+        
+        <!-- This activity creates a flipper-style section that rotates through kind of like flash cards/ slide-show -->
+        <activity
+            android:name=".Flipper"
+            android:label="Flip-Style Rotation" >
+        </activity>
+        
+        <!-- This activity shares primitive-type data across the phone -->
+        <activity
+            android:name=".SharedPrefs"
+            android:label="Sharing Data Within Phone" >
+        </activity>        
+        
+        <!-- This activity writes to the external data of the app (IS readable outside the app... for the most part)-->
+        <activity
+            android:name=".ExternalData"
+            android:label="Sharing Data To Files" >
+        </activity>          
+  
+        <!-- This activity writes to the internal data of the app (not readable outside of the app. When app is removed, data goes with it) -->
+        <activity
+            android:name=".InternalData"
+            android:label="Sharing Data To Files" >
+        </activity> 
+        
+        <!-- This activity Creates an SQL database via input and updates the tables -->
+        <activity
+            android:name=".SQLiteExample"
+            android:label="SQL Examples" >
+        </activity> 
+                
+        <!-- This activity Creates an SQL database via input and updates the tables -->
+        <activity
+            android:name=".SQLView"
+            android:label="SQL View" >
+            <intent-filter>
+                <action android:name="com.macdowell.thenewbostoneclipsetest01.SQLVIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> 
+                        
+        <!-- This activity Works with the accelerometer within the droid -->
+        <activity
+            android:name=".Accelerate"
+            android:label="Accelerator Testing" >
+        </activity>        
+        
+        <!-- This activity pulls data from the internet, parses it, spits out the HTML-->
+        <activity
+            android:name=".HttpExample"
+            android:label="Web Data" >
+        </activity>        
+        
+        <!-- This activity parses weather stats from the website http://api.openweathermap.org/-->
+        <activity
+            android:name=".WeatherXMLParsing"
+            android:label="Get Weather Information" >
+        </activity>        
+        
+        <!-- 
+        
+        Widget class  
+        <receiver 
+            android:name=".PointlessWidget"
+            android:label="Name of Widget in Apps" 
+            >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data 
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_stuff" />    
+        </receiver>
+        
+        -->
+        
+        <!-- This activity configures the widget -->
+        <activity
+            android:name=".WidgetConfig"
+            android:label="Widget Configuration" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"
+                    />
+            </intent-filter>
+        </activity>        
+        
+        <!-- This activity draws a simple triangle on a canvas-->
+        <activity
+            android:name=".GLExample"
+            android:label="Draw a Triangle" >
+        </activity>          
+        
+        <!-- This activity draws a simple triangle on a canvas-->
+        <activity
+            android:name=".Voice"
+            android:label="Test The Voice Recognition Software" >
+        </activity>
+       
+        <!-- This activity speaks words back to you via the text to voice features-->
+        <activity
+            android:name=".TextVoice"
+            android:label="Test the text to voice software" >
+        </activity>        
+        
+        <!-- This activity Creates a status bar icon. Useful for a reminder-->
+        <activity
+            android:name=".StatusBar"
+            android:label="Status Bar Icon" >
+        </activity>         
+        
+        <!-- This activity Creates a status bar icon. Useful for a reminder-->
+        <activity
+            android:name=".SeekBarVolume"
+            android:label="Adjust Media Volume" >
+        </activity> 
+        
+        
+        
+        
+        
+    </application>
+
+</manifest>
+    

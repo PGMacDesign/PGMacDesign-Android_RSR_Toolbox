@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Patrick MacDowell is the lead programmer for the EclipseTest01 project and CEO of PGMacDesign. He endeavors to make his apps as effective and well-written as possible. If you have any suggestions or bugs to report, please send in a report in the contact us section as we always appreciate feedback.">       
+    </TextView>
+        
+
+</LinearLayout>
