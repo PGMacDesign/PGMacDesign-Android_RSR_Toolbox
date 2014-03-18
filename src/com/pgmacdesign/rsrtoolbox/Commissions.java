@@ -21,17 +21,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+//Commissions is the class that accesses all data from the database and returns calculations to return values
 public class Commissions extends Activity implements View.OnClickListener {
 
-	//Global Variables
-	
+
 	
 	//Main - When the activity starts
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.XML_FILE);
+		setContentView(R.layout.commissions);
 		Initialize();
 		
 		
@@ -39,7 +39,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 
 	//Initialize Variables
 	private void Initialize(){
-		
+		//db.openDB();
 	}
 	
 	//On Click Method

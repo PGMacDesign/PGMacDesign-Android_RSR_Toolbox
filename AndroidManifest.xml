@@ -182,20 +182,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             android:label="Input Schedule"  >
         </activity>          
         
-        <!-- This activity Allows the user to input their work schedule into their Google calendar-->
+        <!-- This activity has a fun, stress-relief element by adding clickable portions to the screen-->
         <activity
             android:name=".StressRelief"
             android:label="Stress Relief!"  >
         </activity>  
         
-        <!-- This activity Allows the user to input their work schedule into their Google calendar-->
+        <!-- This activity adds a fun element of giving responses to yes or no questions via pre-recorded .wav files -->
         <activity
-            android:name=".MagicBall"
-            android:label="Magic Ball"  >
+            android:name=".EnterCommissionsInfo"
+            android:label="Enter Information for Commissions"  >
         </activity>  
         
-        
-        
+        <!-- This activity manages the central database for the entire application-->
+        <activity
+            android:name=".DatabaseAdmin"
+            android:label="Database Administration"  >
+        </activity> 
+
+        <!-- This activity calculates and returns the strategic multiplier used in commissions-->
+        <activity
+            android:name=".StrategicMultiplier"
+            android:label="Strategic Multiplier Calculator"  >
+        </activity> 
         
         
         

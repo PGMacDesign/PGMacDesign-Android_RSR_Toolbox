@@ -30,7 +30,7 @@ public class MagicBall extends Activity implements View.OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.XML_FILE);
+		setContentView(R.layout.magic_ball);
 		Initialize();
 		
 		

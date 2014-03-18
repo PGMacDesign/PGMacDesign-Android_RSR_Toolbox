@@ -35,6 +35,7 @@ public class DatabaseAdmin {
     public static final String COLUMN_NAME_EMPLOYEE_ID = "employee_id";
     public static final String COLUMN_NAME_EMPLOYEE_NAME = "employe_name";
     public static final String COLUMN_NAME_AT_RISK = "at_risk";
+    public static final String COLUMN_NAME_UPGRADE_QUOTA = "upgrade_quota";
     public static final String COLUMN_NAME_GG_QUOTA = "gg_quota";
     public static final String COLUMN_NAME_GG_CURRENT = "gg_current";
     public static final String COLUMN_NAME_GG_CHARGE_BACKS = "gg_charge_backs";
@@ -63,6 +64,7 @@ public class DatabaseAdmin {
     		"CREATE TABLE " + 
     		TABLE_NAME + " (" +
     		COLUMN_NAME_AT_RISK + " REAL 1417" + COMMA +
+    		COLUMN_NAME_UPGRADE_QUOTA + " REAL 0" + COMMA +
         	COLUMN_NAME_GG_QUOTA + " REAL 0" + COMMA +
         	COLUMN_NAME_GG_CURRENT + " REAL 0" + COMMA +
         	COLUMN_NAME_GG_CHARGE_BACKS + " REAL 0" + COMMA +
@@ -83,9 +85,6 @@ public class DatabaseAdmin {
         	COLUMN_NAME_SPIFFS + " REAL 0" + COMMA +
         	COLUMN_NAME_FINAL_COMMISSIONS + " REAL 0" +
         	" )";
-
-    private static final String SQL_DELETE_ENTRIES =
-        "DROP TABLE IF EXISTS " + TABLE_NAME;
     
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "RSRToolbox.db";

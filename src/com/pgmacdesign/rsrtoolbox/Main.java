@@ -30,6 +30,7 @@ import android.widget.Toast;
 //Main menu class. Supports a Grid View
 public class Main extends Activity implements OnItemClickListener {
 	
+	//Gridview to match the xml
 	GridView gridView;
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,16 @@ public class Main extends Activity implements OnItemClickListener {
 	        break;
         case 2:
         	try {
+        		makeToast("Enter Commissions Info");
+	        	Intent c = new Intent(v.getContext(), EnterCommissionsInfo.class);
+		        startActivity(c);
+        	} catch (Exception e) {
+        		String error = e.toString();
+        		makeToast(error);
+        	}
+        	break;
+        case 3:
+        	try {
         		makeToast("Commissions");
 	        	Intent c = new Intent(v.getContext(), Commissions.class);
 		        startActivity(c);
@@ -86,7 +97,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 3:
+        case 4:
         	try{
 	        	makeToast("Useful SKUs");
 	        	Intent d = new Intent(v.getContext(), UsefulSKUs.class);
@@ -96,7 +107,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 4:
+        case 5:
         	try{
 	        	makeToast("Input Schedule");
 	        	Intent e = new Intent(v.getContext(), InputSchedule.class);
@@ -106,7 +117,7 @@ public class Main extends Activity implements OnItemClickListener {
 	    		makeToast(error);
 	    	}
         	break;
-        case 5:
+        case 6:
         	try{
 	        	makeToast("Follow-Up");
 	        	Intent f = new Intent(v.getContext(), FollowUp.class);
@@ -116,7 +127,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 6:
+        case 7:
         	try{
 	        	makeToast("Lunch Timer");
 	        	Intent g = new Intent(v.getContext(), LunchTimer.class);
@@ -126,7 +137,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 7:
+        case 8:
 	        try{
 	        	makeToast("Calculator");
 	        	Intent h = new Intent(v.getContext(), Calculator.class);
@@ -136,7 +147,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 8:
+        case 9:
         	try{
 	        	makeToast("Share This App");
 	        	Intent i = new Intent(v.getContext(), ShareThisApp.class);
@@ -146,7 +157,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 9:
+        case 10:
         	try{
 	        	makeToast("Edge");
 	        	Intent j = new Intent(v.getContext(), Edge.class);
@@ -156,7 +167,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 10:
+        case 11:
         	try{
 	        	makeToast("Important Contact Numbers");
 	        	Intent k = new Intent(v.getContext(), ImportantContactNumbers.class);
@@ -166,7 +177,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 11:
+        case 12:
         	try{
 	        	makeToast("Stress Relief");
 	        	Intent l = new Intent(v.getContext(), StressRelief.class);
@@ -176,7 +187,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 12:
+        case 13:
         	try{
 	        	makeToast("Magic Ball");
 	        	Intent m = new Intent(v.getContext(), MagicBall.class);
@@ -189,13 +200,6 @@ public class Main extends Activity implements OnItemClickListener {
 	    }
 		
 	}
-	
-	//Simple class that makes a popup (toast) with the activity name the user chose
-	public void makeToast(String activityChosen){
-		Toast.makeText(getApplicationContext(), activityChosen, Toast.LENGTH_SHORT).show();
-	}
-
-
 	
 	
 	//Creates a boolean where the user hits the menu/ settings/ 3 little line button/ checkerbox (on the old Droid X).
@@ -243,7 +247,10 @@ public class Main extends Activity implements OnItemClickListener {
 		return false;
 	}
 
-
+	//Simple class that makes a popup (toast) with the activity name the user chose
+	public void makeToast(String activityChosen){
+		Toast.makeText(getApplicationContext(), activityChosen, Toast.LENGTH_SHORT).show();
+	}
 
 
 

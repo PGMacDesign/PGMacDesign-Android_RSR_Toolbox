@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:text="Enter your information here for commissions: (Type numbers only, no letters, no commas, no spaces)" />
+    
+    
+    <!-- Begin ScrollView Layout -->
+    <ScrollView 
+        android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		
+	    <LinearLayout 
+	        android:orientation="vertical"
+			android:layout_width="match_parent" 
+			android:layout_height="match_parent">
+			
+	        <!-- Entry of fields goes here -->
+	        <TextView 
+	            android:text="Upgrade Quota"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_upgrade_quota"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_upgrade_quota"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="GG Quota"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_gg_quota"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_gg_quota"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="GG Current"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_gg_curent"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_gg_current"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="GG Charge Backs"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_gg_charge_backs"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_gg_charge_backs"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="Sales Dollars Quota"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_sales_dollars_quota"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_sales_dollars_quota"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="Current Sales Dollars"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_sales_dollars_current"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_sales_dollars_current"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="Strategic Pull-through Quota"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_strategic_pull_through_quota"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_strategic_pull_through_quota"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="Strategic Pull Through Current Count"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_strategic_pull_through_current"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_strategic_pull_through_current"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="Strategic Accessory Quota"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_strategic_acc_quota"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+	        	android:ems="10"
+	        	android:inputType="numberDecimal" 
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_strategic_acc_quota"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="Strategic Accessory Current Amount"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_strategic_acc_current"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+	        	android:ems="10"
+	        	android:inputType="numberDecimal" 
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_strategic_acc_current"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        <TextView 
+	            android:text="Spiffs (Dollar amount you are at currently)"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_spiffs"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_spiffs"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	   <!-- 
+	   		For whole number entry use:         
+		   		android:ems="10"
+	        	android:inputType="number"
+        	
+        	For floating point number entry use:
+	        	android:ems="10"
+	        	android:inputType="numberDecimal" 
+	   
+	    -->     
+	        
+	    </LinearLayout>
+	</ScrollView>
+
+</LinearLayout>

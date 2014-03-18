@@ -53,7 +53,7 @@ MediaPlayer ourIntroSong, doorClose; //Doorclose not used at this point, will se
 				try
 				{
 					//In Milliseconds, set to 3 seconds at this point
-					sleep(3000);
+					sleep(1000);
 				} catch (InterruptedException e01) {
 					String error_in_splash = e01.toString(); //For Debugging purposes
 					e01.printStackTrace();

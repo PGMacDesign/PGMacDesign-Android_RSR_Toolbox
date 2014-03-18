@@ -31,17 +31,18 @@ public class ActivityAdapter extends BaseAdapter {
 	public static int[] imageOptions = {
 			R.drawable.vacation_quota, //Position 0
 			R.drawable.revenue_deficit, //Position 1
-			R.drawable.commissions, //Position 2
-			R.drawable.useful_skus, //Position 3
-			R.drawable.input_schedule, //Position 4
-			R.drawable.follow_up, //Position 5
-			R.drawable.lunch_timer, //Position 6
-			R.drawable.calculator, //Position 7
-			R.drawable.share_this_app, //Position 8
-			R.drawable.edge, //Position 9
-			R.drawable.important_contact_numbers, //Position 10
-			R.drawable.stress_relief, //Position 11
-			R.drawable.magic_ball //Position 12
+			R.drawable.enter_commissions_information, //Position 2
+			R.drawable.commissions, //Position 3
+			R.drawable.useful_skus, //Position 4
+			R.drawable.input_schedule, //Position 5
+			R.drawable.follow_up, //Position 6
+			R.drawable.lunch_timer, //Position 7
+			R.drawable.calculator, //Position 8
+			R.drawable.share_this_app, //Position 9
+			R.drawable.edge, //Position 10
+			R.drawable.important_contact_numbers, //Position 11
+			R.drawable.stress_relief, //Position 12
+			R.drawable.magic_ball //Position 13
 	};
 	
 	private Context context;

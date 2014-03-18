@@ -37,16 +37,15 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.vacation_quota_relief);
-		Initialize();
 		
-		vacation_days.setText(0);  //May need to make this a string, unsure if it will auto-parse an int
+		Initialize();
 
 		
 	}
 
 	//Initialize Variables
 	private void Initialize(){
-		
+
 		vacation_days = (EditText) findViewById(R.id.vacation_quota_relief_enter_days);
 		
 		button_calculate_quota_relief = (Button) findViewById(R.id.vacation_quota_relief_button_calculate);
@@ -56,6 +55,9 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 		
 		button_calculate_quota_relief.setOnClickListener(this);
 		button_jump_to_commissions.setOnClickListener(this);
+		
+		vacation_days.setText("0");  //May need to make this a string, unsure if it will auto-parse an int
+		
 	}
 	
 	//On Click Method
