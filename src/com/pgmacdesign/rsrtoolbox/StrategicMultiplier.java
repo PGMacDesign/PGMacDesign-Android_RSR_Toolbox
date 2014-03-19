@@ -112,7 +112,9 @@ public class StrategicMultiplier extends Activity  {
 	}
 	
 	//returns the strategic multiplier out of the class to another class
-	public double returnStrategicMultiplier(){
-		return strategicMultiplier;
+	public String returnStrategicMultiplier(){
+		//Converting to a string for the simplicity of the database
+		String str1 = Double.toString(strategicMultiplier);
+		return str1;
 	}
 }

@@ -33,6 +33,7 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     public static final String TABLE_NAME = "commissions";
     public static final String COLUMN_NAME_EMPLOYEE_ID = "emp_id";
     public static final String COLUMN_NAME_EMPLOYEE_NAME = "emp_name";
+    public static final String COLUMN_NAME_WORKING_DAYS_LEFT = "work_days_left";
     public static final String COLUMN_NAME_AT_RISK = "at_risk";
     public static final String COLUMN_NAME_UPGRADE_QUOTA = "up_quota";
     public static final String COLUMN_NAME_GG_QUOTA = "gg_quota";
@@ -62,6 +63,7 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     public static final String SQL_CREATE_TABLE =
     		"CREATE TABLE " + 
     		TABLE_NAME + " (" +
+    		COLUMN_NAME_WORKING_DAYS_LEFT + " TEXT DEFAULT \'0\'" + COMMA +
     		COLUMN_NAME_AT_RISK + " TEXT DEFAULT \'0\'" + COMMA +
     		COLUMN_NAME_UPGRADE_QUOTA + " TEXT DEFAULT \'0\'" + COMMA +
         	COLUMN_NAME_GG_QUOTA + " TEXT DEFAULT \'0\'" + COMMA +
@@ -85,61 +87,34 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
         	COLUMN_NAME_FINAL_COMMISSIONS + " TEXT DEFAULT \'0\'" +
         	" )";
     
-    //String to create the table if it does not exist
-    public static final String set_default_values_to_zero = 
-    		"CREATE TABLE IF NOT EXISTS " +
-    		TABLE_NAME + " (" +
-    		COLUMN_NAME_AT_RISK + " REAL 0" + COMMA +
-    		COLUMN_NAME_UPGRADE_QUOTA + " REAL 0" + COMMA +
-        	COLUMN_NAME_GG_QUOTA + " REAL 0" + COMMA +
-        	COLUMN_NAME_GG_CURRENT + " REAL 0" + COMMA +
-        	COLUMN_NAME_GG_CHARGE_BACKS + " REAL 0" + COMMA +
-        	COLUMN_NAME_NET_GAINS_CURRENT + " REAL 0" + COMMA +
-        	COLUMN_NAME_GG_MULTIPLIER + " REAL 0" + COMMA +
-        	COLUMN_NAME_GG_RUN_RATE + " REAL 0" + COMMA +
-        	COLUMN_NAME_SALES_DOLLARS_QUOTA + " REAL 0" + COMMA +
-        	COLUMN_NAME_SALES_DOLLARS_CURRENT + " REAL 0" + COMMA +
-        	COLUMN_NAME_SALES_DOLLARS_MULTIPLIER + " REAL 0" + COMMA +
-        	COLUMN_NAME_VACATION_RELIEF_PERCENT + " REAL 0" + COMMA +
-        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_QUOTA + " REAL 0" + COMMA +
-        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_CURRENT + " REAL 0" + COMMA +
-        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_RANK + " REAL 0" + COMMA +
-        	COLUMN_NAME_STRATEGIC_ACC_QUOTA + " REAL 0" + COMMA +
-        	COLUMN_NAME_STRATEGIC_ACC_CURRENT + " REAL 0" + COMMA +
-        	COLUMN_NAME_STRATEGIC_ACC_RANK + " REAL 0" + COMMA +
-        	COLUMN_NAME_STRATEGIC_MULTIPLIER + " REAL 0" + COMMA +
-        	COLUMN_NAME_SPIFFS + " REAL 0" + COMMA +
-        	COLUMN_NAME_FINAL_COMMISSIONS + " REAL 0" +
-        	" )"; 
-    
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "RSRToolbox.db";
     
     //Columns
 	public static final String[] COLUMNS = {
-	      "emp_id" 
-	      , "emp_name"
-	      , "at_risk"  
-	      , "up_quota"  
-	      , "gg_quota"  
-	      , "gg_current"  
-	      , "charge_backs"  
-	      , "net_gains"  
-	      , "gg_multiplier"  
-	      , "gg_run_rate"  
-	      , "sales_dollars_quota"  
-	      , "sales_dollars_current"  
-	      , "sales_dollars_multiplier"  
-	      , "vaca_relief"  
-	      , "pt_quota"  
-	      , "pt_current"  
-	      , "pt_rank"   
-	      , "acc_quota"      
-	      , "acc_current"  
-	      , "acc_rank"   
-	      , "strategic_multiplier"  
-	      , "spiffs"  
-	      , "final_commissions"
+	     "work_days_left" //0
+	      , "at_risk"  //1
+	      , "up_quota"  //2
+	      , "gg_quota"  //3
+	      , "gg_current"  //4
+	      , "charge_backs"  //5
+	      , "net_gains"  //6
+	      , "gg_multiplier" //7 
+	      , "gg_run_rate"  //8
+	      , "sales_dollars_quota" //9  
+	      , "sales_dollars_current"  //10
+	      , "sales_dollars_multiplier"  //11
+	      , "vaca_relief"  //12
+	      , "pt_quota"  //13
+	      , "pt_current"  //14
+	      , "pt_rank"   //15
+	      , "acc_quota"     //16 
+	      , "acc_current"  //17
+	      , "acc_rank"   //18
+	      , "strategic_multiplier" //19  
+	      , "spiffs"  //20
+	      , "final_commissions" //21
+	      //ONLY ADD NEW ITEMS AFTER THIS COLUMN AT POSITION 22 OR LATER
 	};
 
     //Constructor
@@ -178,7 +153,7 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     }
 
     //Get data
-    public String getData(String[] column_choice){
+    public String getData(String column_choice){
     	
     	String str1 = "Error";
     			
@@ -187,8 +162,8 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
 	    	SQLiteDatabase db = this.getReadableDatabase();
 	    	
 	    	//Create a cursor with the specific query
-	    	Cursor cursor = db.query(TABLE_NAME, column_choice, null, null, null, null, null);
-	    	
+	    	Cursor cursor = db.query(TABLE_NAME, COLUMNS, column_choice, null, null, null, null);
+
 	    	//Move to the first position of the results (0)
 	    	cursor.moveToFirst();
 	    	
@@ -207,7 +182,7 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     //Sets all of the values in the database to Zero. Basically a month-end wipe
     public void SetDatabaseNumbersToZero(){
     	
-    	for (int i = 0; i < 23; i++){
+    	for (int i = 0; i < COLUMNS.length; i++){
     		InsertData(COLUMNS[i], "0");
     	}
     	

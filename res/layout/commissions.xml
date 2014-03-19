@@ -8,7 +8,535 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="To get data here, first click the 'Reset/ Create Month' icon, then go to the 'Enter Commissions Info' section"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="If you have not done so yet, go to the 'Enter Commissions Info' section to fill-in data" />
+        android:text="--------------------------------------------------------" />
+    
+    <!-- Begin ScrollView Layout -->
+    <ScrollView 
+        android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		
+        <!-- Begin Table View Layout -->
+        <TableLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:stretchColumns="2"
+		    android:shrinkColumns="0"
+		    >
+		    
+	        <!-- Entry of fields goes here -->
+	        
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Number of Working Days Left in the Month: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_working_days_left"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="At Risk (RSR): "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_at_risk"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Upgrade Quota: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_upgrade_quota"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="GG Quota: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_gg_quota"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Current Number of GGs: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_gg_current"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Number of Charge Backs: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_charge_backs"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Net Activations: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_net_gains"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="GG Multiplier: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_gg_multiplier"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Net Activations Run Rate: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_gg_run_rate"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Sales Dollars Quota: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_sales_dollars_quota"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Current Sales Dollars: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_sales_dollars_current"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Sales Dollar Multiplier"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_sales_dollars_multiplier"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Vacation Relief %: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_vaca_relief"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Strategic Pull-Through Quota: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_pt_quota"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Current Strategic Pull-Through: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_pt_current"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Strategic Accessory Quota: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_acc_quota"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Current Strategic Accessory Attainment: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_acc_current"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Current Strategic Multiplier: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_strategic_multiplier"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Spiffs Attainment: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_spiffs"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Total Commissions Earned: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_final_commissions"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+		<!-- Separator -->
+			<TableRow>
+			    <TextView
+			        android:text="------------------------"
+			    />
+			    <TextView
+			        android:text="------------------------"
+			    />
+			</TableRow>
+		<!-- Separator -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="If you did 2 GGs a day for the rest of your working days, you would earn: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_final_commissions_plus_two_a_day"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="To get to a 1.4 multiplier, the number of GGs you need: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_to_get_to_a_1dot4"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Which breaks down to this many GGs per day: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_daily_to_get_to_a_1dot4"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="To get to a 1.6 multiplier, the number of GGs you need: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_to_get_to_a_1dot6"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+		
+	        <TableRow
+	            >
+		        <TextView      
+		            android:text="Which breaks down to this many GGs per day: "
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="left"
+					/>
+		<!-- NEXT TextView -->
+				<TextView 
+		            android:id="@+id/commissions_text_view_daily_to_get_to_a_1dot6"
+		            android:text="Enter Commissions"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:gravity="right"
+					/>
+			</TableRow>
+		<!-- NEXT Row -->
+
+		
+		
+		
+		
+		
+	        
+	        
+	   <!-- 
+	   		For whole number entry use:         
+		   		android:ems="10"
+	        	android:inputType="number"
+        	
+        	For floating point number entry use:
+	        	android:ems="10"
+	        	android:inputType="numberDecimal" 
+	   
+	    -->     
+	    </TableLayout> 
+	</ScrollView>
 
 </LinearLayout>

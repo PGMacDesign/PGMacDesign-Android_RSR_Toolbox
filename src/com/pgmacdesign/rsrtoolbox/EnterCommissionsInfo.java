@@ -90,9 +90,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_upgrade_quota:
 			
 			try {
-				
 				db.InsertData("up_quota", upgrade_quota.getText().toString());
-				//public void InsertData(String column_name, String value)
 				db.close();
 				makeToast(success);
 				
@@ -104,9 +102,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_gg_quota:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("gg_quota", gg_quota.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -117,9 +114,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_gg_current:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("gg_current", gg_current.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -130,9 +126,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_gg_charge_backs:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("charge_backs", gg_charge_backs.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -143,9 +138,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_sales_dollars_quota:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("sales_dollars_quota", sales_dollars_quota.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -156,9 +150,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_sales_dollars_current:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("sales_dollars_current", sales_dollars_current.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -169,9 +162,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_strategic_pull_through_quota:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("pt_quota", strategic_pull_through_quota.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -182,9 +174,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_strategic_pull_through_current:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("pt_current", strategic_pull_through_current.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -195,9 +186,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_strategic_acc_quota:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("acc_quota", strategic_acc_quota.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -208,9 +198,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_strategic_acc_current:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("acc_current", strategic_accessory_current.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -221,9 +210,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_spiffs:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("spiffs", spiffs.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -234,9 +222,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_working_days_left:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				db.InsertData("work_days_left", working_days_left.getText().toString());
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){

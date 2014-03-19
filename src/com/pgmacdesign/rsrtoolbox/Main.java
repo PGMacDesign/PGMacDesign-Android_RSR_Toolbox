@@ -82,8 +82,8 @@ public class Main extends Activity implements OnItemClickListener {
         case 0:
         	try {
 				makeToast("Vacation Quota");
-	        	Intent a = new Intent(v.getContext(), VacationQuotaRelief.class);
-		        startActivity(a);
+	        	Intent intent0 = new Intent(v.getContext(), VacationQuotaRelief.class);
+		        startActivity(intent0);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
@@ -92,78 +92,83 @@ public class Main extends Activity implements OnItemClickListener {
         case 1:
         	try{
 	        	makeToast("Revenue Deficit");
-	        	Intent b = new Intent(v.getContext(), RevenueDeficit.class);
-		        startActivity(b);
+	        	Intent intent1 = new Intent(v.getContext(), RevenueDeficit.class);
+		        startActivity(intent1);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
         	}
 	        break;
         case 2:
-        	try {
-        		makeToast("Enter Commissions Info");
-	        	Intent c = new Intent(v.getContext(), EnterCommissionsInfo.class);
-		        startActivity(c);
+        	try{
+	        	makeToast("Lunch Timer");
+	        	Intent intent2 = new Intent(v.getContext(), LunchTimer.class);
+		        startActivity(intent2);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
         	}
+        	
         	break;
         case 3:
-        	try {
-        		makeToast("Commissions");
-	        	Intent c = new Intent(v.getContext(), Commissions.class);
-		        startActivity(c);
-        	} catch (Exception e) {
-        		String error = e.toString();
-        		makeToast(error);
-        	}
-        	break;
-        case 4:
-        	try{
-	        	makeToast("Useful SKUs");
-	        	Intent d = new Intent(v.getContext(), UsefulSKUs.class);
-		        startActivity(d);
-        	} catch (Exception e) {
-        		String error = e.toString();
-        		makeToast(error);
-        	}
-        	break;
-        case 5:
         	try{
 	        	makeToast("Input Schedule");
-	        	Intent e = new Intent(v.getContext(), InputSchedule.class);
-		        startActivity(e);
+	        	Intent intent3 = new Intent(v.getContext(), InputSchedule.class);
+		        startActivity(intent3);
 	    	} catch (Exception e) {
 	    		String error = e.toString();
 	    		makeToast(error);
 	    	}
         	break;
+ 
+        case 4:
+        	try {
+        		makeToast("Enter Commissions Info");
+	        	Intent intent4 = new Intent(v.getContext(), EnterCommissionsInfo.class);
+		        startActivity(intent4);
+        	} catch (Exception e) {
+        		String error = e.toString();
+        		makeToast(error);
+        	}
+
+        case 5:
+        	try {
+        		makeToast("Commissions");
+	        	Intent intent5 = new Intent(v.getContext(), Commissions.class);
+		        startActivity(intent5);
+        	} catch (Exception e) {
+        		String error = e.toString();
+        		makeToast(error);
+        	}
+        	break;
+        	
         case 6:
         	try{
-	        	makeToast("Follow-Up");
-	        	Intent f = new Intent(v.getContext(), FollowUp.class);
-		        startActivity(f);
+	        	makeToast("Useful SKUs");
+	        	Intent intent6 = new Intent(v.getContext(), UsefulSKUs.class);
+		        startActivity(intent6);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
         	}
         	break;
+
         case 7:
         	try{
-	        	makeToast("Lunch Timer");
-	        	Intent g = new Intent(v.getContext(), LunchTimer.class);
-		        startActivity(g);
+	        	makeToast("Follow-Up");
+	        	Intent intent7 = new Intent(v.getContext(), FollowUp.class);
+		        startActivity(intent7);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
         	}
         	break;
+        	
         case 8:
 	        try{
 	        	makeToast("Calculator");
-	        	Intent h = new Intent(v.getContext(), Calculator.class);
-		        startActivity(h);
+	        	Intent intent8 = new Intent(v.getContext(), Calculator.class);
+		        startActivity(intent8);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
@@ -172,8 +177,8 @@ public class Main extends Activity implements OnItemClickListener {
         case 9:
         	try{
 	        	makeToast("Share This App");
-	        	Intent i = new Intent(v.getContext(), ShareThisApp.class);
-		        startActivity(i);
+	        	Intent intent9 = new Intent(v.getContext(), ShareThisApp.class);
+		        startActivity(intent9);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
@@ -182,8 +187,8 @@ public class Main extends Activity implements OnItemClickListener {
         case 10:
         	try{
 	        	makeToast("Edge");
-	        	Intent j = new Intent(v.getContext(), Edge.class);
-		        startActivity(j);
+	        	Intent intent10 = new Intent(v.getContext(), Edge.class);
+		        startActivity(intent10);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
@@ -192,8 +197,8 @@ public class Main extends Activity implements OnItemClickListener {
         case 11:
         	try{
 	        	makeToast("Important Contact Numbers");
-	        	Intent k = new Intent(v.getContext(), ImportantContactNumbers.class);
-		        startActivity(k);
+	        	Intent intent11 = new Intent(v.getContext(), ImportantContactNumbers.class);
+		        startActivity(intent11);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
@@ -202,8 +207,8 @@ public class Main extends Activity implements OnItemClickListener {
         case 12:
         	try{
 	        	makeToast("Stress Relief");
-	        	Intent l = new Intent(v.getContext(), StressRelief.class);
-		        startActivity(l);
+	        	Intent intent12 = new Intent(v.getContext(), StressRelief.class);
+		        startActivity(intent12);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
@@ -212,8 +217,8 @@ public class Main extends Activity implements OnItemClickListener {
         case 13:
         	try{
 	        	makeToast("Magic Ball");
-	        	Intent m = new Intent(v.getContext(), MagicBall.class);
-		        startActivity(m);
+	        	Intent intent13 = new Intent(v.getContext(), MagicBall.class);
+		        startActivity(intent13);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
