@@ -16,8 +16,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 package com.pgmacdesign.rsrtoolbox;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,18 +33,37 @@ import android.widget.Toast;
 //Main menu class. Supports a Grid View
 public class Main extends Activity implements OnItemClickListener {
 	
+	//Database object
+	DatabaseAdmin db = new DatabaseAdmin(this);
+	
+	//
+	SQLiteDatabase myDB;
+	
 	//Gridview to match the xml
 	GridView gridView;
+	
+	//File for testing if a DB has been created
+	File databaseFile;
+	
+
+	
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu);
+		
+
 		
 		gridView = (GridView) findViewById(R.id.main_menu_grid_view);
 		
 		gridView.setAdapter(new ActivityAdapter(getApplicationContext()));
 		
 		gridView.setOnItemClickListener(this);
+		
+		//
+
+		
+
 	}
 
 	
@@ -196,11 +218,35 @@ public class Main extends Activity implements OnItemClickListener {
         		String error = e.toString();
         		makeToast(error);
         	}
-        	break;        	
+        	break;   
+        case 14:
+    		//Check boolean and create database accordingly  //Maybe use as reset month?
+        	makeToast("test");
+    		databaseFile = getApplicationContext().getDatabasePath("RSRToolbox.db");
+    		boolean dbExists = DoesDatabaseExist();
+    		
+    		if (dbExists){
+    			makeToast("Database Exists");
+    		} else if (!dbExists){
+    			try{
+    			db.onCreate(myDB);
+    			makeToast("Database Created");
+    			} catch (Exception e){
+    				makeToast(e.toString());
+    			}
+    		} else {
+    			makeToast("Fail");
+    		}
+    		
+    		//Initialize the database with zeros
+    		db.SetDatabaseNumbersToZero();
 	    }
 		
 	}
 	
+	public boolean DoesDatabaseExist(){
+		return databaseFile.exists();
+	}
 	
 	//Creates a boolean where the user hits the menu/ settings/ 3 little line button/ checkerbox (on the old Droid X).
 	public boolean onCreateOptionsMenu(android.view.Menu menu_settings) {

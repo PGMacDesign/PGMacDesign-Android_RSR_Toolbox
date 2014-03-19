@@ -8,9 +8,15 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="13dp"
-        android:text="Enter your information here for commissions: (Type numbers only, no letters, no commas, no spaces)" />
-    
+        android:text="Enter your information here for commissions: (Type numbers only, no letters, no commas, no spaces)"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="--------------------------------------------------------" />
     
     <!-- Begin ScrollView Layout -->
     <ScrollView 
@@ -23,6 +29,27 @@
 			android:layout_height="match_parent">
 			
 	        <!-- Entry of fields goes here -->
+	        <TextView 
+	            android:text="Number of Working Days Left in the Month"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				/>
+	        
+			<EditText 
+			    android:id="@+id/enter_commissions_information_edit_text_working_days_left"
+			    android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="10"
+	        	android:inputType="number"
+				/>
+	        <Button
+		        android:id="@+id/enter_commissions_information_button_working_days_left"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Input Data" 
+		        />
+		<!-- NEXT -->
+			
 	        <TextView 
 	            android:text="Upgrade Quota"
 				android:layout_width="wrap_content" 

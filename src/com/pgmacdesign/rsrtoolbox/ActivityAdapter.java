@@ -42,7 +42,8 @@ public class ActivityAdapter extends BaseAdapter {
 			R.drawable.edge, //Position 10
 			R.drawable.important_contact_numbers, //Position 11
 			R.drawable.stress_relief, //Position 12
-			R.drawable.magic_ball //Position 13
+			R.drawable.magic_ball, //Position 13
+			R.drawable.blank //Position 14
 	};
 	
 	private Context context;

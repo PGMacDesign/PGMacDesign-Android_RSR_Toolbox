@@ -11,14 +11,14 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 
 	
 	//Object for accessing the DatabaseAdmin class
-	//DatabaseAdmin db = new DatabaseAdmin(getApplicationContext());   //THIS IS THE CAUSE OF THE PROBLEM HERE
+	DatabaseAdmin db = new DatabaseAdmin(this);
 	
 	//11 EditText windows pulled from the xml
-	EditText upgrade_quota, gg_quota, gg_current, gg_charge_backs, sales_dollars_quota, sales_dollars_current,
+	EditText upgrade_quota, gg_quota, gg_current, gg_charge_backs, sales_dollars_quota, sales_dollars_current, working_days_left,
 	strategic_pull_through_quota, strategic_pull_through_current, strategic_acc_quota, strategic_accessory_current, spiffs;
 	
 	//11 Buttons pulled from the xml
-	Button b_upgrade_quota, b_gg_quota, b_gg_current, b_gg_charge_backs, b_sales_dollars_quota, b_sales_dollars_current,
+	Button b_upgrade_quota, b_gg_quota, b_gg_current, b_gg_charge_backs, b_sales_dollars_quota, b_sales_dollars_current, b_working_days_left,
 	b_strategic_pull_through_quota, b_strategic_pull_through_current, b_strategic_acc_quota, b_strategic_accessory_current, b_spiffs;
 	
 	
@@ -31,8 +31,6 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		setContentView(R.layout.enter_commissions_information);
 		
 		Initialize();
-		
-
 	}
 
 	//Initialize Variables
@@ -50,6 +48,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		strategic_acc_quota = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_acc_quota);
 		strategic_accessory_current = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_acc_current);
 		spiffs = (EditText) findViewById(R.id.enter_commissions_information_edit_text_spiffs);
+		working_days_left = (EditText) findViewById(R.id.enter_commissions_information_edit_text_working_days_left);
 		
 		//Buttons
 		b_upgrade_quota = (Button) findViewById(R.id.enter_commissions_information_button_upgrade_quota);
@@ -63,6 +62,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		b_strategic_acc_quota = (Button) findViewById(R.id.enter_commissions_information_button_strategic_acc_quota);
 		b_strategic_accessory_current = (Button) findViewById(R.id.enter_commissions_information_button_strategic_acc_current);
 		b_spiffs = (Button) findViewById(R.id.enter_commissions_information_button_spiffs);
+		b_working_days_left = (Button) findViewById(R.id.enter_commissions_information_button_working_days_left);
 		
 		//Set buttons to onClickListener
 		b_upgrade_quota.setOnClickListener(this);
@@ -76,6 +76,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		b_strategic_acc_quota.setOnClickListener(this);
 		b_strategic_accessory_current.setOnClickListener(this);
 		b_spiffs.setOnClickListener(this);
+		b_working_days_left.setOnClickListener(this);
 	}
 	
 	//On Click Method
@@ -89,14 +90,14 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_upgrade_quota:
 			
 			try {
-				//db.openDB();
-				//Make SQL statement here to enter information into database
-				//db.closeDB();
+				
+				db.InsertData("up_quota", upgrade_quota.getText().toString());
+				//public void InsertData(String column_name, String value)
+				db.close();
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;
 			
@@ -109,8 +110,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;	
 			
@@ -123,8 +123,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;
 			
@@ -137,8 +136,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;
 			
@@ -151,8 +149,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;
 			
@@ -165,8 +162,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;	
 			
@@ -179,8 +175,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;
 			
@@ -193,8 +188,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;	
 			
@@ -207,8 +201,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;
 			
@@ -221,8 +214,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;	
 			
@@ -235,13 +227,23 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(success);
 				
 			} catch (Exception e){
-				String error = e.toString();
-				makeToast(error);
+				makeToast(e.toString());
 			}
 			break;
-						
-		}
 		
+		case R.id.enter_commissions_information_button_working_days_left:
+			
+			try {
+				//db.openDB();
+				//Make SQL statement here to enter information into database
+				//db.closeDB();
+				makeToast(success);
+				
+			} catch (Exception e){
+				makeToast(e.toString());
+			}
+			break;	
+		}
 	}
 	
 	protected void onPause() {

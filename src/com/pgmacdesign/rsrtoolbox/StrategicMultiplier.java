@@ -21,7 +21,7 @@ import android.app.Activity;
 //This class is designed to calculate the strategic multiplier via input from the database
 public class StrategicMultiplier extends Activity  {
 
-	DatabaseAdmin db = new DatabaseAdmin(getApplicationContext());
+	DatabaseAdmin db = new DatabaseAdmin(this);
 	int strategicPullThroughRank = 0;
 	int strategicRevenueRank = 0;
 	double strategicMultiplier = getStrategicMultiplier(strategicPullThroughRank, strategicRevenueRank);
