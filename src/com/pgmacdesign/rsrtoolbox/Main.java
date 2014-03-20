@@ -61,10 +61,12 @@ public class Main extends Activity implements OnItemClickListener {
 		gridView.setOnItemClickListener(this);
 				
 		databaseFile = getApplicationContext().getDatabasePath("RSRToolbox.db");
+		
+		
 		boolean dbExists = DoesDatabaseExist();
 		
 		if (dbExists){
-			//Nothing at this point
+			makeToast("Database Exists");
 		} else if (!dbExists){
 			try{
 				//Fill columns//Fill columns
@@ -81,6 +83,7 @@ public class Main extends Activity implements OnItemClickListener {
 		} else {
 			makeToast("Fail");
 		}
+		
 	}
 
 	//This onItemClick method jumps to the ActivityAdapter class to determine which item was chosen from the grid and then opens the respective activity
@@ -242,7 +245,18 @@ public class Main extends Activity implements OnItemClickListener {
         case 14:
     		//Maybe use as reset month?   		
     		//Initialize the database with zeros
-    		db.SetDatabaseNumbersToZero();
+        	//Fill columns
+        	for (int i = 0; i < db.COLUMNS.length; i++){
+        		db.InsertData(db.COLUMNS[i], "0");
+        	}
+        	
+        	//Add at risk
+        	try {
+        		db.InsertData("at_risk", "1417");
+        		db.close();	
+    		} catch (Exception e){
+    			e.printStackTrace();
+    		}
 	    }
 		
 	}

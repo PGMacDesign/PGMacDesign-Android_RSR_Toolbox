@@ -28,6 +28,7 @@ import android.widget.Toast;
 //This class manages the database for the entire application
 public class DatabaseAdmin extends SQLiteOpenHelper  {
 	
+	
 
 	
     //SQL Variables
@@ -128,7 +129,7 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     public void onCreate(SQLiteDatabase db) {
         //Creates database
     	db.execSQL(SQL_CREATE_TABLE);
-    	db.close();
+    	//db.close(); //not closed on 2014-03-20
     }
     
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -141,18 +142,22 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     public void InsertData(String column_name, String value){
     	Log.d("AddItem", value);
     	
-    	String UpdateData = "UPDATE " + TABLE_NAME + " SET " + column_name + " = '" + value + "'";
+    	//String UpdateData = "UPDATE " + TABLE_NAME + " SET " + column_name + " = '" + value + "'";  //Locking database, using method instead
     	
     	//Reference to writeable database
     	SQLiteDatabase db = this.getWritableDatabase();
-    	
+
     	//Create content values to store the data
-    	//ContentValues values = new ContentValues();
-    	//values.put(column_name, value);
-    	db.execSQL(UpdateData);
+    	ContentValues values = new ContentValues();
+    	values.put(column_name, value);
+    	
+    	//Database update
+    	db.update(TABLE_NAME, values, null, null);
+    	
+    	//db.execSQL(UpdateData);
     	
     	//Finally, close the db 
-    	db.close();
+    	//db.close();
     }
     
     public void CreateData(String column_name, String value){
@@ -168,18 +173,18 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     	db.insert(TABLE_NAME, null, values);
     	
     	//Finally, close the db 
-    	db.close();
+    	//db.close();
     }
     
 
     //Get data
     public String getData(String column_choice){
-    	
+    	SQLiteDatabase db = this.getWritableDatabase();
     	String str1 = "Error";
     			
     	try{
 	    	//Read data from db
-	    	SQLiteDatabase db = this.getReadableDatabase();
+	    	db = this.getReadableDatabase();
 	    	
 	    	//Create a cursor with the specific query
 	    	Cursor cursor = db.query(TABLE_NAME, COLUMNS, column_choice, null, null, null, null);
@@ -189,6 +194,8 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
 	    	
 	    	//Should only be 1 column returned, at position 0, set it to the string
 	    	str1 = cursor.getString(0);
+	    	//db.close(); //Added 2014-03-20
+	    	cursor.close(); //Added 2014-03-20
 	    	
 	    	//Return the string
     	return str1;

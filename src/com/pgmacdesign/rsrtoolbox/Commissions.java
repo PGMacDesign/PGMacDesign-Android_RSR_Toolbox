@@ -350,7 +350,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 	}
 	
 	//Returns calculations via values stored in database queries
-	public void Get_strategic_multiplier(){  //Result written to db
+	public void Get_the_strategic_multiplier(){  //Result written to db
 		String result = "";
 		StrategicMultiplier2 sm = new StrategicMultiplier2(); //Result written to db
 		
@@ -512,7 +512,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		Get_strategic_pt_current();
 		Get_strategic_acc_quota();
 		Get_strategic_acc_current();
-		//Get_strategic_multiplier(); //Strategic Multiplier is causing problems
+		//Get_the_strategic_multiplier(); //Strategic Multiplier is causing problems
 		Get_spiffs();
 		//Get_final_commissions(); //Strategic Multiplier is causing problems
 		//Get_final_commissions_plus_2_a_day(); //Strategic Multiplier is causing problems

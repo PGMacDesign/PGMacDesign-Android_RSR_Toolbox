@@ -202,11 +202,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
         <!-- This activity calculates and returns the strategic multiplier used in commissions-->
         <activity
-            android:name=".StrategicMultiplier"
+            android:name=".StrategicMultiplier2"
             android:label="Strategic Multiplier Calculator"  >
         </activity> 
         
+        <!-- This activity calculates and returns the GG multiplier used in commissions-->
+        <activity
+            android:name=".GGMultiplier"
+            android:label="GG Multiplier"  >
+        </activity> 
         
+        <!-- -->
+        <activity
+            android:name=".ImageDetail"
+            android:label="Image Detail"  >
+        </activity>         
+
+        <!-- This activity if just a fun little 'magic 8-ball style randomizer -->
+        <activity
+            android:name=".MagicBall"
+            android:label="Magic Ball"  >
+        </activity> 
         
         <!-- All activities below this Will either be added later or deleted depending on need and time -->
         <!-- All activities below this Will either be added later or deleted depending on need and time -->
