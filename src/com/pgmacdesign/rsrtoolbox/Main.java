@@ -59,14 +59,29 @@ public class Main extends Activity implements OnItemClickListener {
 		gridView.setAdapter(new ActivityAdapter(getApplicationContext()));
 		
 		gridView.setOnItemClickListener(this);
+				
+		databaseFile = getApplicationContext().getDatabasePath("RSRToolbox.db");
+		boolean dbExists = DoesDatabaseExist();
 		
-		//
-
-		
-
+		if (dbExists){
+			//Nothing at this point
+		} else if (!dbExists){
+			try{
+				//Fill columns//Fill columns
+				for (int i = 0; i < db.COLUMNS.length; i++){
+		    		db.CreateData(db.COLUMNS[i], "0");
+		    	}
+				db.CreateData("at_risk", "1417");
+				db.close();
+								
+				makeToast("Database Created");
+			} catch (Exception e){
+				makeToast(e.toString());
+			}
+		} else {
+			makeToast("Fail");
+		}
 	}
-
-	
 
 	//This onItemClick method jumps to the ActivityAdapter class to determine which item was chosen from the grid and then opens the respective activity
 	@Override
@@ -225,24 +240,7 @@ public class Main extends Activity implements OnItemClickListener {
         	}
         	break;   
         case 14:
-    		//Check boolean and create database accordingly  //Maybe use as reset month?
-        	makeToast("test");
-    		databaseFile = getApplicationContext().getDatabasePath("RSRToolbox.db");
-    		boolean dbExists = DoesDatabaseExist();
-    		
-    		if (dbExists){
-    			makeToast("Database Exists");
-    		} else if (!dbExists){
-    			try{
-    			db.onCreate(myDB);
-    			makeToast("Database Created");
-    			} catch (Exception e){
-    				makeToast(e.toString());
-    			}
-    		} else {
-    			makeToast("Fail");
-    		}
-    		
+    		//Maybe use as reset month?   		
     		//Initialize the database with zeros
     		db.SetDatabaseNumbersToZero();
 	    }

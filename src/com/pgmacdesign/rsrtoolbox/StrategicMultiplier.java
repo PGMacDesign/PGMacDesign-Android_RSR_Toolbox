@@ -17,24 +17,61 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 package com.pgmacdesign.rsrtoolbox;
 
 import android.app.Activity;
+import android.widget.Toast;
 
 //This class is designed to calculate the strategic multiplier via input from the database
+
+
+
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * This class has been made obsolete by StrategicMultiplier2
+ * Use that instead of this for all calls relating to the 
+ * strategic multiplier
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 public class StrategicMultiplier extends Activity  {
 
 	DatabaseAdmin db = new DatabaseAdmin(this);
-	int strategicPullThroughRank = 0;
-	int strategicRevenueRank = 0;
-	double strategicMultiplier = getStrategicMultiplier(strategicPullThroughRank, strategicRevenueRank);
+
+	int rev_rank;
+	int pt_rank;
+	double strat_multiplier;
+	
+	public StrategicMultiplier(){
+		rev_rank = getStrategicRevenueRank();
+		pt_rank = getStrategicPullThroughRank();
+		strat_multiplier = getStrategicMultiplier(pt_rank, rev_rank);
+	}
 	
 	//Queries the database for the strategic revenue rank
 	public int getStrategicRevenueRank(){
 		
 		//Determine the strategic row (in the grid provided by commissions) and give a representation via rank
 		double strategic = 0;
+
+		double acc_quota = Double.parseDouble(db.getData(db.COLUMNS[16]));
+		double acc_current = Double.parseDouble(db.getData(db.COLUMNS[17]));
 		
-		//-------------------------------------------------------------------------------
-		//MAKE A CALL HERE TO PULL THE STRATEGIC VALUE HARD NUMBER AND SET IT = STRATEGIC
-		//-------------------------------------------------------------------------------
+		strategic = acc_current/ acc_quota;
+		
 		
 		if (strategic >= 0.20 && strategic < 0.3099) {
 			return 1;
@@ -53,9 +90,14 @@ public class StrategicMultiplier extends Activity  {
 		//Determine the strategic column (in the grid provided by commissions) and give a representation via rank
 		double strategic = 0;
 		
-		//-------------------------------------------------------------------------------
-		//MAKE A CALL HERE TO PULL THE STRATEGIC VALUE HARD NUMBER AND SET IT = STRATEGIC
-		//-------------------------------------------------------------------------------
+		//Strategic quota
+		double strategic_quota = Double.parseDouble(db.getData(db.COLUMNS[2])) + Double.parseDouble(db.getData(db.COLUMNS[3]));
+
+		//get pull-through total
+		double strategic_current = Double.parseDouble(db.getData(db.COLUMNS[14]));
+
+		
+		strategic = strategic_current / strategic_quota;
 		
 		if(strategic >= 0.14 && strategic < 0.33) {
 			return 1;
@@ -66,6 +108,7 @@ public class StrategicMultiplier extends Activity  {
 		} else {
 			return 0;
 		}
+		
 	}
 	
 	//Takes the values of the strategic pull-through and the strategic revenue and calculates the strategic multiplier
@@ -114,7 +157,16 @@ public class StrategicMultiplier extends Activity  {
 	//returns the strategic multiplier out of the class to another class
 	public String returnStrategicMultiplier(){
 		//Converting to a string for the simplicity of the database
-		String str1 = Double.toString(strategicMultiplier);
+		String str1 = Double.toString(strat_multiplier);
 		return str1;
+	}
+	
+	public double returnStrategicMultiplierDouble(){
+		return strat_multiplier;
+	}
+	
+	//Simple class that makes a popup (toast) with the activity name the user chose
+	public void makeToast(String activityChosen){
+		Toast.makeText(getApplicationContext(), activityChosen, Toast.LENGTH_SHORT).show();
 	}
 }

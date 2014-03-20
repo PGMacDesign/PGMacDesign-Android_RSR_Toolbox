@@ -441,7 +441,7 @@
 					android:gravity="right"
 					/>
 			</TableRow>
-		<!-- NEXT Row -->
+		<!-- POD Leaving this section out for now, will return and add later
 		
 	        <TableRow
 	            >
@@ -451,7 +451,7 @@
 					android:layout_height="wrap_content" 
 					android:gravity="left"
 					/>
-		<!-- NEXT TextView -->
+		POD 
 				<TextView 
 		            android:id="@+id/commissions_text_view_to_get_to_a_1dot4"
 		            android:text="Enter Commissions"
@@ -460,7 +460,7 @@
 					android:gravity="right"
 					/>
 			</TableRow>
-		<!-- NEXT Row -->
+		POD
 		
 	        <TableRow
 	            >
@@ -470,7 +470,7 @@
 					android:layout_height="wrap_content" 
 					android:gravity="left"
 					/>
-		<!-- NEXT TextView -->
+		POD
 				<TextView 
 		            android:id="@+id/commissions_text_view_daily_to_get_to_a_1dot4"
 		            android:text="Enter Commissions"
@@ -479,7 +479,7 @@
 					android:gravity="right"
 					/>
 			</TableRow>
-		<!-- NEXT Row -->
+		POD
 		
 	        <TableRow
 	            >
@@ -489,7 +489,7 @@
 					android:layout_height="wrap_content" 
 					android:gravity="left"
 					/>
-		<!-- NEXT TextView -->
+		POD
 				<TextView 
 		            android:id="@+id/commissions_text_view_to_get_to_a_1dot6"
 		            android:text="Enter Commissions"
@@ -498,7 +498,7 @@
 					android:gravity="right"
 					/>
 			</TableRow>
-		<!-- NEXT Row -->
+		POD
 		
 	        <TableRow
 	            >
@@ -508,7 +508,7 @@
 					android:layout_height="wrap_content" 
 					android:gravity="left"
 					/>
-		<!-- NEXT TextView -->
+		POD
 				<TextView 
 		            android:id="@+id/commissions_text_view_daily_to_get_to_a_1dot6"
 		            android:text="Enter Commissions"
@@ -517,7 +517,7 @@
 					android:gravity="right"
 					/>
 			</TableRow>
-		<!-- NEXT Row -->
+		POD -->
 
 		
 		

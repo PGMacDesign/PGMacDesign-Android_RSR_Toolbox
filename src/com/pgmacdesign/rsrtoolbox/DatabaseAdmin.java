@@ -23,6 +23,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 //This class manages the database for the entire application
 public class DatabaseAdmin extends SQLiteOpenHelper  {
@@ -31,7 +32,7 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
 	
     //SQL Variables
     public static final String TABLE_NAME = "commissions";
-    public static final String COLUMN_NAME_EMPLOYEE_ID = "emp_id";
+    public static final String COLUMN_NAME_EMPLOYEE_ID = "_emp_id";
     public static final String COLUMN_NAME_EMPLOYEE_NAME = "emp_name";
     public static final String COLUMN_NAME_WORKING_DAYS_LEFT = "work_days_left";
     public static final String COLUMN_NAME_AT_RISK = "at_risk";
@@ -63,6 +64,7 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     public static final String SQL_CREATE_TABLE =
     		"CREATE TABLE " + 
     		TABLE_NAME + " (" +
+    		COLUMN_NAME_EMPLOYEE_ID + " INTEGER PRIMARY KEY" + COMMA + 
     		COLUMN_NAME_WORKING_DAYS_LEFT + " TEXT DEFAULT \'0\'" + COMMA +
     		COLUMN_NAME_AT_RISK + " TEXT DEFAULT \'0\'" + COMMA +
     		COLUMN_NAME_UPGRADE_QUOTA + " TEXT DEFAULT \'0\'" + COMMA +
@@ -126,6 +128,7 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     public void onCreate(SQLiteDatabase db) {
         //Creates database
     	db.execSQL(SQL_CREATE_TABLE);
+    	db.close();
     }
     
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -138,19 +141,36 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     public void InsertData(String column_name, String value){
     	Log.d("AddItem", value);
     	
+    	String UpdateData = "UPDATE " + TABLE_NAME + " SET " + column_name + " = '" + value + "'";
+    	
+    	//Reference to writeable database
+    	SQLiteDatabase db = this.getWritableDatabase();
+    	
+    	//Create content values to store the data
+    	//ContentValues values = new ContentValues();
+    	//values.put(column_name, value);
+    	db.execSQL(UpdateData);
+    	
+    	//Finally, close the db 
+    	db.close();
+    }
+    
+    public void CreateData(String column_name, String value){
+    	Log.d("AddItem", value);
+    	
     	//Reference to writeable database
     	SQLiteDatabase db = this.getWritableDatabase();
     	
     	//Create content values to store the data
     	ContentValues values = new ContentValues();
     	values.put(column_name, value);
-    	
-    	//Put the values into the database
+
     	db.insert(TABLE_NAME, null, values);
     	
     	//Finally, close the db 
     	db.close();
     }
+    
 
     //Get data
     public String getData(String column_choice){
@@ -179,13 +199,23 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     	return str1;	
     }
     
-    //Sets all of the values in the database to Zero. Basically a month-end wipe
+    //Sets all of the values in the database to Default. Basically a month-end wipe
     public void SetDatabaseNumbersToZero(){
     	
+    	//Fill columns
     	for (int i = 0; i < COLUMNS.length; i++){
     		InsertData(COLUMNS[i], "0");
     	}
     	
+    	//Add at risk
+    	try {
+			InsertData("at_risk", "1417");
+			close();	
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+    	
     }
+
     
 }

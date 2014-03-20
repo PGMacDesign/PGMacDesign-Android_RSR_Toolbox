@@ -17,19 +17,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 package com.pgmacdesign.rsrtoolbox;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //This class calculates quota relief days obtained via personal time or vacation time off
 public class VacationQuotaRelief extends Activity implements View.OnClickListener {
 
 	//Global Variables
 	EditText vacation_days;
-	TextView quota_relief_percent;
+	TextView tv_quota_relief_percent;
 	Button button_calculate_quota_relief, button_jump_to_commissions;
+	
+	double quota_relief_percent = 0;
+	
+	DatabaseAdmin db = new DatabaseAdmin(this);
 	
 	//Main - When the activity starts
 	@Override
@@ -51,7 +57,7 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 		button_calculate_quota_relief = (Button) findViewById(R.id.vacation_quota_relief_button_calculate);
 		button_jump_to_commissions = (Button) findViewById(R.id.vacation_quota_relief_button_to_commissions);
 		
-		quota_relief_percent = (TextView) findViewById(R.id.vacation_quota_relief_percent);
+		tv_quota_relief_percent = (TextView) findViewById(R.id.vacation_quota_relief_percent);
 		
 		button_calculate_quota_relief.setOnClickListener(this);
 		button_jump_to_commissions.setOnClickListener(this);
@@ -69,22 +75,50 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 		//Calculate the Percent of quota relief they receive
 		case R.id.vacation_quota_relief_button_calculate:
 			
-			//Add if >21 and if <0 statement for calculation
-			//Check to make sure it is a number (should be?)
+			//Get info from editText
+			String vaca_days_entered_string = vacation_days.getText().toString();
+			//Parse into double
+			double vaca_days_entered = Double.parseDouble(vaca_days_entered_string);
+			
+			//Make if statement to confirm they typed a real number (Also one that is in bounds)
+			if (vaca_days_entered < 0){
+				tv_quota_relief_percent.setText("Please enter a correct number...");
+			} else if (vaca_days_entered == 0){
+				tv_quota_relief_percent.setText("0");
+				quota_relief_percent = 0;
+			} else if (vaca_days_entered > 0 && vaca_days_entered < 22){
+				quota_relief_percent = (vaca_days_entered/22);
+				String str1 = Double.toString(quota_relief_percent);
+				tv_quota_relief_percent.setText(str1 + "%");
+			} else if (vaca_days_entered >= 22){
+				tv_quota_relief_percent.setText("Please enter a correct number...");
+			}
 			
 			break;
 			
 		//Starts the commissions activity and also inputs the information from the relief % discount into the database
 		case R.id.vacation_quota_relief_button_to_commissions:
+			String str1 = Double.toString(quota_relief_percent);
 			
-			//Input data to database
-			//If statement to check if there is information in the (quota_relief_percent) field, try to enter it
-			//Also add information from (vacation_days) field to database. Another if statement here too
+			//If there is a quota relief amount, write it to the database
+			if (quota_relief_percent > 0){
+				try{
+					db.InsertData("vaca_relief", str1);
+					makeToast("Vacation Relief Entered");
+				} catch (Exception e){
+					e.printStackTrace();
+				}
+			}
 			
-			//Open activity to commissions. 
-			
-			
-			
+			//Open activity to commissions
+        	try{
+	        	makeToast("Opening Commissions");
+	        	Intent intent1 = new Intent(arg0.getContext(), Commissions.class);
+		        startActivity(intent1);
+        	} catch (Exception e) {
+        		makeToast(e.toString());
+        	}
+
 			break;			
 		}
 	}
@@ -94,6 +128,11 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 
 		super.onPause();
 		finish();
+	}
+	
+	//Simple class that makes a popup (toast) with the activity name the user chose
+	public void makeToast(String activityChosen){
+		Toast.makeText(getApplicationContext(), activityChosen, Toast.LENGTH_SHORT).show();
 	}
 
 }

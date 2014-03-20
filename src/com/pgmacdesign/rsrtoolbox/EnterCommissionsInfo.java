@@ -31,6 +31,10 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		setContentView(R.layout.enter_commissions_information);
 		
 		Initialize();
+		
+		
+		
+		
 	}
 
 	//Initialize Variables
