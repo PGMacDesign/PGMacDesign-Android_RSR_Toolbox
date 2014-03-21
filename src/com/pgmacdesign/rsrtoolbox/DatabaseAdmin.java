@@ -62,6 +62,10 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     public static final String COMMA = ",";
     
     //String to create the database
+    
+    //Need to rename fields to REAL and fill with zeros. 
+    
+    
     public static final String SQL_CREATE_TABLE =
     		"CREATE TABLE " + 
     		TABLE_NAME + " (" +
