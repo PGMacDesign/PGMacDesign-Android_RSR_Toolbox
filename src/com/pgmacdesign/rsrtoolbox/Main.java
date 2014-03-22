@@ -71,9 +71,9 @@ public class Main extends Activity implements OnItemClickListener {
 			try{
 				//Fill columns//Fill columns
 				for (int i = 0; i < db.COLUMNS.length; i++){
-		    		db.CreateData(db.COLUMNS[i], "0");
+		    		db.CreateData(db.COLUMNS[i], 0.0);
 		    	}
-				db.CreateData("at_risk", "1417");
+				db.CreateData("at_risk", 1417.0);
 				db.close();
 								
 				makeToast("Database Created");
@@ -247,12 +247,12 @@ public class Main extends Activity implements OnItemClickListener {
     		//Initialize the database with zeros
         	//Fill columns
         	for (int i = 0; i < db.COLUMNS.length; i++){
-        		db.InsertData(db.COLUMNS[i], "0");
+        		db.InsertData(db.COLUMNS[i], 0.0);
         	}
         	
         	//Add at risk
         	try {
-        		db.InsertData("at_risk", "1417");
+        		db.InsertData("at_risk", 0.0);
         		db.close();	
     		} catch (Exception e){
     			e.printStackTrace();

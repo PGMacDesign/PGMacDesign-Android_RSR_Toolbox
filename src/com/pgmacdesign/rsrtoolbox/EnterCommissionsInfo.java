@@ -94,7 +94,9 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_upgrade_quota:
 			
 			try {
-				db.InsertData("up_quota", upgrade_quota.getText().toString());
+				String str1 = upgrade_quota.getText().toString();
+				double dbl = Double.parseDouble(str1);
+				db.InsertData("up_quota", dbl);
 				db.close();
 				makeToast(success);
 				
@@ -106,7 +108,9 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_gg_quota:
 			
 			try {
-				db.InsertData("gg_quota", gg_quota.getText().toString());
+				String str1 = gg_quota.getText().toString();
+				double dbl = Double.parseDouble(str1);
+				db.InsertData("gg_quota", dbl);
 				db.close();
 				makeToast(success);
 				

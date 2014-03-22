@@ -70,28 +70,28 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     		"CREATE TABLE " + 
     		TABLE_NAME + " (" +
     		COLUMN_NAME_EMPLOYEE_ID + " INTEGER PRIMARY KEY" + COMMA + 
-    		COLUMN_NAME_WORKING_DAYS_LEFT + " TEXT DEFAULT \'0\'" + COMMA +
-    		COLUMN_NAME_AT_RISK + " TEXT DEFAULT \'0\'" + COMMA +
-    		COLUMN_NAME_UPGRADE_QUOTA + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_GG_QUOTA + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_GG_CURRENT + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_GG_CHARGE_BACKS + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_NET_GAINS_CURRENT + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_GG_MULTIPLIER + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_GG_RUN_RATE + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_SALES_DOLLARS_QUOTA + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_SALES_DOLLARS_CURRENT + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_SALES_DOLLARS_MULTIPLIER + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_VACATION_RELIEF_PERCENT + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_QUOTA + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_CURRENT + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_RANK + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_STRATEGIC_ACC_QUOTA + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_STRATEGIC_ACC_CURRENT + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_STRATEGIC_ACC_RANK + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_STRATEGIC_MULTIPLIER + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_SPIFFS + " TEXT DEFAULT \'0\'" + COMMA +
-        	COLUMN_NAME_FINAL_COMMISSIONS + " TEXT DEFAULT \'0\'" +
+    		COLUMN_NAME_WORKING_DAYS_LEFT + " REAL DEFAULT \'0\'" + COMMA + //Originally was " TEXT DEFAULT \'0\'", changed to REAL for testing
+    		COLUMN_NAME_AT_RISK + " REAL" + COMMA +
+    		COLUMN_NAME_UPGRADE_QUOTA + " REAL" + COMMA +
+        	COLUMN_NAME_GG_QUOTA + " REAL" + COMMA +
+        	COLUMN_NAME_GG_CURRENT + " REAL" + COMMA +
+        	COLUMN_NAME_GG_CHARGE_BACKS + " REAL" + COMMA +
+        	COLUMN_NAME_NET_GAINS_CURRENT + " REAL" + COMMA +
+        	COLUMN_NAME_GG_MULTIPLIER + " REAL" + COMMA +
+        	COLUMN_NAME_GG_RUN_RATE + " REAL" + COMMA +
+        	COLUMN_NAME_SALES_DOLLARS_QUOTA + " REAL" + COMMA +
+        	COLUMN_NAME_SALES_DOLLARS_CURRENT + " REAL" + COMMA +
+        	COLUMN_NAME_SALES_DOLLARS_MULTIPLIER + " REAL" + COMMA +
+        	COLUMN_NAME_VACATION_RELIEF_PERCENT + " REAL" + COMMA +
+        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_QUOTA + " REAL" + COMMA +
+        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_CURRENT + " REAL" + COMMA +
+        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_RANK + " REAL" + COMMA +
+        	COLUMN_NAME_STRATEGIC_ACC_QUOTA + " REAL" + COMMA +
+        	COLUMN_NAME_STRATEGIC_ACC_CURRENT + " REAL" + COMMA +
+        	COLUMN_NAME_STRATEGIC_ACC_RANK + " REAL" + COMMA +
+        	COLUMN_NAME_STRATEGIC_MULTIPLIER + " REAL" + COMMA +
+        	COLUMN_NAME_SPIFFS + " REAL" + COMMA +
+        	COLUMN_NAME_FINAL_COMMISSIONS + " REAL" +
         	" )";
     
     public static final int DATABASE_VERSION = 1;
@@ -143,8 +143,8 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     }
     
     //Method to insert data into the database
-    public void InsertData(String column_name, String value){
-    	Log.d("AddItem", value);
+    public void InsertData(String column_name, Double value){
+    	//Log.d("AddItem", value);  //This was erroring out when changed from String to double
     	
     	//String UpdateData = "UPDATE " + TABLE_NAME + " SET " + column_name + " = '" + value + "'";  //Locking database, using method instead
     	
@@ -164,8 +164,8 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     	//db.close();
     }
     
-    public void CreateData(String column_name, String value){
-    	Log.d("AddItem", value);
+    public void CreateData(String column_name, Double value){
+    	//Log.d("AddItem", value); //This was erroring out when changed from String to double
     	
     	//Reference to writeable database
     	SQLiteDatabase db = this.getWritableDatabase();
@@ -182,9 +182,9 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     
 
     //Get data
-    public String getData(String column_choice){
+    public Double getData(String column_choice){
     	SQLiteDatabase db = this.getWritableDatabase();
-    	String str1 = "Error";
+    	Double dbl = 0.0;
     			
     	try{
 	    	//Read data from db
@@ -197,17 +197,17 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
 	    	cursor.moveToFirst();
 	    	
 	    	//Should only be 1 column returned, at position 0, set it to the string
-	    	str1 = cursor.getString(0);
+	    	dbl = cursor.getDouble(0);
 	    	//db.close(); //Added 2014-03-20
 	    	cursor.close(); //Added 2014-03-20
 	    	
 	    	//Return the string
-    	return str1;
+    	return dbl;
     	} catch (Exception e){
     		e.printStackTrace();
     	} 
     		
-    	return str1;	
+    	return dbl;	
     }
     
     //Sets all of the values in the database to Default. Basically a month-end wipe
@@ -215,12 +215,12 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     	
     	//Fill columns
     	for (int i = 0; i < COLUMNS.length; i++){
-    		InsertData(COLUMNS[i], "0");
+    		InsertData(COLUMNS[i], 0.0);
     	}
     	
     	//Add at risk
     	try {
-			InsertData("at_risk", "1417");
+			InsertData("at_risk", 1417.00);
 			close();	
 		} catch (Exception e){
 			e.printStackTrace();
