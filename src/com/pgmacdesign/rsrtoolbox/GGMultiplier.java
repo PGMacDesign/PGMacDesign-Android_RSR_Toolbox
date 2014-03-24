@@ -6,9 +6,8 @@ import android.widget.Toast;
 //This class is designed to calculate the strategic multiplier via input from the database
 public class GGMultiplier extends Activity{
 	
-	DatabaseAdmin db = new DatabaseAdmin(this);
 	
-	double GGmultiplierActual = 0;
+	double GGmultiplierActual = 0.0;
 	
 	public double GetGGMultiplier(double input){
 		

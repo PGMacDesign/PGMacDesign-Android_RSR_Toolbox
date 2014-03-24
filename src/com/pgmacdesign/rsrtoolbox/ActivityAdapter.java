@@ -34,8 +34,8 @@ public class ActivityAdapter extends BaseAdapter {
 			R.drawable.lunch_timer, //Position 2
 			R.drawable.input_schedule, //Position 3
 			R.drawable.enter_commissions_information, //Position 4
-			R.drawable.commissions, //Position 5
-			R.drawable.useful_skus, //Position 6
+			R.drawable.useful_skus, //Position 5
+			R.drawable.commissions, //Position 6
 			R.drawable.follow_up, //Position 7
 			R.drawable.calculator, //Position 8
 			R.drawable.share_this_app, //Position 9
@@ -43,7 +43,7 @@ public class ActivityAdapter extends BaseAdapter {
 			R.drawable.important_contact_numbers, //Position 11
 			R.drawable.stress_relief, //Position 12
 			R.drawable.magic_ball, //Position 13
-			R.drawable.blank //Position 14
+			R.drawable.reset_commissions //Position 14
 	};
 	
 	private Context context;

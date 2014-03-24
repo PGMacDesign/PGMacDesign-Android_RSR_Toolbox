@@ -18,6 +18,7 @@ package com.pgmacdesign.rsrtoolbox;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,9 +34,16 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 	TextView tv_quota_relief_percent;
 	Button button_calculate_quota_relief, button_jump_to_commissions;
 	
-	double quota_relief_percent = 0;
+	double quota_relief_percent = 0.0;
 	
 	DatabaseAdmin db = new DatabaseAdmin(this);
+	
+	//SharedPreferences
+	//Make changes to the Prefs File
+	public static final String PREFS_NAME = "StoredCommissionsData";	
+	SharedPrefs sp = new SharedPrefs();
+	SharedPreferences settings;
+	SharedPreferences.Editor editor;
 	
 	//Main - When the activity starts
 	@Override
@@ -64,6 +72,9 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 		
 		vacation_days.setText("0");  //May need to make this a string, unsure if it will auto-parse an int
 		
+		//SharedPreferences
+		settings = getSharedPreferences(PREFS_NAME, 0);
+		editor = settings.edit();
 	}
 	
 	//On Click Method
@@ -88,7 +99,9 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 				quota_relief_percent = 0;
 			} else if (vaca_days_entered > 0 && vaca_days_entered < 22){
 				quota_relief_percent = (vaca_days_entered/22);
-				String str1 = Double.toString(quota_relief_percent);
+				Double dbl = quota_relief_percent * 100; //So it will be a %
+				dbl = (double) (Math.round(dbl*100000)/100000); //So it will be 4 decimal places (xx.xx%)
+				String str1 = Double.toString(dbl);
 				tv_quota_relief_percent.setText(str1 + "%");
 			} else if (vaca_days_entered >= 22){
 				tv_quota_relief_percent.setText("Please enter a correct number...");
@@ -98,12 +111,11 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 			
 		//Starts the commissions activity and also inputs the information from the relief % discount into the database
 		case R.id.vacation_quota_relief_button_to_commissions:
-			String str1 = Double.toString(quota_relief_percent);
 			
 			//If there is a quota relief amount, write it to the database
 			if (quota_relief_percent > 0){
 				try{
-					db.InsertData("vaca_relief", str1);
+					sp.putDouble(editor, "vaca_relief", quota_relief_percent);
 					makeToast("Vacation Relief Entered");
 				} catch (Exception e){
 					e.printStackTrace();
@@ -113,8 +125,8 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 			//Open activity to commissions
         	try{
 	        	makeToast("Opening Commissions");
-	        	Intent intent1 = new Intent(arg0.getContext(), Commissions.class);
-		        startActivity(intent1);
+	        	Intent intent0 = new Intent(arg0.getContext(), Commissions.class);
+		        startActivity(intent0);
         	} catch (Exception e) {
         		makeToast(e.toString());
         	}
@@ -127,6 +139,7 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 	protected void onPause() {
 
 		super.onPause();
+		quota_relief_percent = 0.0;
 		finish();
 	}
 	

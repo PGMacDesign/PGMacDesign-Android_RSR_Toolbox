@@ -28,7 +28,28 @@ import android.widget.Toast;
 //This class manages the database for the entire application
 public class DatabaseAdmin extends SQLiteOpenHelper  {
 	
-	
+	/*
+	 * 
+	 * 
+	 * 
+	 * This entire class has been made obsolete by the SharedPrefs class and its conjunction elsewhere
+	 * This will be kept for reference as the column names are the same as the ones in SharedPrefs
+	 * 
+	 * 
+	 * 
+	 * 
+	 * The database object is still being referenced in the main class for a for loop!!!!!!!!!!!!!!!!!!!!
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+
+	 * 
+	 * 
+	 * 
+	 */
 
 	
     //SQL Variables
@@ -70,28 +91,28 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     		"CREATE TABLE " + 
     		TABLE_NAME + " (" +
     		COLUMN_NAME_EMPLOYEE_ID + " INTEGER PRIMARY KEY" + COMMA + 
-    		COLUMN_NAME_WORKING_DAYS_LEFT + " REAL DEFAULT \'0\'" + COMMA + //Originally was " TEXT DEFAULT \'0\'", changed to REAL for testing
-    		COLUMN_NAME_AT_RISK + " REAL" + COMMA +
-    		COLUMN_NAME_UPGRADE_QUOTA + " REAL" + COMMA +
-        	COLUMN_NAME_GG_QUOTA + " REAL" + COMMA +
-        	COLUMN_NAME_GG_CURRENT + " REAL" + COMMA +
-        	COLUMN_NAME_GG_CHARGE_BACKS + " REAL" + COMMA +
-        	COLUMN_NAME_NET_GAINS_CURRENT + " REAL" + COMMA +
-        	COLUMN_NAME_GG_MULTIPLIER + " REAL" + COMMA +
-        	COLUMN_NAME_GG_RUN_RATE + " REAL" + COMMA +
-        	COLUMN_NAME_SALES_DOLLARS_QUOTA + " REAL" + COMMA +
-        	COLUMN_NAME_SALES_DOLLARS_CURRENT + " REAL" + COMMA +
-        	COLUMN_NAME_SALES_DOLLARS_MULTIPLIER + " REAL" + COMMA +
-        	COLUMN_NAME_VACATION_RELIEF_PERCENT + " REAL" + COMMA +
-        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_QUOTA + " REAL" + COMMA +
-        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_CURRENT + " REAL" + COMMA +
-        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_RANK + " REAL" + COMMA +
-        	COLUMN_NAME_STRATEGIC_ACC_QUOTA + " REAL" + COMMA +
-        	COLUMN_NAME_STRATEGIC_ACC_CURRENT + " REAL" + COMMA +
-        	COLUMN_NAME_STRATEGIC_ACC_RANK + " REAL" + COMMA +
-        	COLUMN_NAME_STRATEGIC_MULTIPLIER + " REAL" + COMMA +
-        	COLUMN_NAME_SPIFFS + " REAL" + COMMA +
-        	COLUMN_NAME_FINAL_COMMISSIONS + " REAL" +
+    		COLUMN_NAME_WORKING_DAYS_LEFT + " REAL DEFAULT \0" + COMMA + //Originally was " TEXT DEFAULT \'0\'", changed to REAL for testing
+    		COLUMN_NAME_AT_RISK + " TEXT \'0\'" + COMMA +
+    		COLUMN_NAME_UPGRADE_QUOTA + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_GG_QUOTA + " TEXT " + COMMA +
+        	COLUMN_NAME_GG_CURRENT + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_GG_CHARGE_BACKS + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_NET_GAINS_CURRENT + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_GG_MULTIPLIER + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_GG_RUN_RATE + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_SALES_DOLLARS_QUOTA + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_SALES_DOLLARS_CURRENT + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_SALES_DOLLARS_MULTIPLIER + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_VACATION_RELIEF_PERCENT + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_QUOTA + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_CURRENT + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_STRATEGIC_PULL_THROUGH_RANK + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_STRATEGIC_ACC_QUOTA + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_STRATEGIC_ACC_CURRENT + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_STRATEGIC_ACC_RANK + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_STRATEGIC_MULTIPLIER + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_SPIFFS + " TEXT \'0\'" + COMMA +
+        	COLUMN_NAME_FINAL_COMMISSIONS + " TEXT \'0\'" +
         	" )";
     
     public static final int DATABASE_VERSION = 1;
@@ -146,19 +167,19 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     public void InsertData(String column_name, Double value){
     	//Log.d("AddItem", value);  //This was erroring out when changed from String to double
     	
-    	//String UpdateData = "UPDATE " + TABLE_NAME + " SET " + column_name + " = '" + value + "'";  //Locking database, using method instead
+    	String updateData = "UPDATE " + TABLE_NAME + " SET " + column_name + " = '" + value + "'";  //Locking database, using method instead
     	
     	//Reference to writeable database
     	SQLiteDatabase db = this.getWritableDatabase();
 
     	//Create content values to store the data
-    	ContentValues values = new ContentValues();
-    	values.put(column_name, value);
+    	//ContentValues values = new ContentValues();
+    	//values.put(column_name, value);
     	
     	//Database update
-    	db.update(TABLE_NAME, values, null, null);
+    	//db.update(TABLE_NAME, values, null, null);
     	
-    	//db.execSQL(UpdateData);
+    	db.execSQL(updateData);
     	
     	//Finally, close the db 
     	//db.close();
@@ -169,7 +190,6 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
     	
     	//Reference to writeable database
     	SQLiteDatabase db = this.getWritableDatabase();
-    	
     	//Create content values to store the data
     	ContentValues values = new ContentValues();
     	values.put(column_name, value);

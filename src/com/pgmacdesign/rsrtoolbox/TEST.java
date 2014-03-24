@@ -4,6 +4,23 @@ public class TEST {
 	/*
 	
 	
+	This code is to check if a database exists in the app data:
+			
+		databaseFile = getApplicationContext().getDatabasePath("RSRToolbox.db");	
+		boolean dbExists = DoesDatabaseExist();
+		
+		if (dbExists){
+			//Do stuff
+		} else if (!dbExists){
+			//Do other stuff
+		}
+	
+	
+	
+	
+	
+	
+	
 	//SQL Variables
     public static final String TABLE_NAME = "commissions";
     public static final String COLUMN_NAME_EMPLOYEE_ID = "COLUMN_NAME_EMPLOYEE_ID";

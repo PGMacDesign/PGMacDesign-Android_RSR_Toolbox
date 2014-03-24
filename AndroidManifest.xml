@@ -188,7 +188,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             android:label="Stress Relief!"  >
         </activity>  
         
-        <!-- This activity adds a fun element of giving responses to yes or no questions via pre-recorded .wav files -->
+        <!-- This activity allows the user to enter commissions info for calculation -->
         <activity
             android:name=".EnterCommissionsInfo"
             android:label="Enter Information for Commissions"  >
@@ -223,6 +223,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             android:name=".MagicBall"
             android:label="Magic Ball"  >
         </activity> 
+        
+        <!-- This activity is for Shared Preferences-->
+        <activity
+            android:name=".SharedPrefs"
+            android:label="Shared Preferences" >
+        </activity>         
         
         <!-- All activities below this Will either be added later or deleted depending on need and time -->
         <!-- All activities below this Will either be added later or deleted depending on need and time -->
@@ -306,13 +312,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         <activity
             android:name=".Flipper"
             android:label="Flip-Style Rotation" >
-        </activity>
-        
-        <!-- This activity shares primitive-type data across the phone -->
-        <activity
-            android:name=".SharedPrefs"
-            android:label="Sharing Data Within Phone" >
-        </activity>        
+        </activity>  
         
         <!-- This activity writes to the external data of the app (IS readable outside the app... for the most part)-->
         <activity
@@ -417,7 +417,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             android:label="Adjust Media Volume" >
         </activity> 
         
-        
+
+                
         
         
         

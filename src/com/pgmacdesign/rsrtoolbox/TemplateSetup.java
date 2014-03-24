@@ -17,13 +17,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 package com.pgmacdesign.rsrtoolbox;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
 public class TemplateSetup extends Activity implements View.OnClickListener {
 
-	//Global Variables
-	
+	//Shared Preferences
+	public static final String PREFS_NAME = "StoredCommissionsData";	
+	SharedPrefs sp = new SharedPrefs();
+	SharedPreferences settings;
+	SharedPreferences.Editor editor;
 	
 	//Main - When the activity starts
 	@Override
@@ -31,6 +35,8 @@ public class TemplateSetup extends Activity implements View.OnClickListener {
 		
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.XML_FILE);
+
+		//Initialize Variables
 		Initialize();
 		
 		
@@ -38,7 +44,9 @@ public class TemplateSetup extends Activity implements View.OnClickListener {
 
 	//Initialize Variables
 	private void Initialize(){
-		
+		//Shared Preferences Stuff
+		settings = getSharedPreferences(PREFS_NAME, 0);
+		editor = settings.edit();
 	}
 	
 	//On Click Method

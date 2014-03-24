@@ -27,8 +27,9 @@
         <TableLayout
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
-		    android:stretchColumns="2"
+		    android:stretchColumns="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21"
 		    android:shrinkColumns="0"
+
 		    >
 		    
 	        <!-- Entry of fields goes here -->
@@ -42,13 +43,15 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_working_days_left"
-		            android:text="Enter Commissions"
-					android:layout_width="wrap_content" 
-					android:layout_height="wrap_content" 
-					android:gravity="right"
-					/>
+
+				<EditText
+				    android:id="@+id/commissions_edit_text_working_days_left"
+			        android:layout_width="wrap_content" 
+				    android:layout_height="wrap_content"
+				    android:ems="10"
+				    android:gravity="right"
+				    android:inputType="numberDecimal" />
+
 			</TableRow>
 		<!-- NEXT Row -->
 		
@@ -61,9 +64,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_at_risk"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_at_risk"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -80,9 +84,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_upgrade_quota"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_upgrade_quota"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -99,9 +104,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_gg_quota"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_gg_quota"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -118,9 +124,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_gg_current"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_gg_current"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -137,9 +144,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_charge_backs"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_charge_backs"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -156,9 +164,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_net_gains"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_net_gains"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -175,9 +184,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_gg_multiplier"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_gg_multiplier"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -194,9 +204,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_gg_run_rate"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_gg_run_rate"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -213,9 +224,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_sales_dollars_quota"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_sales_dollars_quota"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -232,9 +244,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_sales_dollars_current"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_sales_dollars_current"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -251,9 +264,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_sales_dollars_multiplier"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_sales_dollars_multiplier"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -270,9 +284,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_vaca_relief"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_vaca_relief"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -289,9 +304,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_pt_quota"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_pt_quota"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -308,9 +324,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_pt_current"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_pt_current"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -327,9 +344,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_acc_quota"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_acc_quota"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -346,9 +364,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_acc_current"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_acc_current"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -365,9 +384,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_strategic_multiplier"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_strategic_multiplier"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -384,9 +404,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_spiffs"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_spiffs"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -403,9 +424,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_final_commissions"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_final_commissions"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -433,9 +455,10 @@
 					android:gravity="left"
 					/>
 		<!-- NEXT TextView -->
-				<TextView 
-		            android:id="@+id/commissions_text_view_final_commissions_plus_two_a_day"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_final_commissions_plus_two_a_day"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -452,9 +475,10 @@
 					android:gravity="left"
 					/>
 		POD 
-				<TextView 
-		            android:id="@+id/commissions_text_view_to_get_to_a_1dot4"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_to_get_to_a_1dot4"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -471,9 +495,10 @@
 					android:gravity="left"
 					/>
 		POD
-				<TextView 
-		            android:id="@+id/commissions_text_view_daily_to_get_to_a_1dot4"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_daily_to_get_to_a_1dot4"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -490,9 +515,10 @@
 					android:gravity="left"
 					/>
 		POD
-				<TextView 
-		            android:id="@+id/commissions_text_view_to_get_to_a_1dot6"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_to_get_to_a_1dot6"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"
@@ -509,9 +535,10 @@
 					android:gravity="left"
 					/>
 		POD
-				<TextView 
-		            android:id="@+id/commissions_text_view_daily_to_get_to_a_1dot6"
-		            android:text="Enter Commissions"
+				<EditText 
+		            android:id="@+id/commissions_edit_text_daily_to_get_to_a_1dot6"
+		            android:ems="10"
+	        	    android:inputType="numberDecimal" 
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="right"

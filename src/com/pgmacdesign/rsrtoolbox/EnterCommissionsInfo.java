@@ -1,6 +1,7 @@
 package com.pgmacdesign.rsrtoolbox;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,15 +14,19 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 	//Object for accessing the DatabaseAdmin class
 	DatabaseAdmin db = new DatabaseAdmin(this);
 	
-	//11 EditText windows pulled from the xml
+	//EditText windows pulled from the xml
 	EditText upgrade_quota, gg_quota, gg_current, gg_charge_backs, sales_dollars_quota, sales_dollars_current, working_days_left,
 	strategic_pull_through_quota, strategic_pull_through_current, strategic_acc_quota, strategic_accessory_current, spiffs;
 	
-	//11 Buttons pulled from the xml
+	//Buttons pulled from the xml
 	Button b_upgrade_quota, b_gg_quota, b_gg_current, b_gg_charge_backs, b_sales_dollars_quota, b_sales_dollars_current, b_working_days_left,
 	b_strategic_pull_through_quota, b_strategic_pull_through_current, b_strategic_acc_quota, b_strategic_accessory_current, b_spiffs;
 	
-	
+	//Make changes to the Prefs File
+	public static final String PREFS_NAME = "StoredCommissionsData";	
+	SharedPrefs sp = new SharedPrefs();
+	SharedPreferences settings;
+	SharedPreferences.Editor editor;
 		
 	//Main - When the activity starts
 	@Override
@@ -30,11 +35,11 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.enter_commissions_information);
 		
+		settings = getSharedPreferences(PREFS_NAME, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		
 		Initialize();
-		
-		
-		
-		
+
 	}
 
 	//Initialize Variables
@@ -81,6 +86,10 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		b_strategic_accessory_current.setOnClickListener(this);
 		b_spiffs.setOnClickListener(this);
 		b_working_days_left.setOnClickListener(this);
+		
+		//SharedPreferences
+		settings = getSharedPreferences(PREFS_NAME, 0);
+		editor = settings.edit();
 	}
 	
 	//On Click Method
@@ -96,8 +105,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 			try {
 				String str1 = upgrade_quota.getText().toString();
 				double dbl = Double.parseDouble(str1);
-				db.InsertData("up_quota", dbl);
-				db.close();
+
+				sp.putDouble(editor, "up_quota", dbl);
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -110,8 +119,8 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 			try {
 				String str1 = gg_quota.getText().toString();
 				double dbl = Double.parseDouble(str1);
-				db.InsertData("gg_quota", dbl);
-				db.close();
+
+				sp.putDouble(editor, "gg_quota", dbl);
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -122,10 +131,12 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_gg_current:
 			
 			try {
-				db.InsertData("gg_current", gg_current.getText().toString());
-				db.close();
+				String str1 = gg_current.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "gg_current", dbl);
 				makeToast(success);
-				
+
 			} catch (Exception e){
 				makeToast(e.toString());
 			}
@@ -134,10 +145,12 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_gg_charge_backs:
 			
 			try {
-				db.InsertData("charge_backs", gg_charge_backs.getText().toString());
-				db.close();
+				String str1 = gg_charge_backs.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "charge_backs", dbl);
 				makeToast(success);
-				
+
 			} catch (Exception e){
 				makeToast(e.toString());
 			}
@@ -146,10 +159,12 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_sales_dollars_quota:
 			
 			try {
-				db.InsertData("sales_dollars_quota", sales_dollars_quota.getText().toString());
-				db.close();
+				String str1 = sales_dollars_quota.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "sales_dollars_quota", dbl);
 				makeToast(success);
-				
+		
 			} catch (Exception e){
 				makeToast(e.toString());
 			}
@@ -158,8 +173,10 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_sales_dollars_current:
 			
 			try {
-				db.InsertData("sales_dollars_current", sales_dollars_current.getText().toString());
-				db.close();
+				String str1 = sales_dollars_current.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "sales_dollars_current", dbl);
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -170,10 +187,12 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_strategic_pull_through_quota:
 			
 			try {
-				db.InsertData("pt_quota", strategic_pull_through_quota.getText().toString());
-				db.close();
+				String str1 = strategic_pull_through_quota.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "pt_quota", dbl);
 				makeToast(success);
-				
+
 			} catch (Exception e){
 				makeToast(e.toString());
 			}
@@ -182,10 +201,12 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_strategic_pull_through_current:
 			
 			try {
-				db.InsertData("pt_current", strategic_pull_through_current.getText().toString());
-				db.close();
+				String str1 = strategic_pull_through_current.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "pt_current", dbl);
 				makeToast(success);
-				
+
 			} catch (Exception e){
 				makeToast(e.toString());
 			}
@@ -194,10 +215,12 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_strategic_acc_quota:
 			
 			try {
-				db.InsertData("acc_quota", strategic_acc_quota.getText().toString());
-				db.close();
+				String str1 = strategic_acc_quota.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "acc_quota", dbl);
 				makeToast(success);
-				
+
 			} catch (Exception e){
 				makeToast(e.toString());
 			}
@@ -206,10 +229,12 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_strategic_acc_current:
 			
 			try {
-				db.InsertData("acc_current", strategic_accessory_current.getText().toString());
-				db.close();
+				String str1 = strategic_accessory_current.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "acc_current", dbl);
 				makeToast(success);
-				
+
 			} catch (Exception e){
 				makeToast(e.toString());
 			}
@@ -218,22 +243,28 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		case R.id.enter_commissions_information_button_spiffs:
 			
 			try {
-				db.InsertData("spiffs", spiffs.getText().toString());
-				db.close();
+				String str1 = spiffs.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "spiffs", dbl);
 				makeToast(success);
-				
+
 			} catch (Exception e){
 				makeToast(e.toString());
 			}
 			break;
 		
 		case R.id.enter_commissions_information_button_working_days_left:
+			settings = getSharedPreferences(PREFS_NAME, 0); //wtf java
+			SharedPreferences.Editor editor = settings.edit(); //Why do I need this twice
 			
 			try {
-				db.InsertData("work_days_left", working_days_left.getText().toString());
-				db.close();
+				String str1 = working_days_left.getText().toString();
+				double dbl = Double.parseDouble(str1);
+
+				sp.putDouble(editor, "work_days_left", dbl);
 				makeToast(success);
-				
+
 			} catch (Exception e){
 				makeToast(e.toString());
 			}

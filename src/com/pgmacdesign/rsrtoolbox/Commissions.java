@@ -18,22 +18,26 @@ package com.pgmacdesign.rsrtoolbox;
 
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 
 //Commissions is the class that accesses all data from the database and returns calculations to return values
 public class Commissions extends Activity implements View.OnClickListener {
 
 	//Text views that will be filled with the data from various commissions info linked from the rest of the app
-	TextView working_days_left, at_risk, upgrade_quota, gg_quota, gg_current, charge_backs, net_activations, 
+	EditText working_days_left, at_risk, upgrade_quota, gg_quota, gg_current, charge_backs, net_activations, 
 	gg_multiplier, gg_run_rate, sales_dollars_quota, current_sales_dollars, sales_dollars_multiplier, vaca_relief,
 	strategic_pt_quota, strategic_pt_current, strategic_acc_quota, strategic_acc_current, strategic_multiplier, 
 	spiffs, final_commissions, final_commissions_plus_2_a_day, to_get_to_a_1dot4, daily_to_get_to_a_1dot4, 
 	to_get_to_a_1dot6, daily_to_get_to_a_1dot6 ;
 	
-	//Object for accessing the DatabaseAdmin class
-	DatabaseAdmin db = new DatabaseAdmin(this);
+	//Make changes to the Prefs File
+	public static final String PREFS_NAME = "StoredCommissionsData";	
+	SharedPrefs sp = new SharedPrefs();
+	SharedPreferences settings;
+	SharedPreferences.Editor editor;
 	
 	//Main - When the activity starts
 	@Override
@@ -41,350 +45,388 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.commissions);
+		
 		Initialize();
 		
 		//Fill the values in the text views
 		Get_ALL_DATA();
+		
+		settings = getSharedPreferences(PREFS_NAME, 0);
+		
+		/*EXAMPLE
+		 
+		double dbl2 = sp.getDouble(settings, "sales_dollars", 0.1);
+		dbl2*=2.12;
+		working_days_left.setText(Double.toString(dbl2));
+		
+		 */
 		
 	}
 
 	//Initialize Variables
 	private void Initialize(){
 		//Initialize the text views to their respective IDs
-		working_days_left = (TextView) findViewById(R.id.commissions_text_view_working_days_left);
-		at_risk = (TextView) findViewById(R.id.commissions_text_view_at_risk);
-		upgrade_quota = (TextView) findViewById(R.id.commissions_text_view_upgrade_quota);
-		gg_quota = (TextView) findViewById(R.id.commissions_text_view_gg_quota);
-		gg_current = (TextView) findViewById(R.id.commissions_text_view_gg_current);
-		charge_backs = (TextView) findViewById(R.id.commissions_text_view_charge_backs);
-		net_activations = (TextView) findViewById(R.id.commissions_text_view_net_gains);
-		gg_multiplier = (TextView) findViewById(R.id.commissions_text_view_gg_multiplier);
-		gg_run_rate = (TextView) findViewById(R.id.commissions_text_view_gg_run_rate);
-		sales_dollars_quota = (TextView) findViewById(R.id.commissions_text_view_sales_dollars_quota);
-		current_sales_dollars = (TextView) findViewById(R.id.commissions_text_view_sales_dollars_current);
-		sales_dollars_multiplier = (TextView) findViewById(R.id.commissions_text_view_sales_dollars_multiplier);
-		vaca_relief = (TextView) findViewById(R.id.commissions_text_view_vaca_relief);
-		strategic_pt_quota = (TextView) findViewById(R.id.commissions_text_view_pt_quota);
-		strategic_pt_current = (TextView) findViewById(R.id.commissions_text_view_pt_current);
+		working_days_left = (EditText) findViewById(R.id.commissions_edit_text_working_days_left);
+		at_risk = (EditText) findViewById(R.id.commissions_edit_text_at_risk);
+		upgrade_quota = (EditText) findViewById(R.id.commissions_edit_text_upgrade_quota);
+		gg_quota = (EditText) findViewById(R.id.commissions_edit_text_gg_quota);
+		gg_current = (EditText) findViewById(R.id.commissions_edit_text_gg_current);
+		charge_backs = (EditText) findViewById(R.id.commissions_edit_text_charge_backs);
+		net_activations = (EditText) findViewById(R.id.commissions_edit_text_net_gains);
+		gg_multiplier = (EditText) findViewById(R.id.commissions_edit_text_gg_multiplier);
+		gg_run_rate = (EditText) findViewById(R.id.commissions_edit_text_gg_run_rate);
+		sales_dollars_quota = (EditText) findViewById(R.id.commissions_edit_text_sales_dollars_quota);
+		current_sales_dollars = (EditText) findViewById(R.id.commissions_edit_text_sales_dollars_current);
+		sales_dollars_multiplier = (EditText) findViewById(R.id.commissions_edit_text_sales_dollars_multiplier);
+		vaca_relief = (EditText) findViewById(R.id.commissions_edit_text_vaca_relief);
+		strategic_pt_quota = (EditText) findViewById(R.id.commissions_edit_text_pt_quota);
+		strategic_pt_current = (EditText) findViewById(R.id.commissions_edit_text_pt_current);
 		//Strategic pt rank is here in string array
-		strategic_acc_quota = (TextView) findViewById(R.id.commissions_text_view_acc_quota);
-		strategic_acc_current = (TextView) findViewById(R.id.commissions_text_view_acc_current);
+		strategic_acc_quota = (EditText) findViewById(R.id.commissions_edit_text_acc_quota);
+		strategic_acc_current = (EditText) findViewById(R.id.commissions_edit_text_acc_current);
 		//Strategic acc rank is here in string array
-		strategic_multiplier = (TextView) findViewById(R.id.commissions_text_view_strategic_multiplier);
-		spiffs = (TextView) findViewById(R.id.commissions_text_view_spiffs);
-		final_commissions = (TextView) findViewById(R.id.commissions_text_view_final_commissions);
-		final_commissions_plus_2_a_day = (TextView) findViewById(R.id.commissions_text_view_final_commissions_plus_two_a_day);
+		strategic_multiplier = (EditText) findViewById(R.id.commissions_edit_text_strategic_multiplier);
+		spiffs = (EditText) findViewById(R.id.commissions_edit_text_spiffs);
+		final_commissions = (EditText) findViewById(R.id.commissions_edit_text_final_commissions);
+		final_commissions_plus_2_a_day = (EditText) findViewById(R.id.commissions_edit_text_final_commissions_plus_two_a_day);
 		
 		/*
 		 //Will add this in eventually 
-		to_get_to_a_1dot4 = (TextView) findViewById(R.id.commissions_text_view_to_get_to_a_1dot4);
-		daily_to_get_to_a_1dot4 = (TextView) findViewById(R.id.commissions_text_view_daily_to_get_to_a_1dot4);
-		to_get_to_a_1dot6 = (TextView) findViewById(R.id.commissions_text_view_to_get_to_a_1dot6);
-		daily_to_get_to_a_1dot6 = (TextView) findViewById(R.id.commissions_text_view_daily_to_get_to_a_1dot6);
+		to_get_to_a_1dot4 = (EditText) findViewById(R.id.commissions_edit_text_to_get_to_a_1dot4);
+		daily_to_get_to_a_1dot4 = (EditText) findViewById(R.id.commissions_edit_text_daily_to_get_to_a_1dot4);
+		to_get_to_a_1dot6 = (EditText) findViewById(R.id.commissions_edit_text_to_get_to_a_1dot6);
+		daily_to_get_to_a_1dot6 = (EditText) findViewById(R.id.commissions_edit_text_daily_to_get_to_a_1dot6);
 		*/
+		
+		//Shared Preferences
+		settings = getSharedPreferences(PREFS_NAME, 0);
+		editor = settings.edit();
 		
 	}
 	
-	//Returns calculations via values stored in database queries
+	//Gets the working days left from shared preferences
+	//01
 	public void Get_working_days_left(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
-		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[0]);
+		try{	
+			dbl = sp.getDouble(settings, "work_days_left", 0.0);
+			result = Double.toString(dbl);
+			working_days_left.setText(result);	
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		working_days_left.setText(result);
 	}
-	
-	//Returns calculations via values stored in database queries
+
+	//Gets the at risk from shared preferences
+	//02
 	public void Get_at_risk(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[1]);
+			dbl = sp.getDouble(settings, "at_risk", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		at_risk.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
+	//Gets the upgrade quota from shared preferences
+	//03
 	public void Get_upgrade_quota(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[2]);
+			dbl = sp.getDouble(settings, "up_quota", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		upgrade_quota.setText(result);
 	}	
 	
-	//Returns calculations via values stored in database queries
+	//Gets the GG quota from the shared preferences
+	//04
 	public void Get_gg_quota(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[3]);
+			dbl = sp.getDouble(settings, "gg_quota", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		gg_quota.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
+	//Gets the GG Current from the shared preferences
+	//05
 	public void Get_gg_current(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[4]);
+			dbl = sp.getDouble(settings, "gg_current", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		gg_current.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
+	//Gets the GG charge backs from the shared preferences
+	//06
 	public void Get_charge_backs(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[5]);
+			dbl = sp.getDouble(settings, "charge_backs", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		charge_backs.setText(result);
 	}	
 	
-	//Returns calculations via values stored in database queries
-	public void Get_net_activations(){ //Result written to db
-		String result = "";
+	//Gets the Net Activations by performing calculations from results obtained via shared preferences
+	//07
+	public void Get_net_activations(){ //Result written to stored preferences
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			int netGs= (Integer.parseInt(db.getData(db.COLUMNS[4]))) - (Integer.parseInt(db.getData(db.COLUMNS[5])));
-			
-			result = Integer.toString(netGs);
-			
-			db.InsertData("net_gains", result);
-			db.close();
-			
+			dbl = (sp.getDouble(settings, "gg_current", 0.0)) - (sp.getDouble(settings, "charge_backs", 0.0));
+			sp.putDouble(editor, "net_gains", dbl);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		net_activations.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
-	public void Get_gg_multiplier(){ //Result written to db
-		String result = "";
+	//Gets the GG Multiplier by performing calculations from results obtained via shared preferences and the GGMultiplier Class
+	//08
+	public void Get_gg_multiplier(){ //Result written to stored preferences
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			//Call GGMultiplier method to get result
-			//Get values at gg_actual and gg_quota from database, parse into doubles
-			//Perform calculations and then parse back to string. return
 			GGMultiplier gg = new GGMultiplier();
 			double input;
+			double netGs = (sp.getDouble(settings, "gg_current", 0.0)) - (sp.getDouble(settings, "charge_backs", 0.0));
+			double ggQuota = sp.getDouble(settings, "gg_quota", 0.0);
 			
-			double netGs= (Double.parseDouble(db.getData(db.COLUMNS[4]))) - (Double.parseDouble(db.getData(db.COLUMNS[5])));
-			double gg_quota = Double.parseDouble(db.getData(db.COLUMNS[3]));
+			input = netGs / ggQuota;
 			
-			input = netGs / gg_quota;
+			dbl = gg.GetGGMultiplier(input);
 			
-			double dresult = gg.GetGGMultiplier(input);
-			
-			result = Double.toString(dresult);
-			
-			db.InsertData("gg_multiplier", result);
-			db.close();
-			
+			sp.putDouble(editor, "gg_multiplier", dbl);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		gg_multiplier.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
-	public void Get_gg_run_rate(){ //Result written to db
-		String result = "";
+	//Gets the GG run rate by performing calculations from results obtained via shared preferences
+	//09
+	public void Get_gg_run_rate(){ //Result written to stored preferences
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 
 		try{
-			//Net gains
-			int netGs= (Integer.parseInt(db.getData(db.COLUMNS[4]))) - (Integer.parseInt(db.getData(db.COLUMNS[5]))); //Net Gains Current
-			//Number of days worked already
-			int daysWorked = 22-(Integer.parseInt(db.getData(db.COLUMNS[0])));
-			//Run rate
-			int runRate = ((22 * netGs)/daysWorked);
+			double netGs = (sp.getDouble(settings, "gg_current", 0.0)) - (sp.getDouble(settings, "charge_backs", 0.0));
+			double daysWorked = 22.00-(sp.getDouble(settings, "work_days_left", 0.0)); //Number of days worked already
+			double runRate = ((22 * netGs)/daysWorked); //Run rate
+			dbl = runRate;
 			
-			//Convert back to string
-			result = Integer.toString(runRate);
-			
-			db.InsertData("gg_run_rate", result);
-			db.close();
-			
+			sp.putDouble(editor, "gg_run_rate", dbl);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		gg_run_rate.setText(result);
 	}	
 	
-	//Returns calculations via values stored in database queries
+	//Gets the sales dollars quota from the shared preferences
+	//10
 	public void Get_sales_dollars_quota(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[9]);
+			
+			dbl = sp.getDouble(settings, "sales_dollars_quota", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		sales_dollars_quota.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
+	//Gets the current sales dollars from the shared preferences
+	//11
 	public void Get_current_sales_dollars(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[10]);
+			dbl = sp.getDouble(settings, "sales_dollars_current", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		current_sales_dollars.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
-	public void Get_sales_dollars_multiplier(){ //Result written to db
-		String result = "";
+	//Gets the sales dollars multiplier by performing calculations from results obtained via shared preferences
+	//12
+	public void Get_sales_dollars_multiplier(){ //Result written to stored preferences
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			double sdMultiplier= (Double.parseDouble(db.getData(db.COLUMNS[10]))) / (Double.parseDouble(db.getData(db.COLUMNS[9])));
+			double sdMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / (sp.getDouble(settings, "sales_dollars_quota", 0.0));
+			dbl = sdMultiplier;
 			
-			result = Double.toString(sdMultiplier);
-			
-			db.InsertData("sales_dollars_quota", result);
-			db.close();
-			
+			sp.putDouble(editor, "sales_dollars_multiplier", dbl);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		sales_dollars_multiplier.setText(result);
 	}	
 	
-	//Returns calculations via values stored in database queries
-	public void Get_vaca_relief(){  //STILL NEED TO WRITE DATA FROM VACA RELIEF CALCULATOR
-		String result = "";
+	//Gets the vacation relief percent from the shared preferences
+	//13
+	public void Get_vaca_relief(){  
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[12]);
+			dbl = sp.getDouble(settings, "vaca_relief", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		vaca_relief.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
+	//Gets the strategic pull-through quota by performing calculations from results obtained via shared preferences
+	//14
 	public void Get_strategic_pt_quota(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			
 			//Upgrade_quota + GG_quota
-			int pt_quota = Integer.parseInt(db.getData(db.COLUMNS[2])) + Integer.parseInt(db.getData(db.COLUMNS[3]));
-			result = Integer.toString(pt_quota);
+			dbl = (sp.getDouble(settings, "up_quota", 0.0)) + (sp.getDouble(settings, "gg_quota", 0.0));
+			
+			sp.putDouble(editor, "pt_quota", dbl);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		strategic_pt_quota.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
+	//Gets the strategic pull-through current value from the shared preferences
+	//15
 	public void Get_strategic_pt_current(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[14]);
+			dbl = sp.getDouble(settings, "pt_current", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		strategic_pt_current.setText(result);
 	}	
 	
-	//Returns calculations via values stored in database queries
+	//Gets the strategic accessory quota from the shared preferences
+	//16
 	public void Get_strategic_acc_quota(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[16]);
+			dbl = sp.getDouble(settings, "acc_quota", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		strategic_acc_quota.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
+	//Gets the strategic accessory current value from the shared preferences
+	//17
 	public void Get_strategic_acc_current(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
-		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[17]);
+			dbl = sp.getDouble(settings, "acc_current", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		strategic_acc_current.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
-	public void Get_the_strategic_multiplier(){  //Result written to db
-		String result = "";
-		StrategicMultiplier2 sm = new StrategicMultiplier2(); //Result written to db
+	//Gets the strategic multiplier by performing calculations from the results obtained via shared preferences and the StratetigMultiplier2 Class
+	//18
+	public void Get_the_strategic_multiplier(){  //Result written to stored preferences
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
+		
+		StrategicMultiplier2 sm = new StrategicMultiplier2(); //Result written to stored preferences
 		
 		try{
 			//Pull data from Strategic Multiplier class
-			double result1 = sm.GetStrategicMultiplier();
-			
-			result = Double.toString(result1);
-			//Write data to database
-			db.InsertData("strategic_multiplier", result);
-			db.close();
-			
+			dbl = sm.GetStrategicMultiplier();
+
+			sp.putDouble(editor, "strategic_multiplier", dbl);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		strategic_multiplier.setText(result);
 	}	
 	
-	//Returns calculations via values stored in database queries
+	//Gets the spiffs value from the shared preferences
+	//19
 	public void Get_spiffs(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[20]);
+			dbl = sp.getDouble(settings, "spiffs", 0.0);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		spiffs.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
-	public void Get_final_commissions(){ //Result written to db
-		String result = "";
+	//Gets the final commissions value by performing calculations from the results obtained via shared preferences and the StratetigMultiplier2 Class and GGMultiplier class
+	//20
+	public void Get_final_commissions(){ //Result written to stored preferences
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
+		
 		StrategicMultiplier2 sm = new StrategicMultiplier2();
 		GGMultiplier gg = new GGMultiplier();
 		
@@ -393,58 +435,65 @@ public class Commissions extends Activity implements View.OnClickListener {
 			//Commissions formula: final = (1417 * strategic multiplier * GG multiplier * sales dollars multiplier) + spiffs 
 			//Setup all variables via pulls from database
 			double strategicMultiplier = sm.GetStrategicMultiplier();
-			double ggpercent = ((Double.parseDouble(db.getData(db.COLUMNS[4]))) - (Double.parseDouble(db.getData(db.COLUMNS[5])))) / (Double.parseDouble(db.getData(db.COLUMNS[9])));
+			double ggpercent = (sp.getDouble(settings, "gg_current", 0.0) - sp.getDouble(settings, "charge_backs", 0.0)) / sp.getDouble(settings, "gg_quota", 0.0);
 			double ggMultiplier = gg.GetGGMultiplier(ggpercent);
-			double salesDollarsMultiplier = (Double.parseDouble(db.getData(db.COLUMNS[10]))) / (Double.parseDouble(db.getData(db.COLUMNS[9])));
-			double spiffs = Double.parseDouble(db.COLUMNS[20]);
-			//Uber calculation time
+			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / (sp.getDouble(settings, "sales_dollars_quota", 0.0));
+			double spiffs = sp.getDouble(settings, "spiffs", 0.0);
 			double finalCheck = (1417.00 * strategicMultiplier * ggMultiplier * salesDollarsMultiplier) + spiffs;
-			result = Double.toString(finalCheck);
+			dbl = finalCheck;
 			
-			//Write result to database
-			db.InsertData("final_commissions", result);
-			db.close();
-
+			//Write to stored preferences
+			sp.putDouble(editor, "final_commissions", dbl);
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		final_commissions.setText(result);
 	}
 	
-	//Returns calculations via values stored in database queries
+	//Gets the final commissions value (+2 a day) by performing calculations from the results obtained via shared preferences and the StratetigMultiplier2 Class and GGMultiplier class
+	//21
 	public void Get_final_commissions_plus_2_a_day(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
+		
 		StrategicMultiplier2 sm = new StrategicMultiplier2();
 		GGMultiplier gg = new GGMultiplier();
 		
 		try{
 			//Uber long calculation. Separated out to prevent any issues. At risk = 1417
 			//Commissions formula: final = (1417 * strategic multiplier * GG multiplier * sales dollars multiplier) + spiffs 
-			//Setup all variables via pulls from database
+			//Setup all variables via pulls from shared preferences
 			double strategicMultiplier = sm.GetStrategicMultiplier();
-			double twoMoreADay = 2*((Double.parseDouble(db.getData(db.COLUMNS[0]))));
-			double ggpercent = ((twoMoreADay + (Double.parseDouble(db.getData(db.COLUMNS[4])))) - (Double.parseDouble(db.getData(db.COLUMNS[5])))) / (Double.parseDouble(db.getData(db.COLUMNS[9])));
+			double twoMoreADay = 2*(sp.getDouble(settings, "work_days_left", 0.0));
+			
+			double ggpercent = (twoMoreADay+(sp.getDouble(settings, "gg_current", 0.0) - sp.getDouble(settings, "charge_backs", 0.0))) / sp.getDouble(settings, "gg_quota", 0.0);
+			
 			double ggMultiplier = gg.GetGGMultiplier(ggpercent);
-			double salesDollarsMultiplier = (Double.parseDouble(db.getData(db.COLUMNS[10]))) / (Double.parseDouble(db.getData(db.COLUMNS[9])));
-			double spiffs = Double.parseDouble(db.COLUMNS[20]);
-			//Uber calculation time
+			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / (sp.getDouble(settings, "sales_dollars_quota", 0.0));
+			double spiffs = sp.getDouble(settings, "spiffs", 0.0);
 			double finalCheck = (1417.00 * strategicMultiplier * ggMultiplier * salesDollarsMultiplier) + spiffs;
-			result = Double.toString(finalCheck);
+			dbl = finalCheck;
 
+			result = Double.toString(dbl);
 		} catch (Exception e){
-			result = e.toString();
+			String sresult = e.toString();
 		}	
 		final_commissions.setText(result);
 	}
+
+////////////////////////////////////
+
 	
 	/*
 	//Returns calculations via values stored in database queries
 	public void Get_to_get_to_a_1dot4(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[0]);
+			result = db.getData(DatabaseAdmin.COLUMNS[0]);
 		} catch (Exception e){
 			result = e.toString();
 		}	
@@ -453,11 +502,12 @@ public class Commissions extends Activity implements View.OnClickListener {
 	
 	//Returns calculations via values stored in database queries
 	public void Get_daily_to_get_to_a_1dot4(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[0]);
+			result = db.getData(DatabaseAdmin.COLUMNS[0]);
 		} catch (Exception e){
 			result = e.toString();
 		}	
@@ -466,11 +516,12 @@ public class Commissions extends Activity implements View.OnClickListener {
 	
 	//Returns calculations via values stored in database queries
 	public void Get_to_get_to_a_1dot6(){
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[0]);
+			result = db.getData(DatabaseAdmin.COLUMNS[0]);
 		} catch (Exception e){
 			result = e.toString();
 		}	
@@ -479,12 +530,12 @@ public class Commissions extends Activity implements View.OnClickListener {
 
 	//Returns calculations via values stored in database queries
 	public void Get_daily_to_get_to_a_1dot6(){
-
-		String result = "";
+		Double dbl = 0.0;
+		String result = Double.toString(dbl);
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			result = db.getData(db.COLUMNS[0]);
+			result = db.getData(DatabaseAdmin.COLUMNS[0]);
 		} catch (Exception e){
 			result = e.toString();
 		}	
@@ -496,6 +547,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 	//Get ALL data values assigned to editText fields
 	public void Get_ALL_DATA(){
 		Get_working_days_left();
+		
 		Get_at_risk();
 		Get_upgrade_quota();
 		Get_gg_quota();
@@ -512,10 +564,10 @@ public class Commissions extends Activity implements View.OnClickListener {
 		Get_strategic_pt_current();
 		Get_strategic_acc_quota();
 		Get_strategic_acc_current();
-		//Get_the_strategic_multiplier(); //Strategic Multiplier is causing problems
+		Get_the_strategic_multiplier(); 
 		Get_spiffs();
-		//Get_final_commissions(); //Strategic Multiplier is causing problems
-		//Get_final_commissions_plus_2_a_day(); //Strategic Multiplier is causing problems
+		Get_final_commissions(); 
+		Get_final_commissions_plus_2_a_day(); 
 		
 		
 		

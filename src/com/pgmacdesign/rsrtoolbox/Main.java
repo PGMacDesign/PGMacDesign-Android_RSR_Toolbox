@@ -20,6 +20,7 @@ import java.io.File;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuInflater;
@@ -33,26 +34,25 @@ import android.widget.Toast;
 //Main menu class. Supports a Grid View
 public class Main extends Activity implements OnItemClickListener {
 	
-	//Database object
-	DatabaseAdmin db = new DatabaseAdmin(this);
-	
-	//
-	SQLiteDatabase myDB;
+	//Make changes to the Prefs File
+	public static final String PREFS_NAME = "StoredCommissionsData";	
+	SharedPrefs sp = new SharedPrefs();
+	SharedPreferences settings;
+	SharedPreferences.Editor editor;
 	
 	//Gridview to match the xml
 	GridView gridView;
 	
 	//File for testing if a DB has been created
 	File databaseFile;
-	
-
-	
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu);
 		
-
+		//Shared Preferences
+		settings = getSharedPreferences(PREFS_NAME, 0);
+		editor = settings.edit();
 		
 		gridView = (GridView) findViewById(R.id.main_menu_grid_view);
 		
@@ -60,30 +60,26 @@ public class Main extends Activity implements OnItemClickListener {
 		
 		gridView.setOnItemClickListener(this);
 				
-		databaseFile = getApplicationContext().getDatabasePath("RSRToolbox.db");
+
 		
-		
-		boolean dbExists = DoesDatabaseExist();
-		
-		if (dbExists){
-			makeToast("Database Exists");
-		} else if (!dbExists){
-			try{
-				//Fill columns//Fill columns
-				for (int i = 0; i < db.COLUMNS.length; i++){
-		    		db.CreateData(db.COLUMNS[i], 0.0);
-		    	}
-				db.CreateData("at_risk", 1417.0);
-				db.close();
-								
-				makeToast("Database Created");
-			} catch (Exception e){
-				makeToast(e.toString());
-			}
+		//Check to see if the SharedPreferences file has been filled/ exists
+		if (sp.getDouble(settings, "at_risk", 0.0) > 999){ //Info has already been entered
+			//Do nothing
 		} else {
-			makeToast("Fail");
+			try{
+				
+				//Enter all data to the shared preferences as 0.0 Except for at_risk
+				for (int i=0; i < DatabaseAdmin.COLUMNS.length; i++ ){
+					sp.putDouble(editor, DatabaseAdmin.COLUMNS[i], 0.0);
+				}
+				//Enter at risk
+				sp.putDouble(editor, "at_risk", 1417.00);
+				
+				makeToast("Initial Setup Complete");
+			} catch (Exception e){
+				e.printStackTrace();
+			}
 		}
-		
 	}
 
 	//This onItemClick method jumps to the ActivityAdapter class to determine which item was chosen from the grid and then opens the respective activity
@@ -100,8 +96,8 @@ public class Main extends Activity implements OnItemClickListener {
         case 0:
         	try {
 				makeToast("Vacation Quota");
-	        	Intent intent0 = new Intent(v.getContext(), VacationQuotaRelief.class);
-		        startActivity(intent0);
+	        	Intent intent00 = new Intent(v.getContext(), VacationQuotaRelief.class);
+		        startActivity(intent00);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
@@ -142,28 +138,29 @@ public class Main extends Activity implements OnItemClickListener {
         case 4:
         	try {
         		makeToast("Enter Commissions Info");
-	        	Intent intent4 = new Intent(v.getContext(), EnterCommissionsInfo.class);
-		        startActivity(intent4);
+	        	Intent intent44 = new Intent(v.getContext(), EnterCommissionsInfo.class);
+		        startActivity(intent44);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
         	}
 
         case 5:
-        	try {
-        		makeToast("Commissions");
-	        	Intent intent5 = new Intent(v.getContext(), Commissions.class);
+        	try{
+	        	makeToast("Useful SKUs");
+	        	Intent intent5 = new Intent(v.getContext(), UsefulSKUs.class);
 		        startActivity(intent5);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
         	}
+
         	break;
         	
         case 6:
-        	try{
-	        	makeToast("Useful SKUs");
-	        	Intent intent6 = new Intent(v.getContext(), UsefulSKUs.class);
+        	try {
+        		makeToast("Commissions");
+	        	Intent intent6 = new Intent(v.getContext(), Commissions.class);
 		        startActivity(intent6);
         	} catch (Exception e) {
         		String error = e.toString();
@@ -242,21 +239,22 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;   
-        case 14:
-    		//Maybe use as reset month?   		
-    		//Initialize the database with zeros
-        	//Fill columns
-        	for (int i = 0; i < db.COLUMNS.length; i++){
-        		db.InsertData(db.COLUMNS[i], 0.0);
-        	}
-        	
-        	//Add at risk
-        	try {
-        		db.InsertData("at_risk", 0.0);
-        		db.close();	
-    		} catch (Exception e){
-    			e.printStackTrace();
-    		}
+        case 14:   		
+    		//Reset the database with zeros
+        	//Reset the month
+			try{
+				
+				//Enter all data to the shared preferences as 0.0 Except for at_risk
+				for (int i=0; i < DatabaseAdmin.COLUMNS.length; i++ ){
+					sp.putDouble(editor, DatabaseAdmin.COLUMNS[i], 0.0);
+				}
+				//Enter at risk
+				sp.putDouble(editor, "at_risk", 1417.00);
+					
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+			makeToast("Commissions Has Been Reset");
 	    }
 		
 	}

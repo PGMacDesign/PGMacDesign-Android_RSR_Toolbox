@@ -17,22 +17,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 package com.pgmacdesign.rsrtoolbox;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 //This class is designed to calculate the strategic multiplier via input from the database
 public class StrategicMultiplier2 extends Activity  {
 
-	DatabaseAdmin db = new DatabaseAdmin(this);
-	
+	//Make changes to the Prefs File
+	public static final String PREFS_NAME = "StoredCommissionsData";	
+	SharedPrefs sp = new SharedPrefs();
+	SharedPreferences settings;
+	SharedPreferences.Editor editor;
 	
 	
 	public double GetStrategicMultiplier(){
 	
+		//Setup Shared Preferences stuff first
+			settings = getSharedPreferences(PREFS_NAME, 0);
+			editor = settings.edit();
+		
 		//Accessory Strategic Calculations
 			double acc_mult_rank;
 			int acc_rank;
-			double acc_quota = Double.parseDouble(db.getData(db.COLUMNS[16]));
-			double acc_current = Double.parseDouble(db.getData(db.COLUMNS[17]));
+			
+			double acc_quota = sp.getDouble(settings, "acc_quota", 0.0);
+			double acc_current = sp.getDouble(settings, "acc_current", 0.0);
 		
 			acc_mult_rank = acc_current / acc_quota;
 			
@@ -49,8 +58,9 @@ public class StrategicMultiplier2 extends Activity  {
 		//Pull-Through Strategic Calculations
 			double pt_mult_rank;
 			int pt_rank;
-			double pt_quota = Double.parseDouble(db.getData(db.COLUMNS[2])) + Double.parseDouble(db.getData(db.COLUMNS[3]));
-			double pt_current = Double.parseDouble(db.getData(db.COLUMNS[14]));
+			
+			double pt_quota = sp.getDouble(settings, "up_quota", 0.0) + sp.getDouble(settings, "gg_quota", 0.0);
+			double pt_current = sp.getDouble(settings, "pt_current", 0.0);
 			
 			pt_mult_rank = pt_current / pt_quota;
 			
