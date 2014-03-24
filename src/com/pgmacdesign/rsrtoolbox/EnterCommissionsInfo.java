@@ -107,6 +107,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "up_quota", dbl);
+				editor.commit();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -121,6 +122,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "gg_quota", dbl);
+				editor.commit();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -135,6 +137,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "gg_current", dbl);
+				editor.commit();
 				makeToast(success);
 
 			} catch (Exception e){
@@ -149,6 +152,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "charge_backs", dbl);
+				editor.commit();
 				makeToast(success);
 
 			} catch (Exception e){
@@ -163,6 +167,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "sales_dollars_quota", dbl);
+				editor.commit();
 				makeToast(success);
 		
 			} catch (Exception e){
@@ -177,6 +182,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "sales_dollars_current", dbl);
+				editor.commit();
 				makeToast(success);
 				
 			} catch (Exception e){
@@ -191,6 +197,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "pt_quota", dbl);
+				editor.commit();
 				makeToast(success);
 
 			} catch (Exception e){
@@ -205,6 +212,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "pt_current", dbl);
+				editor.commit();
 				makeToast(success);
 
 			} catch (Exception e){
@@ -219,6 +227,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "acc_quota", dbl);
+				editor.commit();
 				makeToast(success);
 
 			} catch (Exception e){
@@ -233,6 +242,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "acc_current", dbl);
+				editor.commit();
 				makeToast(success);
 
 			} catch (Exception e){
@@ -247,6 +257,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "spiffs", dbl);
+				editor.commit();
 				makeToast(success);
 
 			} catch (Exception e){
@@ -263,6 +274,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				double dbl = Double.parseDouble(str1);
 
 				sp.putDouble(editor, "work_days_left", dbl);
+				editor.commit();
 				makeToast(success);
 
 			} catch (Exception e){

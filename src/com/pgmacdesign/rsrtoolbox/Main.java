@@ -63,17 +63,19 @@ public class Main extends Activity implements OnItemClickListener {
 
 		
 		//Check to see if the SharedPreferences file has been filled/ exists
-		if (sp.getDouble(settings, "at_risk", 0.0) > 999){ //Info has already been entered
-			//Do nothing
+		if (sp.getDouble(settings, "at_risk", 0.0) > 999){ //Info has already been entered. Used 999 instead of 1417 as it may change at some point
+			//Do nothing for now
 		} else {
 			try{
 				
 				//Enter all data to the shared preferences as 0.0 Except for at_risk
 				for (int i=0; i < DatabaseAdmin.COLUMNS.length; i++ ){
 					sp.putDouble(editor, DatabaseAdmin.COLUMNS[i], 0.0);
+					editor.commit();
 				}
 				//Enter at risk
 				sp.putDouble(editor, "at_risk", 1417.00);
+				editor.commit();
 				
 				makeToast("Initial Setup Complete");
 			} catch (Exception e){
@@ -247,10 +249,12 @@ public class Main extends Activity implements OnItemClickListener {
 				//Enter all data to the shared preferences as 0.0 Except for at_risk
 				for (int i=0; i < DatabaseAdmin.COLUMNS.length; i++ ){
 					sp.putDouble(editor, DatabaseAdmin.COLUMNS[i], 0.0);
+					editor.commit();
 				}
 				//Enter at risk
 				sp.putDouble(editor, "at_risk", 1417.00);
-					
+				editor.commit();
+				
 			} catch (Exception e){
 				e.printStackTrace();
 			}

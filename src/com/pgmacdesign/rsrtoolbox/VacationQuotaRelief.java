@@ -94,17 +94,24 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 			//Make if statement to confirm they typed a real number (Also one that is in bounds)
 			if (vaca_days_entered < 0){
 				tv_quota_relief_percent.setText("Please enter a correct number...");
+				
 			} else if (vaca_days_entered == 0){
 				tv_quota_relief_percent.setText("0");
 				quota_relief_percent = 0;
-			} else if (vaca_days_entered > 0 && vaca_days_entered < 22){
+				
+			} else if (vaca_days_entered > 0 && vaca_days_entered < 3){
+				tv_quota_relief_percent.setText("You only get quota relief for 3+ days");
+				
+			} else if (vaca_days_entered >= 3 && vaca_days_entered < 22){
 				quota_relief_percent = (vaca_days_entered/22);
 				Double dbl = quota_relief_percent * 100; //So it will be a %
 				dbl = (double) (Math.round(dbl*100000)/100000); //So it will be 4 decimal places (xx.xx%)
 				String str1 = Double.toString(dbl);
 				tv_quota_relief_percent.setText(str1 + "%");
+				
 			} else if (vaca_days_entered >= 22){
 				tv_quota_relief_percent.setText("Please enter a correct number...");
+				
 			}
 			
 			break;
@@ -113,9 +120,15 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 		case R.id.vacation_quota_relief_button_to_commissions:
 			
 			//If there is a quota relief amount, write it to the database
+			if (quota_relief_percent == 0){
+				sp.putDouble(editor, "vaca_relief", quota_relief_percent);
+				editor.commit();
+				makeToast("Vacation Relief Entered");
+			}
 			if (quota_relief_percent > 0){
 				try{
 					sp.putDouble(editor, "vaca_relief", quota_relief_percent);
+					editor.commit();
 					makeToast("Vacation Relief Entered");
 				} catch (Exception e){
 					e.printStackTrace();

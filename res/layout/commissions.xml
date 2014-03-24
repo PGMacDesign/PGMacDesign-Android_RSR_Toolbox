@@ -28,17 +28,18 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:stretchColumns="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21"
-		    android:shrinkColumns="0"
-
+		    android:shrinkColumns="0,1"
 		    >
 		    
 	        <!-- Entry of fields goes here -->
 	        
 	        <TableRow
+	            android:layout_weight="100"
 	            >
 		        <TextView      
-		            android:text="Number of Working Days Left in the Month: "
+		            android:text="Number of Working Days Left: "
 					android:layout_width="wrap_content" 
+					android:layout_weight="65"
 					android:layout_height="wrap_content" 
 					android:gravity="left"
 					/>
@@ -46,8 +47,9 @@
 
 				<EditText
 				    android:id="@+id/commissions_edit_text_working_days_left"
-			        android:layout_width="wrap_content" 
+			        android:layout_width="20dp" 
 				    android:layout_height="wrap_content"
+				    android:layout_weight="35"
 				    android:ems="10"
 				    android:gravity="right"
 				    android:inputType="numberDecimal" />
@@ -358,7 +360,7 @@
 	        <TableRow
 	            >
 		        <TextView      
-		            android:text="Current Strategic Accessory Attainment: "
+		            android:text="Strategic Accessory Attainment: "
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="left"
@@ -449,7 +451,7 @@
 	        <TableRow
 	            >
 		        <TextView      
-		            android:text="If you did 2 GGs a day for the rest of your working days, you would earn: "
+		            android:text="If you did 2 GGs a day for the rest of the month: "
 					android:layout_width="wrap_content" 
 					android:layout_height="wrap_content" 
 					android:gravity="left"

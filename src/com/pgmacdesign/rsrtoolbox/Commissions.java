@@ -17,6 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 package com.pgmacdesign.rsrtoolbox;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -101,7 +104,6 @@ public class Commissions extends Activity implements View.OnClickListener {
 		//Shared Preferences
 		settings = getSharedPreferences(PREFS_NAME, 0);
 		editor = settings.edit();
-		
 	}
 	
 	//Gets the working days left from shared preferences
@@ -112,6 +114,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{	
 			dbl = sp.getDouble(settings, "work_days_left", 0.0);
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 			working_days_left.setText(result);	
 		} catch (Exception e){
@@ -128,6 +131,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			dbl = sp.getDouble(settings, "at_risk", 0.0);
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -142,7 +146,8 @@ public class Commissions extends Activity implements View.OnClickListener {
 		String result = Double.toString(dbl);
 		
 		try{
-			dbl = sp.getDouble(settings, "up_quota", 0.0);
+			dbl = (sp.getDouble(settings, "up_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -157,7 +162,8 @@ public class Commissions extends Activity implements View.OnClickListener {
 		String result = Double.toString(dbl);
 		
 		try{
-			dbl = sp.getDouble(settings, "gg_quota", 0.0);
+			dbl = (sp.getDouble(settings, "gg_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -173,6 +179,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			dbl = sp.getDouble(settings, "gg_current", 0.0);
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -188,6 +195,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			dbl = sp.getDouble(settings, "charge_backs", 0.0);
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -205,6 +213,8 @@ public class Commissions extends Activity implements View.OnClickListener {
 		//Query the database for the numbers needed and set them to variables
 			dbl = (sp.getDouble(settings, "gg_current", 0.0)) - (sp.getDouble(settings, "charge_backs", 0.0));
 			sp.putDouble(editor, "net_gains", dbl);
+			editor.commit();
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -229,6 +239,8 @@ public class Commissions extends Activity implements View.OnClickListener {
 			dbl = gg.GetGGMultiplier(input);
 			
 			sp.putDouble(editor, "gg_multiplier", dbl);
+			editor.commit();
+			dbl = round(dbl, 1);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -249,6 +261,8 @@ public class Commissions extends Activity implements View.OnClickListener {
 			dbl = runRate;
 			
 			sp.putDouble(editor, "gg_run_rate", dbl);
+			editor.commit();
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -264,7 +278,8 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			
-			dbl = sp.getDouble(settings, "sales_dollars_quota", 0.0);
+			dbl = (sp.getDouble(settings, "sales_dollars_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -280,6 +295,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			dbl = sp.getDouble(settings, "sales_dollars_current", 0.0);
+			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -294,10 +310,14 @@ public class Commissions extends Activity implements View.OnClickListener {
 		String result = Double.toString(dbl);
 		
 		try{
-			double sdMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / (sp.getDouble(settings, "sales_dollars_quota", 0.0));
+			double sdcurrent = (sp.getDouble(settings, "sales_dollars_current", 0.0)); 
+			double sdquota = ((sp.getDouble(settings, "sales_dollars_quota", 0.0)))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double sdMultiplier = sdcurrent / sdquota;
 			dbl = sdMultiplier;
 			
 			sp.putDouble(editor, "sales_dollars_multiplier", dbl);
+			editor.commit();
+			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -314,6 +334,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		try{
 		//Query the database for the numbers needed and set them to variables
 			dbl = sp.getDouble(settings, "vaca_relief", 0.0);
+			dbl = round(dbl, 4);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -329,9 +350,13 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			//Upgrade_quota + GG_quota
-			dbl = (sp.getDouble(settings, "up_quota", 0.0)) + (sp.getDouble(settings, "gg_quota", 0.0));
+			double upquota = ((sp.getDouble(settings, "up_quota", 0.0)))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double ggquota = ((sp.getDouble(settings, "gg_quota", 0.0)))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			dbl = upquota + ggquota;
 			
 			sp.putDouble(editor, "pt_quota", dbl);
+			editor.commit();
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -347,6 +372,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			dbl = sp.getDouble(settings, "pt_current", 0.0);
+			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -362,7 +388,8 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			dbl = sp.getDouble(settings, "acc_quota", 0.0);
+			dbl = (sp.getDouble(settings, "acc_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -378,6 +405,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			dbl = sp.getDouble(settings, "acc_current", 0.0);
+			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -391,13 +419,11 @@ public class Commissions extends Activity implements View.OnClickListener {
 		Double dbl = 0.0;
 		String result = Double.toString(dbl);
 		
-		StrategicMultiplier2 sm = new StrategicMultiplier2(); //Result written to stored preferences
-		
 		try{
 			//Pull data from Strategic Multiplier class
-			dbl = sm.GetStrategicMultiplier();
-
-			sp.putDouble(editor, "strategic_multiplier", dbl);
+			dbl = sp.getDouble(settings, "strategic_multiplier", 0.0);
+			
+			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -414,6 +440,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		try{
 		//Query the database for the numbers needed and set them to variables
 			dbl = sp.getDouble(settings, "spiffs", 0.0);
+			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -426,24 +453,30 @@ public class Commissions extends Activity implements View.OnClickListener {
 	public void Get_final_commissions(){ //Result written to stored preferences
 		Double dbl = 0.0;
 		String result = Double.toString(dbl);
-		
-		StrategicMultiplier2 sm = new StrategicMultiplier2();
 		GGMultiplier gg = new GGMultiplier();
 		
 		try{
 			//Uber long calculation. Separated out to prevent any issues. At risk = 1417
 			//Commissions formula: final = (1417 * strategic multiplier * GG multiplier * sales dollars multiplier) + spiffs 
 			//Setup all variables via pulls from database
-			double strategicMultiplier = sm.GetStrategicMultiplier();
-			double ggpercent = (sp.getDouble(settings, "gg_current", 0.0) - sp.getDouble(settings, "charge_backs", 0.0)) / sp.getDouble(settings, "gg_quota", 0.0);
+			double strategicMultiplier1 = sp.getDouble(settings, "strategic_multiplier", 0.0);
+			
+			double ggcurrent = sp.getDouble(settings, "gg_current", 0.0)*((1-(sp.getDouble(settings, "vaca_relief", 0.0))));
+			double ggchargebacks = sp.getDouble(settings, "charge_backs", 0.0);
+			double ggquota = (sp.getDouble(settings, "gg_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double ggpercent = (ggcurrent - ggchargebacks) / ggquota;			
 			double ggMultiplier = gg.GetGGMultiplier(ggpercent);
-			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / (sp.getDouble(settings, "sales_dollars_quota", 0.0));
+			
+			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / ((sp.getDouble(settings, "sales_dollars_quota", 0.0)))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
 			double spiffs = sp.getDouble(settings, "spiffs", 0.0);
-			double finalCheck = (1417.00 * strategicMultiplier * ggMultiplier * salesDollarsMultiplier) + spiffs;
+			double finalCheck = (1417.00 * strategicMultiplier1 * ggMultiplier * salesDollarsMultiplier) + spiffs;
+			
 			dbl = finalCheck;
 			
-			//Write to stored preferences
 			sp.putDouble(editor, "final_commissions", dbl);
+			editor.commit();
+			
+			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
@@ -457,29 +490,35 @@ public class Commissions extends Activity implements View.OnClickListener {
 		Double dbl = 0.0;
 		String result = Double.toString(dbl);
 		
-		StrategicMultiplier2 sm = new StrategicMultiplier2();
+		
 		GGMultiplier gg = new GGMultiplier();
 		
 		try{
 			//Uber long calculation. Separated out to prevent any issues. At risk = 1417
 			//Commissions formula: final = (1417 * strategic multiplier * GG multiplier * sales dollars multiplier) + spiffs 
 			//Setup all variables via pulls from shared preferences
-			double strategicMultiplier = sm.GetStrategicMultiplier();
+			double strategicMultiplier1 = sp.getDouble(settings, "strategic_multiplier", 0.0);
+			
 			double twoMoreADay = 2*(sp.getDouble(settings, "work_days_left", 0.0));
 			
-			double ggpercent = (twoMoreADay+(sp.getDouble(settings, "gg_current", 0.0) - sp.getDouble(settings, "charge_backs", 0.0))) / sp.getDouble(settings, "gg_quota", 0.0);
-			
+			double ggcurrent = sp.getDouble(settings, "gg_current", 0.0)*((1-(sp.getDouble(settings, "vaca_relief", 0.0))));
+			double ggcurrentPlusTwoADay = ggcurrent + twoMoreADay;
+			double ggchargebacks = sp.getDouble(settings, "charge_backs", 0.0);
+			double ggquota = (sp.getDouble(settings, "gg_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double ggpercent = (ggcurrentPlusTwoADay - ggchargebacks) / ggquota;			
 			double ggMultiplier = gg.GetGGMultiplier(ggpercent);
+
 			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / (sp.getDouble(settings, "sales_dollars_quota", 0.0));
 			double spiffs = sp.getDouble(settings, "spiffs", 0.0);
-			double finalCheck = (1417.00 * strategicMultiplier * ggMultiplier * salesDollarsMultiplier) + spiffs;
+			double finalCheck = (1417.00 * strategicMultiplier1 * ggMultiplier * salesDollarsMultiplier) + spiffs;
+			
 			dbl = finalCheck;
-
+			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
 			String sresult = e.toString();
 		}	
-		final_commissions.setText(result);
+		final_commissions_plus_2_a_day.setText(result);
 	}
 
 ////////////////////////////////////
@@ -544,10 +583,103 @@ public class Commissions extends Activity implements View.OnClickListener {
 	
 	*/
 	
+	//This method calculates and writes the strategic multiplier value
+	public void GetStrategicMultiplier(){
+		
+		//Setup Shared Preferences stuff first
+			settings = getSharedPreferences(PREFS_NAME, 0);
+			editor = settings.edit();
+		
+		//Accessory Strategic Calculations
+			double acc_mult_rank;
+			int acc_rank;
+			
+			double acc_quota = (sp.getDouble(settings, "acc_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double acc_current = sp.getDouble(settings, "acc_current", 0.0);
+		
+			acc_mult_rank = acc_current / acc_quota;
+			
+			if (acc_mult_rank >= 0.20 && acc_mult_rank < 0.3099) {
+				acc_rank = 1;
+			} else if (acc_mult_rank >= 0.31 && acc_mult_rank < 0.4699){
+				acc_rank = 2;
+			} else if (acc_mult_rank >= 0.47){
+				acc_rank = 3;
+			} else {
+				acc_rank = 0;
+			}
+		
+		//Pull-Through Strategic Calculations
+			double pt_mult_rank;
+			int pt_rank;
+			
+			double ptquota1 = (sp.getDouble(settings, "up_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double ptquota2 = (sp.getDouble(settings, "gg_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double ptquota = ptquota1 + ptquota2;
+			double ptcurrent = sp.getDouble(settings, "pt_current", 0.0);
+			
+			pt_mult_rank = ptcurrent / ptquota;
+			
+			if(pt_mult_rank >= 0.14 && pt_mult_rank < 0.33) {
+				pt_rank = 1;
+			} else if (pt_mult_rank >= 0.33 && pt_mult_rank < 0.59){
+				pt_rank = 2;
+			} else if (pt_mult_rank >= 0.59) {
+				pt_rank = 3;
+			} else {
+				pt_rank = 0;
+			}
+		
+		//Strategic Multiplier Calculations
+			double strategic_multiplier;
+			//This matches the boxes for strategic multiplier numbers
+			if (pt_rank == 0 && acc_rank == 0){
+				strategic_multiplier = 0.8;
+			} else if (pt_rank == 1 && acc_rank == 0){
+				strategic_multiplier = 0.85;
+			} else if (pt_rank == 2 && acc_rank == 0){
+				strategic_multiplier = 0.95;
+			} else if (pt_rank == 3 && acc_rank == 0){
+				strategic_multiplier = 1.0;
+			} else if (pt_rank == 0 && acc_rank == 1){
+				strategic_multiplier = 0.85;
+			} else if (pt_rank == 1 && acc_rank == 1){
+				strategic_multiplier = 0.95;
+			} else if (pt_rank == 2 && acc_rank == 1){
+				strategic_multiplier = 1.0;
+			} else if (pt_rank == 3 && acc_rank == 1){
+				strategic_multiplier = 1.05;
+			} else if (pt_rank == 0 && acc_rank == 2){
+				strategic_multiplier = 0.95;
+			} else if (pt_rank == 1 && acc_rank == 2){
+				strategic_multiplier = 1.0;
+			} else if (pt_rank == 2 && acc_rank == 2){
+				strategic_multiplier = 1.05;
+			} else if (pt_rank == 3 && acc_rank == 2){
+				strategic_multiplier = 1.15;
+			} else if (pt_rank == 0 && acc_rank == 3){
+				strategic_multiplier = 1.0;
+			} else if (pt_rank == 1 && acc_rank == 3){
+				strategic_multiplier = 1.05;
+			} else if (pt_rank == 2 && acc_rank == 3){
+				strategic_multiplier = 1.15;
+			} else if (pt_rank == 3 && acc_rank == 3){
+				strategic_multiplier = 1.20;
+			} else {
+				strategic_multiplier = 0.8;
+			}
+		
+		//Finally, write the strategic multiplier to the shared preferences
+			sp.putDouble(editor, "strategic_multiplier", strategic_multiplier);
+			editor.commit();
+	}
+	
 	//Get ALL data values assigned to editText fields
 	public void Get_ALL_DATA(){
+		//THIS MUST GO FIRST
+		GetStrategicMultiplier();
+		//The rest can follow
 		Get_working_days_left();
-		
 		Get_at_risk();
 		Get_upgrade_quota();
 		Get_gg_quota();
@@ -579,6 +711,15 @@ public class Commissions extends Activity implements View.OnClickListener {
 		Get_to_get_to_a_1dot6();
 		Get_daily_to_get_to_a_1dot6();
 		*/
+	}
+	
+	//This method is for rounding numbers
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+	
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
 	}
 	
 	//On Click Method
