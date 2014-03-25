@@ -18,27 +18,27 @@ package com.pgmacdesign.rsrtoolbox;
 
 
 import android.app.Activity;
-import android.app.LocalActivityManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TabHost;
-import android.widget.TabHost.TabContentFactory;
-import android.widget.TabWidget;
-import android.widget.TextView;
+import android.widget.TabHost.TabSpec;
 import android.widget.Toast;
 
 public class InputSchedule extends Activity implements View.OnClickListener, OnItemSelectedListener {
 
 	//Shared Preferences
-	public static final String PREFS_NAME = "RSRToolboxData";	
-	SharedPrefs sp = new SharedPrefs();
-	SharedPreferences settings;
-	SharedPreferences.Editor editor;
+		public static final String PREFS_NAME = "RSRToolboxData";	
+		SharedPrefs sp = new SharedPrefs();
+		SharedPreferences settings;
+		SharedPreferences.Editor editor;
 	
 	//XML Variables
 	//Spinners
@@ -47,7 +47,19 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	
 	//Tabs
 		TabHost host;
-		TabWidget tabWidget;
+		TabSpec specs;
+		
+	//EditTexts
+		EditText input_schedule_edit_text_daily_start_time, input_schedule_edit_text_daily_shift_length, input_schedule_edit_text_daily_address, 
+		input_schedule_edit_text_meeting_start_time, input_schedule_edit_text_meeting_shift_length, input_schedule_edit_text_meeting_address,
+		input_schedule_edit_text_other_start_time, input_schedule_edit_text_other_shift_length, input_schedule_edit_text_other_address;
+		
+	//Buttons
+		Button input_schedule_button_daily_enter_calendar_event, input_schedule_button_daily_remind_me_later, input_schedule_button_meeting_enter_calendar_event,
+		input_schedule_button_meeting_remind_me_later, input_schedule_button_other_enter_calendar_event, input_schedule_button_other_remind_me_later;
+		
+	//Date Picker
+		DatePicker input_schedule_datePicker_daily, input_schedule_datePicker_meeting, input_schedule_datePicker_other;
 	
 	
 	//Main - When the activity starts
@@ -55,13 +67,9 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.input_schedule);
-		
+		//Setup all variables and listeners
 		Initialize();
 
-		//Deprecated atm
-		LocalActivityManager mLocalActivityManager = new LocalActivityManager(this, false);
-	    mLocalActivityManager.dispatchCreate(savedInstanceState); // state will be bundle your activity state which you get in onCreate
-	    host.setup(mLocalActivityManager);
 
 		
 	}
@@ -70,7 +78,6 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	private void Initialize(){
 		//Shared Preferences Stuff
 			settings = getSharedPreferences(PREFS_NAME, 0);
-			settings = getSharedPreferences(PREFS_NAME, 1);
 			editor = settings.edit();
 		
 		//Array Adapter for Spinner use with the daily tab
@@ -81,51 +88,94 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 			spinner_daily.setAdapter(adapter);
 			spinner_daily.setOnItemSelectedListener(this);
 			
-		//TabHost
+		//TabHost <--Creates the tab host and sets it up
 			host = (TabHost)findViewById(android.R.id.tabhost);
-		    host.setup();
+		    host.setup(); //Host Initialization
 		    
-		    /*
-		    host.addTab(host.newTabSpec("one")
-                    .setIndicator("First Results")
-	                .setContent(new TabContentFactory() {
+		//Refer to tab specs, create first tab and add it <--Formats and assigns tabs to the tab host
+		    specs = host.newTabSpec("tag1");
+		    specs.setContent(R.id.Daily); //First Tab
+		    specs.setIndicator("Weekly Schedule");
+		    host.addTab(specs);
+		    
+		//Refer to tab specs, create second tab and add it
+		    specs = host.newTabSpec("tag2");
+		    specs.setContent(R.id.Meetings); //First Tab
+		    specs.setIndicator("Meetings");
+		    host.addTab(specs);		    
+		
+		//Refer to tab specs, create third tab and add it
+		    specs = host.newTabSpec("tag3");
+		    specs.setContent(R.id.Other); //First Tab
+		    specs.setIndicator("Other/ Misc");
+		    host.addTab(specs);	
+		    
+		//Variables for Tab 1 - Daily
+		    input_schedule_edit_text_daily_start_time = (EditText) findViewById(R.id.input_schedule_edit_text_daily_start_time);
+		    input_schedule_edit_text_daily_shift_length = (EditText) findViewById(R.id.input_schedule_edit_text_daily_shift_length);
+		    input_schedule_datePicker_daily = (DatePicker) findViewById(R.id.input_schedule_datePicker_daily);
+		    input_schedule_edit_text_daily_address = (EditText) findViewById(R.id.input_schedule_edit_text_daily_address);
+		    input_schedule_button_daily_enter_calendar_event = (Button) findViewById(R.id.input_schedule_button_daily_enter_calendar_event);
+		    input_schedule_button_daily_remind_me_later = (Button) findViewById(R.id.input_schedule_button_daily_remind_me_later);
+		    
+		//Variables for Tab 2 - Meeting
+		    input_schedule_edit_text_meeting_start_time = (EditText) findViewById(R.id.input_schedule_edit_text_meeting_start_time);
+		    input_schedule_edit_text_meeting_shift_length = (EditText) findViewById(R.id.input_schedule_edit_text_meeting_shift_length);
+		    input_schedule_datePicker_meeting = (DatePicker) findViewById(R.id.input_schedule_datePicker_meeting);
+		    input_schedule_edit_text_meeting_address = (EditText) findViewById(R.id.input_schedule_edit_text_meeting_address);
+		    input_schedule_button_meeting_enter_calendar_event = (Button) findViewById(R.id.input_schedule_button_meeting_enter_calendar_event);
+		    input_schedule_button_meeting_remind_me_later = (Button) findViewById(R.id.input_schedule_button_meeting_remind_me_later);
+		    
+		//Variables for tab 3 - Other
+		    input_schedule_edit_text_other_start_time = (EditText) findViewById(R.id.input_schedule_edit_text_other_start_time);
+		    input_schedule_edit_text_other_shift_length = (EditText) findViewById(R.id.input_schedule_edit_text_other_shift_length);
+		    input_schedule_datePicker_other = (DatePicker) findViewById(R.id.input_schedule_datePicker_other);
+		    input_schedule_edit_text_other_address = (EditText) findViewById(R.id.input_schedule_edit_text_other_address);
+		    input_schedule_button_other_enter_calendar_event = (Button) findViewById(R.id.input_schedule_button_other_enter_calendar_event);
+		    input_schedule_button_other_remind_me_later = (Button) findViewById(R.id.input_schedule_button_other_remind_me_later);
+		
+		//Buttons to onClickListener
+		    input_schedule_button_daily_enter_calendar_event.setOnClickListener(this);
+		    input_schedule_button_daily_remind_me_later.setOnClickListener(this);
+		    input_schedule_button_meeting_enter_calendar_event.setOnClickListener(this);
+		    input_schedule_button_meeting_remind_me_later.setOnClickListener(this);
+		    input_schedule_button_other_enter_calendar_event.setOnClickListener(this);
+		    input_schedule_button_other_remind_me_later.setOnClickListener(this);
 
-	                    public View createTabContent(String tag) {
-	                        return new TextView(TestActivity.this);
-	                    }
-	                }));
-		    
-		    host.addTab(host.newTabSpec("two")
-                    .setIndicator("Second Results")
-	                .setContent(new TabContentFactory() {
-
-	                    public View createTabContent(String tag) {
-	                        return new TextView(TestActivity.this);
-	                    }
-	                }));
-		    
-		    host.getTabWidget().getChildAt(0).getLayoutParams().height = 35;
-		    host.getTabWidget().getChildAt(1).getLayoutParams().height = 35;
-			*/
-		    
 	}
 	
 	//On Click Method
 	@Override
 	public void onClick(View arg0) {
-		/*
+		//Switch case for all buttons on screen
 		switch (arg0.getId()){
 		
-		case R.id.button_ID_That_Was_Clicked:
+		case R.id.input_schedule_button_daily_enter_calendar_event:
 			
 			break;
 			
-		case R.id.button_ID_That_Was_Clicked:
+		case R.id.input_schedule_button_daily_remind_me_later:
 			
 			break;
 			
+		case R.id.input_schedule_button_meeting_enter_calendar_event:
+			
+			break;
+			
+		case R.id.input_schedule_button_meeting_remind_me_later:
+			
+			break;
+			
+		case R.id.input_schedule_button_other_enter_calendar_event:
+			
+			break;
+			
+		case R.id.input_schedule_button_other_remind_me_later:
+			
+			break;
+							
 		}
-		*/
+		
 	}
 	
 	protected void onPause() {
@@ -134,15 +184,14 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		finish();
 	}
 
-	//Simple class that makes a popup (toast) with the activity name the user chose
+	//Simple class that makes a popup (toast) with text
 	public void makeToast(String activityChosen){
 		Toast.makeText(getApplicationContext(), activityChosen, Toast.LENGTH_SHORT).show();
 	}
 
 	//When an item is selected with the spinner
-	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		
+		//Position variable to determine which option the spinner is pointing to
 		int position = spinner_daily.getSelectedItemPosition();
 		switch (position){
 		
@@ -178,10 +227,8 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		}
 	}
 	
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-		
+	@Override //Not used atm
+	public void onNothingSelected(AdapterView<?> arg0) {		
 	}
 	
 }
