@@ -24,7 +24,7 @@ import android.view.View;
 public class TemplateSetup extends Activity implements View.OnClickListener {
 
 	//Shared Preferences
-	public static final String PREFS_NAME = "StoredCommissionsData";	
+	public static final String PREFS_NAME = "RSRToolboxData";	
 	SharedPrefs sp = new SharedPrefs();
 	SharedPreferences settings;
 	SharedPreferences.Editor editor;

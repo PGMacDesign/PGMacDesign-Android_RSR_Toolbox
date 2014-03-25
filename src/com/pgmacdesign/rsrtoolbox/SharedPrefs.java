@@ -15,7 +15,7 @@ public class SharedPrefs extends Activity implements OnClickListener {
 	EditText name, sales_dollars;
 	//Button
 	Button save_prefs;
-	public static final String PREFS_NAME = "StoredCommissionsData";
+	public static final String PREFS_NAME = "RSRToolboxData";
 	
 	//SharedPreferences Object
 	SharedPreferences settings;
@@ -72,5 +72,27 @@ public class SharedPrefs extends Activity implements OnClickListener {
 	 */
 	double getDouble(final SharedPreferences prefs, final String key, final double defaultValue){
 		return Double.longBitsToDouble(prefs.getLong(key, Double.doubleToLongBits(defaultValue)));
+	}
+	
+	/*
+	 * This allows Strings to be entered into the data field.  
+	 * IE) sp.putString(editor, "work_location_home", "1401 W Imperial Hwy, La Habra, CA 90631");  @Params,
+	 * 1) Editor being used 
+	 * 2) Which 'column' the data is being entered to
+	 * 3) Value To Enter
+	 */
+	Editor putString (final Editor edit, final String key, final String value){
+		return edit.putString(key, value);
+	}
+	
+	/*
+	 * Returns a String from the shared preferences data field. @Params,
+	 * IE) sp.getString(settings, "work_location_home", "Work");  @Params,
+	 * 1) SharedPreferences Variable (Defined in global variables)
+	 * 2) Which 'column' the data is being pulled from
+	 * 3) A Default value that will be returned if no value exists there
+	 */
+	String getString(final SharedPreferences prefs, final String key, final String defaultValue){
+		return prefs.getString(key, defaultValue);
 	}
 }

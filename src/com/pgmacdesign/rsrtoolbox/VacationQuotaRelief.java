@@ -40,7 +40,7 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 	
 	//SharedPreferences
 	//Make changes to the Prefs File
-	public static final String PREFS_NAME = "StoredCommissionsData";	
+	public static final String PREFS_NAME = "RSRToolboxData";	
 	SharedPrefs sp = new SharedPrefs();
 	SharedPreferences settings;
 	SharedPreferences.Editor editor;

@@ -37,7 +37,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 	to_get_to_a_1dot6, daily_to_get_to_a_1dot6 ;
 	
 	//Make changes to the Prefs File
-	public static final String PREFS_NAME = "StoredCommissionsData";	
+	public static final String PREFS_NAME = "RSRToolboxData";	
 	SharedPrefs sp = new SharedPrefs();
 	SharedPreferences settings;
 	SharedPreferences.Editor editor;

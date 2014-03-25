@@ -23,7 +23,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 	b_strategic_pull_through_quota, b_strategic_pull_through_current, b_strategic_acc_quota, b_strategic_accessory_current, b_spiffs;
 	
 	//Make changes to the Prefs File
-	public static final String PREFS_NAME = "StoredCommissionsData";	
+	public static final String PREFS_NAME = "RSRToolboxData";	
 	SharedPrefs sp = new SharedPrefs();
 	SharedPreferences settings;
 	SharedPreferences.Editor editor;

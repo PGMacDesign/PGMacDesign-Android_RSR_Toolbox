@@ -1,5 +1,8 @@
 package com.pgmacdesign.rsrtoolbox;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
 public class TEST {
 	/*
 	
@@ -29,8 +32,78 @@ public class TEST {
 	}
 	
 	
+	//////////////////////////////////////////////////////////////
+	
+	//This code is for entering and retrieving shared preferences
+
+	 * This allows doubles to be entered into the data field.  
+	 * IE) sp.putDouble(editor, "sales_dollars", 2.4231);  @Params,
+	 * 1) Editor being used 
+	 * 2) Which 'column' the data is being entered to
+	 * 3) Value To Enter
+	 */
+	Editor putDouble (final Editor edit, final String key, final double value){
+		return edit.putLong(key, Double.doubleToRawLongBits(value));
+	}
+	
+	/*
+	 * Returns a double from the shared preferences data field. @Params,
+	 * IE) sp.getDouble(settings, "sales_dollars", 0.0);  @Params,
+	 * 1) SharedPreferences Variable (Defined in global variables)
+	 * 2) Which 'column' the data is being pulled from
+	 * 3) A Default value that will be returned if no value exists there
+	 */
+	double getDouble(final SharedPreferences prefs, final String key, final double defaultValue){
+		return Double.longBitsToDouble(prefs.getLong(key, Double.doubleToLongBits(defaultValue)));
+	}
+	
+	/*
+	 * This allows Strings to be entered into the data field.  
+	 * IE) sp.putString(editor, "work_location_home", "1401 W Imperial Hwy, La Habra, CA 90631");  @Params,
+	 * 1) Editor being used 
+	 * 2) Which 'column' the data is being entered to
+	 * 3) Value To Enter
+	 */
+	Editor putString (final Editor edit, final String key, final String value){
+		return edit.putString(key, value);
+	}
+	
+	/*
+	 * Returns a String from the shared preferences data field. @Params,
+	 * IE) sp.getString(settings, "work_location_home", "Work");  @Params,
+	 * 1) SharedPreferences Variable (Defined in global variables)
+	 * 2) Which 'column' the data is being pulled from
+	 * 3) A Default value that will be returned if no value exists there
+	 */
+	String getString(final SharedPreferences prefs, final String key, final String defaultValue){
+		return prefs.getString(key, defaultValue);
+	}
+	
+	/*
+	sp.putDouble(editor, "test_double", 1.22);
+	editor.commit();
+	sp.putString(editor, "work_location_home", "123 Fake Street, New York, NY 12345");
+	editor.commit();
+	
+	double dbl = sp.getDouble(settings, "test_double", 0.0);
+	String str = sp.getString(settings, "work_location_home", "Work");
+	*/
+	/////////////////////////////////////////////////////////////////////////////////////
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	//SQL Variables
     public static final String TABLE_NAME = "commissions";
     public static final String COLUMN_NAME_EMPLOYEE_ID = "COLUMN_NAME_EMPLOYEE_ID";
