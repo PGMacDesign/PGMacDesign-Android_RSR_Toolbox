@@ -87,11 +87,11 @@
 								        android:id="@+id/textView4"
 								        android:layout_width="wrap_content"
 								        android:layout_height="wrap_content"
-								        android:text="2) What time do you start?" />
+								        android:text="2) What hour do you start?" />
 										
 							<!-- End First Column of Row -->
 								    <EditText
-								        android:id="@+id/input_schedule_edit_text_daily_start_time"
+								        android:id="@+id/input_schedule_edit_text_daily_start_time_hour"
 								        android:layout_width="wrap_content"
 								        android:layout_height="wrap_content"
 								        android:ems="10"
@@ -99,7 +99,26 @@
 								</TableRow>	 
 							<!-- End Second Column of Row -->   
 							<!-- End Row --> 	       
-				
+
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="3) What minute do you start?" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/input_schedule_edit_text_daily_start_time_minute"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="time" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 				
 								
 						        <TableRow
 						            >    
@@ -107,7 +126,7 @@
 								        android:id="@+id/textView5"
 								        android:layout_width="wrap_content"
 								        android:layout_height="wrap_content"
-								        android:text="3) Shift length? (8.5 hours)" />
+								        android:text="4) Shift length? (8.5 hours)" />
 										
 							<!-- End First Column of Row -->
 								    <EditText
@@ -126,7 +145,7 @@
 					        android:id="@+id/textView55"
 					        android:layout_width="wrap_content"
 					        android:layout_height="wrap_content"
-					        android:text="4) Which Day?" />
+					        android:text="5) Which Day?" />
 					    
 					    <DatePicker
 					        android:id="@+id/input_schedule_datePicker_daily"
@@ -137,7 +156,7 @@
 						<TextView 
 						    android:layout_width="wrap_content"
 						    android:layout_height="match_parent"
-						    android:text="5) What is your store address?"
+						    android:text="6) What is your store address?"
 						    />
 				
 					    <EditText
@@ -229,11 +248,11 @@
 								        android:id="@+id/textView4"
 								        android:layout_width="wrap_content"
 								        android:layout_height="wrap_content"
-								        android:text="1) What time do you start?" />
+								        android:text="1) What hour do you start?" />
 										
 							<!-- End First Column of Row -->
 								    <EditText
-								        android:id="@+id/input_schedule_edit_text_meeting_start_time"
+								        android:id="@+id/input_schedule_edit_text_meeting_start_time_hour"
 								        android:layout_width="wrap_content"
 								        android:layout_height="wrap_content"
 								        android:ems="10"
@@ -241,7 +260,26 @@
 								</TableRow>	 
 							<!-- End Second Column of Row -->   
 							<!-- End Row --> 	       
-				
+	
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="2) What minute do you start?" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/input_schedule_edit_text_meeting_start_time_minute"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="time" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 				
 								
 						        <TableRow
 						            >    
@@ -249,7 +287,7 @@
 								        android:id="@+id/textView5"
 								        android:layout_width="wrap_content"
 								        android:layout_height="wrap_content"
-								        android:text="2) Meeting length? (2 hours)" />
+								        android:text="3) Meeting length? (2 hours)" />
 										
 							<!-- End First Column of Row -->
 								    <EditText
@@ -268,7 +306,7 @@
 					        android:id="@+id/textView55"
 					        android:layout_width="wrap_content"
 					        android:layout_height="wrap_content"
-					        android:text="3) Which Day?" />
+					        android:text="4) Which Day?" />
 					    
 					    <DatePicker
 					        android:id="@+id/input_schedule_datePicker_meeting"
@@ -280,7 +318,7 @@
 						    android:layout_width="wrap_content"
 						    android:layout_height="match_parent"
 						    android:layout_gravity="center"
-						    android:text="4) What is the address of the store where the meeting is located?" />
+						    android:text="5) What is the address of the store where the meeting is located?" />
 				
 					    <EditText
 					        android:id="@+id/input_schedule_edit_text_meeting_address"
@@ -372,11 +410,11 @@
 								        android:id="@+id/textView4"
 								        android:layout_width="wrap_content"
 								        android:layout_height="wrap_content"
-								        android:text="1) What time do you start?" />
+								        android:text="1) What hour do you start?" />
 										
 							<!-- End First Column of Row -->
 								    <EditText
-								        android:id="@+id/input_schedule_edit_text_other_start_time"
+								        android:id="@+id/input_schedule_edit_text_other_start_time_hour"
 								        android:layout_width="wrap_content"
 								        android:layout_height="wrap_content"
 								        android:ems="10"
@@ -384,7 +422,26 @@
 								</TableRow>	 
 							<!-- End Second Column of Row -->   
 							<!-- End Row --> 	       
-				
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="2) What minute do you start?" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/input_schedule_edit_text_other_start_time_minute"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="time" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 	       
+								
 								
 						        <TableRow
 						            >    
@@ -392,7 +449,7 @@
 								        android:id="@+id/textView5"
 								        android:layout_width="wrap_content"
 								        android:layout_height="wrap_content"
-								        android:text="2) Length of event? (4.5 hours)" />
+								        android:text="3) Length of event? (4.5 hours)" />
 										
 							<!-- End First Column of Row -->
 								    <EditText
@@ -411,7 +468,7 @@
 					        android:id="@+id/textView55"
 					        android:layout_width="wrap_content"
 					        android:layout_height="wrap_content"
-					        android:text="3) Which Day?" />
+					        android:text="4) Which Day?" />
 					    
 					    <DatePicker
 					        android:id="@+id/input_schedule_datePicker_other"
@@ -423,7 +480,7 @@
 						    android:layout_width="wrap_content"
 						    android:layout_height="match_parent"
 						    android:layout_gravity="left"
-						    android:text="4) What is the address of the event" />
+						    android:text="5) What is the address of the event" />
 				
 					    <EditText
 					        android:id="@+id/input_schedule_edit_text_other_address"
