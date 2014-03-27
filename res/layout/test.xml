@@ -4,6 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" >
 
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
     
 </LinearLayout>

@@ -17,12 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 package com.pgmacdesign.rsrtoolbox;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
 
 //This class serves as the main image adapter for the images on the gridview of the main class
 public class ActivityAdapter extends BaseAdapter {
@@ -79,8 +81,19 @@ public class ActivityAdapter extends BaseAdapter {
 		} else {
 			iv = new ImageView(context);
 			
+			float width1 = context.getResources().getDimension(R.dimen.activity_horizontal_margin); 
+			float height1 = context.getResources().getDimension(R.dimen.activity_vertical_margin); 
+			//LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
+			//convertView.setLayoutParams(new GridView.LayoutParams(params));
+			//DisplayMetrics metrics = new DisplayMetrics();
+			//getWindowManager().getDefaultDisplay().getMetrics(metrics);
+			
 			//This code will auto-crop and resize images to fit the dimensions
-			iv.setLayoutParams(new GridView.LayoutParams(210, 210));
+			//iv.setLayoutParams(new GridView.LayoutParams((int)mContext.getResources().getDimension(R.dimen.width), (int)mContext.getResources().getDimension(R.dimen.height)));
+			
+
+			
+			iv.setLayoutParams(new GridView.LayoutParams(500, 500));
 			
 			//If the cropping size looks off, this will set gravity to center
 			iv.setScaleType(ScaleType.CENTER_CROP);

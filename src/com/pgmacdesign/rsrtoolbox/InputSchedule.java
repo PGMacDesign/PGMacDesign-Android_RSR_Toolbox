@@ -57,13 +57,13 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		String[]daily_paths = {"CSR Open", "Open", "Sunday Open", "Mid", "Late Mid", "Close"};
 	
 	//Tabs
-		TabHost host;
-		TabSpec specs;
+		//TabHost host;
+		//TabSpec specs;
 		
 	//EditTexts
-		EditText input_schedule_edit_text_daily_start_time_hour, input_schedule_edit_text_daily_start_time_minute, input_schedule_edit_text_daily_shift_length, input_schedule_edit_text_daily_address, 
-		input_schedule_edit_text_meeting_start_time_hour, input_schedule_edit_text_meeting_start_time_minute, input_schedule_edit_text_meeting_shift_length, input_schedule_edit_text_meeting_address,
-		input_schedule_edit_text_other_start_time_hour, input_schedule_edit_text_other_start_time_minute, input_schedule_edit_text_other_shift_length, input_schedule_edit_text_other_address;
+		EditText input_schedule_edit_text_daily_start_time_hour, input_schedule_edit_text_daily_start_time_minute, input_schedule_edit_text_daily_shift_length_hours, input_schedule_edit_text_daily_shift_length_minutes,
+		input_schedule_edit_text_daily_address, input_schedule_edit_text_meeting_start_time_hour, input_schedule_edit_text_meeting_start_time_minute, input_schedule_edit_text_meeting_shift_length, 
+		input_schedule_edit_text_meeting_address, input_schedule_edit_text_other_start_time_hour, input_schedule_edit_text_other_start_time_minute, input_schedule_edit_text_other_shift_length, input_schedule_edit_text_other_address;
 		
 	//Buttons
 		Button input_schedule_button_daily_enter_calendar_event, input_schedule_button_daily_remind_me_later, input_schedule_button_meeting_enter_calendar_event,
@@ -94,6 +94,11 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 
 	//Initialize Variables
 	private void Initialize(){
+	    
+		//Hours and Minutes
+		    daily_hour_start = daily_hour_end = meeting_hour_start = meeting_hour_end = other_hour_start = other_hour_end = 1;
+		    daily_min_start = daily_min_end = meeting_min_start = meeting_min_end = other_min_start = other_min_end = 0;
+		
 		//Shared Preferences Stuff
 			settings = getSharedPreferences(PREFS_NAME, 0);
 			editor = settings.edit();
@@ -107,36 +112,38 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 			spinner_daily.setOnItemSelectedListener(this);
 			
 		//TabHost <--Creates the tab host and sets it up
-			host = (TabHost)findViewById(android.R.id.tabhost);
-		    host.setup(); //Host Initialization
+			//host = (TabHost)findViewById(android.R.id.tabhost);
+		    //host.setup(); //Host Initialization
 		    
 		//Refer to tab specs, create first tab and add it <--Formats and assigns tabs to the tab host
-		    specs = host.newTabSpec("tag1");
-		    specs.setContent(R.id.Daily); //First Tab
-		    specs.setIndicator("Weekly Schedule");
-		    host.addTab(specs);
+		    //specs = host.newTabSpec("tag1");
+		    //specs.setContent(R.id.Daily); //First Tab
+		    //specs.setIndicator("Weekly Schedule");
+		    //host.addTab(specs);
 		    
 		//Refer to tab specs, create second tab and add it
-		    specs = host.newTabSpec("tag2");
-		    specs.setContent(R.id.Meetings); //First Tab
-		    specs.setIndicator("Meetings");
-		    host.addTab(specs);		    
+		    //specs = host.newTabSpec("tag2");
+		    //specs.setContent(R.id.Meetings); //First Tab
+		    //specs.setIndicator("Meetings");
+		    //host.addTab(specs);		    
 		
 		//Refer to tab specs, create third tab and add it
-		    specs = host.newTabSpec("tag3");
-		    specs.setContent(R.id.Other); //First Tab
-		    specs.setIndicator("Other/ Misc");
-		    host.addTab(specs);	
+		    //specs = host.newTabSpec("tag3");
+		    //specs.setContent(R.id.Other); //First Tab
+		    //specs.setIndicator("Other/ Misc");
+		    //host.addTab(specs);	
 		    
 		//Variables for Tab 1 - Daily
 		    input_schedule_edit_text_daily_start_time_hour = (EditText) findViewById(R.id.input_schedule_edit_text_daily_start_time_hour);
 		    input_schedule_edit_text_daily_start_time_minute = (EditText) findViewById(R.id.input_schedule_edit_text_daily_start_time_minute);
-		    input_schedule_edit_text_daily_shift_length = (EditText) findViewById(R.id.input_schedule_edit_text_daily_shift_length);
+		    input_schedule_edit_text_daily_shift_length_minutes = (EditText) findViewById(R.id.input_schedule_edit_text_daily_shift_length_minutes);
+		    input_schedule_edit_text_daily_shift_length_hours = (EditText) findViewById(R.id.input_schedule_edit_text_daily_shift_length_hours);
 		    input_schedule_datePicker_daily = (DatePicker) findViewById(R.id.input_schedule_datePicker_daily);
 		    input_schedule_edit_text_daily_address = (EditText) findViewById(R.id.input_schedule_edit_text_daily_address);
 		    input_schedule_button_daily_enter_calendar_event = (Button) findViewById(R.id.input_schedule_button_daily_enter_calendar_event);
 		    input_schedule_button_daily_remind_me_later = (Button) findViewById(R.id.input_schedule_button_daily_remind_me_later);
 		    
+		/*
 		//Variables for Tab 2 - Meeting
 		    input_schedule_edit_text_meeting_start_time_hour = (EditText) findViewById(R.id.input_schedule_edit_text_meeting_start_time_hour);
 		    input_schedule_edit_text_meeting_start_time_minute = (EditText) findViewById(R.id.input_schedule_edit_text_meeting_start_time_minute);
@@ -154,31 +161,34 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		    input_schedule_edit_text_other_address = (EditText) findViewById(R.id.input_schedule_edit_text_other_address);
 		    input_schedule_button_other_enter_calendar_event = (Button) findViewById(R.id.input_schedule_button_other_enter_calendar_event);
 		    input_schedule_button_other_remind_me_later = (Button) findViewById(R.id.input_schedule_button_other_remind_me_later);
-		
+		*/
+		    
 		//Buttons to onClickListener
 		    input_schedule_button_daily_enter_calendar_event.setOnClickListener(this);
-		    input_schedule_button_meeting_enter_calendar_event.setOnClickListener(this);
-		    input_schedule_button_other_enter_calendar_event.setOnClickListener(this);
-		    
-		//Hours and Minutes
-		    daily_hour_start = daily_hour_end = meeting_hour_start = meeting_hour_end = other_hour_start = other_hour_end = 1;
-		    daily_min_start = daily_min_end = meeting_min_start = meeting_min_end = other_min_start = other_min_end = 0;
+		    //input_schedule_button_meeting_enter_calendar_event.setOnClickListener(this);
+		    //input_schedule_button_other_enter_calendar_event.setOnClickListener(this);
 		    
 		//Setup default values for shift length
-		    input_schedule_edit_text_daily_shift_length.setText("8.5");
-		    input_schedule_edit_text_meeting_shift_length.setText("2");
-		    input_schedule_edit_text_other_shift_length.setText("4.5");
+		    input_schedule_edit_text_daily_shift_length_hours.setText("8");
+		    input_schedule_edit_text_daily_shift_length_minutes.setText("30");
+		    //input_schedule_edit_text_meeting_shift_length.setText("2");
+		    //input_schedule_edit_text_other_shift_length.setText("4.5");
+		    
+		//Setup default values for location via shared preferences
+		    input_schedule_edit_text_daily_address.setText(sp.getString(settings, "edit_text_daily", "Work"));
+		    //input_schedule_edit_text_meeting_address.setText(sp.getString(settings, "edit_text_meeting", "Meeting"));
+		    //input_schedule_edit_text_other_address.setText(sp.getString(settings, "edit_text_other", "Event"));
 		    
 		//Notification Manager/ Drop-down reminders
 		    //Define the notification manager
 			nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 			
-			//Cancel the specific ID once the app has been re-opened/ resumed
+		//Cancel the specific ID once the app has been re-opened/ resumed
 			nm.cancel(uniqueID);
 			
-			//IMPORTANT: Must call this to remove the notification bar. If calling different class, have to put this method call in there so it can close the notification
+		//IMPORTANT: Must call this to remove the notification bar. If calling different class, have to put this method call in there so it can close the notification
 			removeNotification();
-			
+						
 		//Specialty Buttons for NotificationManager. Nested OnClicklisteners
 			input_schedule_button_daily_remind_me_later.setOnClickListener(new OnClickListener(){
 				public void onClick(View v){
@@ -186,7 +196,7 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 					finish();
 				}
 			});
-			
+			/*
 			input_schedule_button_meeting_remind_me_later.setOnClickListener(new OnClickListener(){
 				public void onClick(View v){
 					addNotification();
@@ -199,7 +209,8 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 					addNotification();
 					finish();
 				}
-			});		    
+			});
+			*/		    
 	}
 	
 	//On Click Method
@@ -209,22 +220,35 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		switch (arg0.getId()){
 		
 		case R.id.input_schedule_button_daily_enter_calendar_event:
+			//String edit_text_daily = input_schedule_edit_text_daily_address.getText().toString();
+			//sp.putString(editor, "edit_text_daily", edit_text_daily);
+			//edit_text_daily = sp.getString(settings, "edit_text_daily", "Work");
+			
 			//Create a calendar event for the weekly/ daily schedule
 			CreateEvent("Work", input_schedule_edit_text_daily_address.getText().toString(), "Sales Shift", input_schedule_datePicker_daily);
-			makeToast("Event Created Successfully");
+			makeToast("Creating Event");
 			break;
-			
+		/*
 		case R.id.input_schedule_button_meeting_enter_calendar_event:
-			//Create a calendar event for a meeting
-			CreateEvent("Meeting", input_schedule_edit_text_meeting_address.getText().toString(), "Work Meeting", input_schedule_datePicker_meeting);
-			makeToast("Event Created Successfully");
-			break;
+			String edit_text_meeting= input_schedule_edit_text_meeting_address.getText().toString();
+			sp.putString(editor, "edit_text_meeting", edit_text_meeting);
+			edit_text_meeting = sp.getString(settings, "edit_text_meeting", "Meeting");
 			
+			//Create a calendar event for a meeting
+			CreateEvent("Meeting", edit_text_meeting, "Work Meeting", input_schedule_datePicker_meeting);
+			makeToast("Creating Event");
+			break;
+		
+		
 		case R.id.input_schedule_button_other_enter_calendar_event:
+			String edit_text_other = input_schedule_edit_text_other_address.getText().toString();
+			sp.putString(editor, "edit_text_other", edit_text_other);
+			edit_text_other = sp.getString(settings, "edit_text_other", "Event");
 			//Create a calendar event for some misc event
-			CreateEvent("Event", input_schedule_edit_text_other_address.getText().toString(), "Misc Event", input_schedule_datePicker_other);
-			makeToast("Event Created Successfully");
-			break;			
+			CreateEvent("Event", edit_text_other, "Misc Event", input_schedule_datePicker_other);
+			makeToast("Creating Event");
+			break;	
+		*/
 		}	
 	}
 
@@ -298,6 +322,7 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	
 	@Override //Not used atm
 	public void onNothingSelected(AdapterView<?> arg0) {		
+		
 	}
 	
 	//Create New Calendar Event
@@ -328,71 +353,132 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		endTime.getTimeInMillis());
 
 		//Puts event into calendar
-		startActivity(calIntent); 
+		//startActivity(calIntent); /////////////////////////////////////////////////////////
 	}
 	
 	//This calculates the end times for all of the variables based upon the duration time of event
 	public void GetEndTimes(){
 		
 		//This section gets the start times from the editTexts and calculates the end times for the daily tab
-			daily_hour_start = Integer.parseInt(input_schedule_edit_text_daily_start_time_hour.getText().toString());
-			daily_min_start = Integer.parseInt(input_schedule_edit_text_daily_start_time_minute.getText().toString());
+			//These specifically check to make sure that the edittext fields have a value
+			if (input_schedule_edit_text_daily_start_time_hour.getText().toString().equals("")){
+				//
+			} else {
+				daily_hour_start = Integer.parseInt(input_schedule_edit_text_daily_start_time_hour.getText().toString());
+			}
 			
-			double lengthOfDailyEvent1 = 0.0;
-			int lengthOfDailyEventHours1 = 0;
-			int lengthOfDailyEventMinutes1 = 0;
+			if (input_schedule_edit_text_daily_start_time_minute.getText().toString().equals("")){
+				//
+			} else {
+				daily_min_start = Integer.parseInt(input_schedule_edit_text_daily_start_time_minute.getText().toString());
+			}
 			
-			lengthOfDailyEvent1 = Double.parseDouble(input_schedule_edit_text_daily_shift_length.getText().toString());
+			double lengthOfDailyEventHours1 = 0.0;
+			double lengthOfDailyEventMinutes1 = 0.0;
+			
+			if (input_schedule_edit_text_daily_shift_length_hours.getText().toString().equals("")){
+				//
+			} else {
+				lengthOfDailyEventHours1 = Double.parseDouble(input_schedule_edit_text_daily_shift_length_hours.getText().toString());
+			}
+			
+			if (input_schedule_edit_text_daily_shift_length_minutes.getText().toString().equals("")){
+				//
+			} else {
+				lengthOfDailyEventMinutes1 = Double.parseDouble(input_schedule_edit_text_daily_shift_length_minutes.getText().toString());
+			}
 					
-			int totalsecs1 = (int) (lengthOfDailyEvent1*3600);
-			int hours1 = totalsecs1 - (totalsecs1 % 3600);
-			int minutes1 = totalsecs1 - hours1;
-			lengthOfDailyEventHours1 = hours1 / 3600;
-			lengthOfDailyEventMinutes1 = minutes1 / 3600;
+			//Convert the length of time, start time in minutes, and start time in seconds to one large seconds pool
+			int lengthtotalsecshour1 = (int) (lengthOfDailyEventHours1*3600); // 28800= 8*3600
 			
-			daily_hour_end = daily_hour_start + lengthOfDailyEventHours1;
-			daily_min_end = daily_min_start + lengthOfDailyEventMinutes1;
-
+			int lengthtotalsecsmin1 = (int) ((lengthOfDailyEventMinutes1/60)*3600); //1800
+			makeToast("lengthtotalsecsmin1");
+			makeToast(Integer.toString(lengthtotalsecsmin1));
+			
+			int starttimeseconds1 = (daily_hour_start * 3600) + ((daily_min_start*3600)/60); //34200 = 9*3600 + (30/60)*360
+			
+			int totalsecs1 = starttimeseconds1 + lengthtotalsecsmin1 + lengthtotalsecshour1; //64,800 = 34200 + 30600 + 1800
+			
+			//Get the hours and minutes
+			int hours1 = totalsecs1 - (totalsecs1 % 3600); //64,800
+			
+			int minutes1 = totalsecs1 - hours1; //0
+			
+			//Convert those hours and minutes
+			daily_hour_end = hours1 / 3600; //18
+			
+			daily_min_end = (minutes1 / 3600)*60; //0
 		
-			
+		/*	
 		//This section gets the start times from the editTexts and calculates the end times for the meeting tab
-			meeting_hour_start = Integer.parseInt(input_schedule_edit_text_meeting_start_time_hour.getText().toString());
-			meeting_min_start = Integer.parseInt(input_schedule_edit_text_meeting_start_time_minute.getText().toString());
+			if (input_schedule_edit_text_meeting_start_time_hour.getText().toString().equals("")){
+				//				
+			} else {
+				Integer.parseInt(input_schedule_edit_text_meeting_start_time_hour.getText().toString());
+			}
 			
-			double lengthOfDailyEvent2 = 0.0;
-			int lengthOfMeetingEventHours2 = 0;
-			int lengthOfMeetingEventMinutes2 = 0;
-			
-			lengthOfDailyEvent2 = Double.parseDouble(input_schedule_edit_text_meeting_shift_length.getText().toString());
+			if (input_schedule_edit_text_meeting_start_time_minute.getText().toString().equals("")){
+				//
+			} else {
+				meeting_min_start = Integer.parseInt(input_schedule_edit_text_meeting_start_time_minute.getText().toString());
+			}
 					
-			int totalsecs2 = (int) (lengthOfDailyEvent2*3600);
-			int hours2 = totalsecs1 - (totalsecs1 % 3600);
-			int minutes2 = totalsecs1 - hours1;
-			lengthOfMeetingEventHours2 = hours1 / 3600;
-			lengthOfMeetingEventMinutes2 = minutes1 / 3600;
+			double lengthOfDailyEvent2 = 0.0;
 			
-			meeting_hour_start = meeting_hour_start + lengthOfMeetingEventHours2;
-			meeting_min_start = meeting_min_start + lengthOfMeetingEventMinutes2;
-		
+			if (input_schedule_edit_text_meeting_shift_length.getText().toString().equals("")){
+				//
+			} else {
+				lengthOfDailyEvent2 = Double.parseDouble(input_schedule_edit_text_meeting_shift_length.getText().toString());
+			}
+			
+			//Convert the length of time, start time in minutes, and start time in seconds to one large seconds pool
+			int lengthtotalsecs2 = (int) (lengthOfDailyEvent2*3600);
+			int starttimeseconds2 = (meeting_hour_start * 3600) + ((meeting_min_start*3600)/60);
+			int totalsecs2 = starttimeseconds2 + lengthtotalsecs2;
+			
+			//Get the hours and minutes
+			int hours2 = totalsecs2 - (totalsecs2 % 3600);
+			int minutes2 = totalsecs2 - hours2;
+			
+			//Convert those hours and minutes
+			meeting_hour_end = hours2 / 3600;
+			meeting_min_end = (minutes2 / 3600)*60;
+			
 			
 		//This section gets the start times from the editTexts and calculates the end times for the other tab
-			other_hour_start = Integer.parseInt(input_schedule_edit_text_other_start_time_hour.getText().toString());
-			other_min_start = Integer.parseInt(input_schedule_edit_text_other_start_time_minute.getText().toString());
+			if (input_schedule_edit_text_other_start_time_hour.getText().toString().equals("")){
+				//
+			} else {
+				other_hour_start = Integer.parseInt(input_schedule_edit_text_other_start_time_hour.getText().toString());
+			}
 			
-			double lengthOfDailyEvent3 = 0.0;
-			int lengthOfOtherEventHours3 = 0;
-			int lengthOfOtherEventMinutes3 = 0;
-			
-			lengthOfDailyEvent3 = Double.parseDouble(input_schedule_edit_text_other_shift_length.getText().toString());
+			if (input_schedule_edit_text_other_start_time_minute.getText().toString().equals("")){
+				//
+			} else {
+				other_min_start = Integer.parseInt(input_schedule_edit_text_other_start_time_minute.getText().toString());
+			}
 					
-			int totalsecs3 = (int) (lengthOfDailyEvent3*3600);
-			int hours3 = totalsecs1 - (totalsecs1 % 3600);
-			int minutes3 = totalsecs1 - hours1;
-			lengthOfOtherEventHours3 = hours1 / 3600;
-			lengthOfOtherEventMinutes3 = minutes1 / 3600;
+			double lengthOfDailyEvent3 = 0.0;
 			
-			other_hour_end = other_hour_start + lengthOfOtherEventHours3;
-			other_min_end = other_min_start + lengthOfOtherEventMinutes3;		
+			if (input_schedule_edit_text_other_shift_length.getText().toString().equals("")){
+				//
+			} else {
+				lengthOfDailyEvent3 = Double.parseDouble(input_schedule_edit_text_other_shift_length.getText().toString());
+			}
+			
+			//Convert the length of time, start time in minutes, and start time in seconds to one large seconds pool
+			int lengthtotalsecs3 = (int) (lengthOfDailyEvent3*3600);
+			int starttimeseconds3 = (other_hour_start * 3600) + ((other_min_start*3600)/60);
+			int totalsecs3 = starttimeseconds3 + lengthtotalsecs3;
+			
+			//Get the hours and minutes
+			int hours3 = totalsecs3 - (totalsecs3 % 3600);
+			int minutes3 = totalsecs3 - hours3;
+			
+			//Convert those hours and minutes
+			other_hour_end = hours3 / 3600;
+			other_min_end = (minutes3 / 3600)*60;
+	    */
 	}
 	
 	//Adds the notification bar to the top of the 
@@ -413,7 +499,7 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	            PendingIntent.FLAG_UPDATE_CURRENT);  
 	    builder.setContentIntent(intent);  
 	
-	    // Add as notification  
+	    //Add as notification  
 	    NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);  
 	    manager.notify(uniqueID, builder.build());  
     }  
@@ -425,10 +511,17 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	}
 	
 	//On pause method
-	protected void onPause() {
-		super.onPause();
-		finish();
-	}
+	//protected void onPause() {
+		//super.onPause();
+	//}
+	
+	//On Resume method
+	//protected void onResume(){
+		//super.onResume();
+		//Initialize();
+	//}
+
+
 
 	//Simple class that makes a popup (toast) with text
 	public void makeToast(String activityChosen){
