@@ -1,12 +1,22 @@
 package com.pgmacdesign.rsrtoolbox;
 
+import java.util.Calendar;
+
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.provider.CalendarContract;
+import android.provider.CalendarContract.Events;
 
 public class TEST {
+
+	
+	
+	
+	
+
+	
 	/*
-	
-	
 	This code is to check if a database exists in the app data:
 			
 		databaseFile = getApplicationContext().getDatabasePath("RSRToolbox.db");	

@@ -3,6 +3,227 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <!-- First Tab  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                <LinearLayout
+                    android:id="@+id/Daily"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" 
+                    >
+
+				    <TextView
+				        android:id="@+id/textView1"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_gravity="center"
+				        android:text="Follow-up" />
+				    
+				    <TextView
+				        android:id="@+id/textView2"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_gravity="center"
+				        android:text="-----------------------------------------------------" />
+				    
+				    <!-- Begin ScrollView Layout -->
+				    <ScrollView 
+				        android:layout_width="fill_parent"
+						android:layout_height="fill_parent">
+				  		
+					   <LinearLayout 
+					        android:orientation="vertical"
+							android:layout_width="match_parent" 
+							android:layout_height="match_parent">       
+					       
+							<TableLayout
+							    android:layout_width="fill_parent"
+							    android:layout_height="wrap_content"
+							    android:stretchColumns="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21"
+								>
+								
+						        <TableRow
+						            >
+
+						            <TextView
+						                android:id="@+id/textView3"
+						                android:layout_width="wrap_content"
+						                android:layout_height="wrap_content"
+						                android:text="1) What type of follow-up?" />
+										
+							<!-- End First Column of Row -->
+								    <Spinner
+								        android:id="@+id/follow_up_choice_spinner"
+								        android:layout_width="122dp"
+								        android:layout_height="wrap_content" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row -->   
+				
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="2) Customer's name" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/follow_up_edit_text_customer_name"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="textPersonName" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 	       
+
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="3) Customer's number" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/follow_up_edit_text_customer_number"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="phone" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 				
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView5"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="4) OCC Amount (Dollars)" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/follow_up_edit_text_occ_amount"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="numberDecimal" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 	  
+							
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView5"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="5) Manager(s) Involved" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/follow_up_edit_text_manager"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="textPersonName" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 								     
+						 </TableLayout> 	       
+					       
     
+					
+						<TextView 
+						    android:layout_width="wrap_content"
+						    android:layout_height="match_parent"
+						    android:text="6) How long from now should the event be? (Days)"
+						    />
+				
+					    <EditText
+					        android:id="@+id/follow_up_edit_text_length_of_time"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:ems="10"
+					        android:inputType="number" />
+    
+					
+						<TextView 
+						    android:layout_width="wrap_content"
+						    android:layout_height="match_parent"
+						    android:text="7) Any notes/ important data to enter:"
+						    />
+				
+					    <EditText
+					        android:id="@+id/follow_up_edit_text_notes"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:ems="10"
+					        android:inputType="textMultiLine" />					    
+					
+					    <!-- Enter event into calendar -->
+				
+					    <Button
+					        android:id="@+id/follow_up_button_create_event"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:text="Create Follow-up Event" />
+				
+					    <TextView
+					        android:id="@+id/textView2"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_gravity="center"
+					        android:text="-----------------------------------------------------" />	    
+					    	
+						<TextView
+						    android:layout_width="wrap_content"
+						    android:layout_height="match_parent"
+						    android:layout_gravity="center"
+						    android:text="If you get interrupted, just click &apos;Remind Me Later&apos;" />
+						
+						<!-- Remind me to finish later -->
+				
+					    <Button
+					        android:id="@+id/follow_up_button_remind_me_later"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:text="Remind Me Later" />
+				
+						</LinearLayout>
+					</ScrollView>                    
+                    
+                    
+                </LinearLayout>
+
+                    
+                                
+                    
+
+            </FrameLayout>
+        </LinearLayout>
+
 
 </LinearLayout>

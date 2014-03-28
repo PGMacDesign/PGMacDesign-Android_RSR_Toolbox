@@ -69,7 +69,6 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		Button input_schedule_button_daily_enter_calendar_event, input_schedule_button_daily_remind_me_later, input_schedule_button_meeting_enter_calendar_event,
 		input_schedule_button_meeting_remind_me_later, input_schedule_button_other_enter_calendar_event, input_schedule_button_other_remind_me_later;
 		
-	//Date Picker
 		DatePicker input_schedule_datePicker_daily, input_schedule_datePicker_meeting, input_schedule_datePicker_other;
 	
 	//Misc Variables
@@ -175,7 +174,7 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		    //input_schedule_edit_text_other_shift_length.setText("4.5");
 		    
 		//Setup default values for location via shared preferences
-		    input_schedule_edit_text_daily_address.setText(sp.getString(settings, "edit_text_daily", "Work"));
+		    input_schedule_edit_text_daily_address.setText(sp.getString(settings, "work_address", "Address"));
 		    //input_schedule_edit_text_meeting_address.setText(sp.getString(settings, "edit_text_meeting", "Meeting"));
 		    //input_schedule_edit_text_other_address.setText(sp.getString(settings, "edit_text_other", "Event"));
 		    
@@ -192,6 +191,8 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		//Specialty Buttons for NotificationManager. Nested OnClicklisteners
 			input_schedule_button_daily_remind_me_later.setOnClickListener(new OnClickListener(){
 				public void onClick(View v){
+					String edit_text_daily = input_schedule_edit_text_daily_address.getText().toString();
+					sp.putString(editor, "work_address", edit_text_daily);
 					addNotification();
 					finish();
 				}
@@ -220,9 +221,8 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		switch (arg0.getId()){
 		
 		case R.id.input_schedule_button_daily_enter_calendar_event:
-			//String edit_text_daily = input_schedule_edit_text_daily_address.getText().toString();
-			//sp.putString(editor, "edit_text_daily", edit_text_daily);
-			//edit_text_daily = sp.getString(settings, "edit_text_daily", "Work");
+			String edit_text_daily = input_schedule_edit_text_daily_address.getText().toString();
+			sp.putString(editor, "work_address", edit_text_daily);
 			
 			//Create a calendar event for the weekly/ daily schedule
 			CreateEvent("Work", input_schedule_edit_text_daily_address.getText().toString(), "Sales Shift", input_schedule_datePicker_daily);
@@ -353,7 +353,7 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		endTime.getTimeInMillis());
 
 		//Puts event into calendar
-		//startActivity(calIntent); /////////////////////////////////////////////////////////
+		startActivity(calIntent); 
 	}
 	
 	//This calculates the end times for all of the variables based upon the duration time of event
@@ -390,24 +390,17 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 					
 			//Convert the length of time, start time in minutes, and start time in seconds to one large seconds pool
 			int lengthtotalsecshour1 = (int) (lengthOfDailyEventHours1*3600); // 28800= 8*3600
-			
-			int lengthtotalsecsmin1 = (int) ((lengthOfDailyEventMinutes1/60)*3600); //1800
-			makeToast("lengthtotalsecsmin1");
-			makeToast(Integer.toString(lengthtotalsecsmin1));
-			
+			int lengthtotalsecsmin1 = (int) ((lengthOfDailyEventMinutes1*3600)/60); //1800
 			int starttimeseconds1 = (daily_hour_start * 3600) + ((daily_min_start*3600)/60); //34200 = 9*3600 + (30/60)*360
-			
 			int totalsecs1 = starttimeseconds1 + lengthtotalsecsmin1 + lengthtotalsecshour1; //64,800 = 34200 + 30600 + 1800
 			
 			//Get the hours and minutes
 			int hours1 = totalsecs1 - (totalsecs1 % 3600); //64,800
-			
 			int minutes1 = totalsecs1 - hours1; //0
 			
 			//Convert those hours and minutes
 			daily_hour_end = hours1 / 3600; //18
-			
-			daily_min_end = (minutes1 / 3600)*60; //0
+			daily_min_end = (minutes1*60) / 3600; //0
 		
 		/*	
 		//This section gets the start times from the editTexts and calculates the end times for the meeting tab
@@ -511,15 +504,15 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	}
 	
 	//On pause method
-	//protected void onPause() {
-		//super.onPause();
-	//}
+	protected void onPause() {
+		super.onPause();
+	}
 	
 	//On Resume method
-	//protected void onResume(){
-		//super.onResume();
-		//Initialize();
-	//}
+	protected void onResume(){
+		super.onResume();
+		input_schedule_edit_text_daily_address.setText(sp.getString(settings, "work_address", "Address"));
+	}
 
 
 
