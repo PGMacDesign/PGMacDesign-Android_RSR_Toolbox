@@ -22,12 +22,17 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
+import android.provider.CalendarContract.Reminders;
 import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,7 +40,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -242,22 +246,22 @@ public class FollowUp extends Activity implements View.OnClickListener, OnItemSe
 		calIntent.putExtra(Events.EVENT_LOCATION, sp.getString(settings, "work_address", "Address")); 
 		calIntent.putExtra(Events.DESCRIPTION, superString);
 		
-		mycal.roll(mycal.DATE, duration);
+		//Increment the date by X days
+		mycal.add(mycal.DATE, duration);
+		
+		//Start and end time
+		long startTime = mycal.getTimeInMillis(); //Convert to milliseconds
+		long endTime = startTime+900000; //15 minutes
 		
 		//Put the calculated start and end time into the calIntent Intent
-		calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, mycal);
-		calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, mycal);
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime);
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime);
 
 		//Puts event into calendar
 		startActivity(calIntent); 
 		
 	}
 	
-	private String getDisplayName(int month) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	//This calculates the end times for all of the variables based upon the duration time of event
 	public void GetEndTimes(){
 		//This section gets the start times from the editTexts and calculates the end time
@@ -297,7 +301,8 @@ public class FollowUp extends Activity implements View.OnClickListener, OnItemSe
 	    NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);  
 	    manager.cancel(uniqueID);  
 	}
-		
+	
+
 	protected void onPause() {
 		super.onPause();
 		finish();

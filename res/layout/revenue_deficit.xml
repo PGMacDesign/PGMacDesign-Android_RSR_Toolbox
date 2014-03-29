@@ -3,6 +3,186 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Revenue Deficit Calculator" />
+
+    <TextView
+	    android:id="@+id/textView2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="-----------------------------------------------------" />
+    
+     <!-- Begin ScrollView Layout -->
+				    <ScrollView 
+				        android:layout_width="fill_parent"
+						android:layout_height="fill_parent">
+				  		
+					<LinearLayout 
+					        android:orientation="vertical"
+							android:layout_width="match_parent" 
+							android:layout_height="match_parent">       
+					       
+							<TableLayout
+							    android:layout_width="fill_parent"
+							    android:layout_height="wrap_content"
+							    android:stretchColumns="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21"
+								>
+										
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="1) What is your current ARD?" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/revenue_deficit_ard"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="numberDecimal" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 	       
+
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="2) How many devices out?" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/revenue_deficit_devices"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="number" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 			
+						 </TableLayout> 	
+							
+							<TextView
+							    android:id="@+id/textView5"
+							    android:layout_width="wrap_content"
+							    android:layout_height="wrap_content"
+							    android:layout_gravity="center"
+							    android:text="(Remember to exclude HPCs, Jetpacks, and CPEs)" />
+								
+							<TextView
+							    android:id="@+id/textView2"
+							    android:layout_width="wrap_content"
+							    android:layout_height="wrap_content"
+							    android:layout_gravity="center"
+							    android:text="     " />
+
+				
+					    <Button
+					        android:id="@+id/revenue_deficit_calculate"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:text="Calculate Deficit" />
+				
+					    
+							<TextView
+							    android:id="@+id/textView5"
+							    android:layout_width="wrap_content"
+							    android:layout_height="wrap_content"
+							    android:layout_gravity="center"
+							    android:text="Total amount of revenue needed to hit: " />					    
+				
+							
+<TableLayout
+							    android:layout_width="fill_parent"
+							    android:layout_height="wrap_content"
+							    android:stretchColumns="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21"
+								>
+										
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="Total rev needed to hit $80" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/revenue_deficit_80"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="numberDecimal" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 	       
+
+								
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="Total rev needed to hit $90" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/revenue_deficit_90"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="numberDecimal" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 		
+							
+						        <TableRow
+						            >    
+								    <TextView
+								        android:id="@+id/textView4"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:text="Total rev needed to hit $100" />
+										
+							<!-- End First Column of Row -->
+								    <EditText
+								        android:id="@+id/revenue_deficit_100"
+								        android:layout_width="wrap_content"
+								        android:layout_height="wrap_content"
+								        android:ems="10"
+								        android:inputType="numberDecimal" />
+								</TableRow>	 
+							<!-- End Second Column of Row -->   
+							<!-- End Row --> 
+															
+						 </TableLayout> 								
+							
+
+							
+							
+						</LinearLayout> 
+											   
+					</ScrollView>                    
+    
     
 
+    
+    
+    
+    
 </LinearLayout>
