@@ -19,14 +19,16 @@ package com.pgmacdesign.rsrtoolbox;
 
 import java.util.Calendar;
 
-
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
 import android.support.v4.app.NotificationCompat;
@@ -39,8 +41,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 import android.widget.Toast;
 
 public class InputSchedule extends Activity implements View.OnClickListener, OnItemSelectedListener {
@@ -50,7 +50,11 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		SharedPrefs sp = new SharedPrefs();
 		SharedPreferences settings;
 		SharedPreferences.Editor editor;
-	
+		
+	//Different Shared preferences, accessed via the preferences tab in the main grid
+		String work_address_stored;
+		SharedPreferences getData;
+		
 	//XML Variables
 	//Spinners
 		Spinner spinner_daily;
@@ -84,6 +88,39 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.input_schedule);
+		
+		//Different Shared preferences, accessed via the preferences tab in the main grid
+		getData = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		work_address_stored = getData.getString("work_address_stored_xml", "Address");
+		
+		//To let them know that they can go to preferenes and adjust the address preferences
+		if (work_address_stored.equals("Address")){
+			
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setCancelable(true);
+			builder.setTitle("Did You Know?");
+			builder.setMessage("To change your work address and have it automatically fill it in for you. Edit the 'Address' field. " +
+					"It can be found via the main menu -> preferences -> Work Address");
+			builder.setInverseBackgroundForced(true);
+			builder.setPositiveButton("Dismiss",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                int which) {
+                            dialog.dismiss();
+                        }
+                    });
+			builder.setNegativeButton("Show Me", new DialogInterface.OnClickListener() {
+				   public void onClick(DialogInterface dialog, int id) {
+				        dialog.cancel();
+						Intent intent99 = new Intent("com.pgmacdesign.rsrtoolbox.PREFS");
+						startActivity(intent99);		
+				   }
+				});
+            AlertDialog alert = builder.create();
+            alert.show();	
+		}
+		
 		//Setup all variables and listeners
 		Initialize();
 
@@ -174,7 +211,7 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		    //input_schedule_edit_text_other_shift_length.setText("4.5");
 		    
 		//Setup default values for location via shared preferences
-		    input_schedule_edit_text_daily_address.setText(sp.getString(settings, "work_address", "Address"));
+		    input_schedule_edit_text_daily_address.setText(work_address_stored);
 		    //input_schedule_edit_text_meeting_address.setText(sp.getString(settings, "edit_text_meeting", "Meeting"));
 		    //input_schedule_edit_text_other_address.setText(sp.getString(settings, "edit_text_other", "Event"));
 		    
@@ -225,7 +262,7 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 			sp.putString(editor, "work_address", edit_text_daily);
 			
 			//Create a calendar event for the weekly/ daily schedule
-			CreateEvent("Work", input_schedule_edit_text_daily_address.getText().toString(), "Sales Shift", input_schedule_datePicker_daily);
+			CreateEvent("Work", work_address_stored, "Sales Shift", input_schedule_datePicker_daily);
 			makeToast("Creating Event");
 			break;
 		/*
@@ -352,6 +389,7 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 		calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
 		endTime.getTimeInMillis());
 
+		
 		//Puts event into calendar
 		startActivity(calIntent); 
 	}
@@ -511,10 +549,8 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	//On Resume method
 	protected void onResume(){
 		super.onResume();
-		input_schedule_edit_text_daily_address.setText(sp.getString(settings, "work_address", "Address"));
+		input_schedule_edit_text_daily_address.setText(work_address_stored);
 	}
-
-
 
 	//Simple class that makes a popup (toast) with text
 	public void makeToast(String activityChosen){

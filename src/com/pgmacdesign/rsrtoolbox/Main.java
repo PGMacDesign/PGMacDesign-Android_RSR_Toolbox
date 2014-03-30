@@ -303,7 +303,7 @@ public class Main extends Activity implements OnItemClickListener {
 			break;
 						
 		case R.id.Exit:
-			//Bring up a page for the user to adjust preferences
+			//Exits / Closes the application
 			finish();
 			
 			break;

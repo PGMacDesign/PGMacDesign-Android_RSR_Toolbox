@@ -3,6 +3,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Edge Calculator" />
+    
+   <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="-----------------------------------------------------" />    
+        
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="What is the full retail cost of the phone?" />
+
+    <EditText
+        android:id="@+id/edge_full_retail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="What type of plan is the customer on?" />
+
+    <RadioGroup
+        android:id="@+id/edge_price_plans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
+
+        <RadioButton
+            android:id="@+id/edge_10gb_or_higher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share Everything 10GB or higher" />
+
+        <RadioButton
+            android:id="@+id/edge_8gb_or_lower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share Everything 8GB or lower" />
+
+        <RadioButton
+            android:id="@+id/edge_qualified_plan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other plan that DOES qualify for $10" />        
+        
+        <RadioButton
+            android:id="@+id/edge_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other plan that DOESN'T qualify for $10" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Monthly installments will be: " />
+
+    <EditText
+        android:id="@+id/edge_monthly_cost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" >
+
+        
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="After 1 year, you will have paid: " />
+
+    <EditText
+        android:id="@+id/edge_1year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="After 2 years, you will have paid: " />
+
+    <EditText
+        android:id="@+id/edge_2year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" >        
+        
+    </EditText>
+    
 </LinearLayout>

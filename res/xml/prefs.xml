@@ -2,6 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     
 
+    <EditTextPreference
+        android:key="work_address_stored_xml"
+        android:title="Work Address"
+        android:summary="For use in the schedule">
+        
+    </EditTextPreference>
     
     <CheckBoxPreference
         android:key="checkBox"
