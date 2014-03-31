@@ -139,15 +139,14 @@ public class Main extends Activity implements OnItemClickListener {
         	break;
  
         case 4:
-        	try{
-	        	makeToast("Useful SKUs");
-	        	Intent intent5 = new Intent(v.getContext(), UsefulSKUs.class);
-		        startActivity(intent5);
+        	try {
+        		makeToast("Enter Commissions Info");
+	        	Intent intent44 = new Intent(v.getContext(), EnterCommissionsInfo.class);
+		        startActivity(intent44);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
         	}
-
         	break;
 
         case 5:
