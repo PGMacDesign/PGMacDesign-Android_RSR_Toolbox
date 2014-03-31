@@ -146,6 +146,7 @@ public class Main extends Activity implements OnItemClickListener {
         		String error = e.toString();
         		makeToast(error);
         	}
+        	break;
 
         case 5:
         	try{
