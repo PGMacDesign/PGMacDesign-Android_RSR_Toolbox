@@ -116,14 +116,15 @@ public class Main extends Activity implements OnItemClickListener {
         	}
 	        break;
         case 2:
-        	try{
-	        	makeToast("Lunch Timer");
-	        	Intent intent2 = new Intent(v.getContext(), LunchTimer.class);
-		        startActivity(intent2);
+        	try {
+        		makeToast("Enter Commissions Info");
+	        	Intent intent44 = new Intent(v.getContext(), EnterCommissionsInfo.class);
+		        startActivity(intent44);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
         	}
+
         	
         	break;
         case 3:
@@ -138,16 +139,6 @@ public class Main extends Activity implements OnItemClickListener {
         	break;
  
         case 4:
-        	try {
-        		makeToast("Enter Commissions Info");
-	        	Intent intent44 = new Intent(v.getContext(), EnterCommissionsInfo.class);
-		        startActivity(intent44);
-        	} catch (Exception e) {
-        		String error = e.toString();
-        		makeToast(error);
-        	}
-
-        case 5:
         	try{
 	        	makeToast("Useful SKUs");
 	        	Intent intent5 = new Intent(v.getContext(), UsefulSKUs.class);
@@ -158,12 +149,23 @@ public class Main extends Activity implements OnItemClickListener {
         	}
 
         	break;
-        	
-        case 6:
+
+        case 5:
         	try {
         		makeToast("Commissions");
 	        	Intent intent6 = new Intent(v.getContext(), Commissions.class);
 		        startActivity(intent6);
+        	} catch (Exception e) {
+        		String error = e.toString();
+        		makeToast(error);
+        	}
+        	break;
+
+        case 6:
+        	try{
+	        	makeToast("Lunch Timer");
+	        	Intent intent2 = new Intent(v.getContext(), LunchTimer.class);
+		        startActivity(intent2);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
