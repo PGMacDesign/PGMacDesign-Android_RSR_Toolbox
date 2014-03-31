@@ -219,10 +219,10 @@ public final class R {
     }
     public static final class id {
         public static final int Daily=0x7f0c0044;
-        public static final int Exit=0x7f0c0085;
+        public static final int Exit=0x7f0c0088;
         public static final int Meetings=0x7f0c0064;
         public static final int Other=0x7f0c006c;
-        public static final int aboutus=0x7f0c0082;
+        public static final int aboutus=0x7f0c0085;
         public static final int bugReport=0x7f0c0007;
         public static final int call_IT=0x7f0c0054;
         public static final int call_aol=0x7f0c004f;
@@ -324,20 +324,23 @@ public final class R {
         public static final int input_schedule_edit_text_other_start_time_hour=0x7f0c006d;
         public static final int input_schedule_edit_text_other_start_time_minute=0x7f0c006e;
         public static final int input_schedule_spinner_daily_shift_choice=0x7f0c005a;
-        public static final int main_menu_grid_view=0x7f0c0074;
-        public static final int preferences=0x7f0c0083;
+        public static final int lunch_timer_edit_text_clock=0x7f0c0074;
+        public static final int lunch_timer_start=0x7f0c0075;
+        public static final int magic_ball_button=0x7f0c0076;
+        public static final int main_menu_grid_view=0x7f0c0077;
+        public static final int preferences=0x7f0c0086;
         public static final int radio_group_bug=0x7f0c0006;
-        public static final int revenue_deficit_100=0x7f0c007a;
-        public static final int revenue_deficit_80=0x7f0c0078;
-        public static final int revenue_deficit_90=0x7f0c0079;
-        public static final int revenue_deficit_ard=0x7f0c0075;
-        public static final int revenue_deficit_calculate=0x7f0c0077;
-        public static final int revenue_deficit_devices=0x7f0c0076;
-        public static final int send_Bug_Report=0x7f0c0084;
+        public static final int revenue_deficit_100=0x7f0c007d;
+        public static final int revenue_deficit_80=0x7f0c007b;
+        public static final int revenue_deficit_90=0x7f0c007c;
+        public static final int revenue_deficit_ard=0x7f0c0078;
+        public static final int revenue_deficit_calculate=0x7f0c007a;
+        public static final int revenue_deficit_devices=0x7f0c0079;
+        public static final int send_Bug_Report=0x7f0c0087;
         public static final int send_bug_report=0x7f0c0009;
-        public static final int shared_preferences_button_share_data=0x7f0c007d;
-        public static final int shared_preferences_edit_text1=0x7f0c007b;
-        public static final int shared_preferences_edit_text2=0x7f0c007c;
+        public static final int shared_preferences_button_share_data=0x7f0c0080;
+        public static final int shared_preferences_edit_text1=0x7f0c007e;
+        public static final int shared_preferences_edit_text2=0x7f0c007f;
         public static final int tableRow1=0x7f0c0000;
         public static final int tableRow2=0x7f0c0001;
         public static final int tableRow3=0x7f0c0002;
@@ -348,10 +351,10 @@ public final class R {
         public static final int textView4=0x7f0c0029;
         public static final int textView5=0x7f0c0048;
         public static final int textView55=0x7f0c005f;
-        public static final int vacation_quota_relief_button_calculate=0x7f0c007f;
-        public static final int vacation_quota_relief_button_to_commissions=0x7f0c0081;
-        public static final int vacation_quota_relief_enter_days=0x7f0c007e;
-        public static final int vacation_quota_relief_percent=0x7f0c0080;
+        public static final int vacation_quota_relief_button_calculate=0x7f0c0082;
+        public static final int vacation_quota_relief_button_to_commissions=0x7f0c0084;
+        public static final int vacation_quota_relief_enter_days=0x7f0c0081;
+        public static final int vacation_quota_relief_percent=0x7f0c0083;
     }
     public static final class layout {
         public static final int aboutus=0x7f030000;
@@ -372,21 +375,36 @@ public final class R {
         public static final int share_this_app=0x7f03000f;
         public static final int shared_preferences=0x7f030010;
         public static final int splash=0x7f030011;
-        public static final int test=0x7f030012;
-        public static final int useful_skus=0x7f030013;
-        public static final int vacation_quota_relief=0x7f030014;
+        public static final int stress_relief=0x7f030012;
+        public static final int test=0x7f030013;
+        public static final int useful_skus=0x7f030014;
+        public static final int vacation_quota_relief=0x7f030015;
     }
     public static final class menu {
         public static final int cool_menu=0x7f0b0000;
     }
     public static final class raw {
-        public static final int air_whoosh=0x7f050000;
-        public static final int cell_phone_sim_card_drop_on_table=0x7f050001;
-        public static final int cinematic_impact=0x7f050002;
-        public static final int door_close_1=0x7f050003;
-        public static final int flashbang=0x7f050004;
-        public static final int grenade=0x7f050005;
-        public static final int sonic_boom=0x7f050006;
+        public static final int adrian_maybe=0x7f050000;
+        public static final int adrian_maybe_mp3=0x7f050001;
+        public static final int adrian_no=0x7f050002;
+        public static final int adrian_yes=0x7f050003;
+        public static final int air_whoosh=0x7f050004;
+        public static final int cell_phone_sim_card_drop_on_table=0x7f050005;
+        public static final int cinematic_impact=0x7f050006;
+        public static final int door_close_1=0x7f050007;
+        public static final int eric_maybe=0x7f050008;
+        public static final int eric_no=0x7f050009;
+        public static final int eric_yes=0x7f05000a;
+        public static final int grenade=0x7f05000b;
+        public static final int laser_001=0x7f05000c;
+        public static final int laser_002=0x7f05000d;
+        public static final int laser_003=0x7f05000e;
+        public static final int pew_pew=0x7f05000f;
+        public static final int robert_yes=0x7f050010;
+        public static final int serena_maybe=0x7f050011;
+        public static final int serena_no=0x7f050012;
+        public static final int serena_yes=0x7f050013;
+        public static final int sonic_boom=0x7f050014;
     }
     public static final class string {
         public static final int app_name=0x7f090000;

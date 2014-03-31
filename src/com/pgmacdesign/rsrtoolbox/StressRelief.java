@@ -16,13 +16,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 package com.pgmacdesign.rsrtoolbox;
 
+import java.util.HashMap;
+import java.util.Random;
+
 import android.app.Activity;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 
-public class StressRelief extends Activity implements View.OnClickListener {
+//This class uses a onclick and onlongclick to create different sounds.
+//Credit for many of the sounds in this section go to http://www.freesfx.co.uk. 
+//Credit for other sections here also goes to http://soundbible.com/
+public class StressRelief extends Activity implements OnClickListener, OnLongClickListener{
 
-	//Global Variables
+	//Sound pool
+	SoundPool sp;
+	private HashMap<Integer, Integer> soundMap;
+	
+	//
+	int laser1 = 1;
+	int laser2 = 2; 
+	int laser3 = 3;
+	int grenade = 4;
+	int fSpeed = 1;
+	
+	//Object for Media player
+	MediaPlayer pew;
+	
+	Random myRandom = new Random();
+	int hit = myRandom.nextInt(4)+1;
 	
 	
 	//Main - When the activity starts
@@ -32,6 +58,30 @@ public class StressRelief extends Activity implements View.OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.test); /////////////
 		Initialize();
+		
+		//Creating a new view
+		View v = new View(this);
+		
+		v.setOnClickListener(this);
+		
+		//OnLongClickListener for when you long press on the screen
+		v.setOnLongClickListener(this);
+		setContentView(v);
+		
+		//Setting up a sound pool. @ params:
+		//1st is max stream (Number of sounds allowed at same time)
+		//2nd is way to stream audio, (STREAM_MUSIC) is standard 
+		//3rd is sample rate. 0 is default, fairly useless atm
+		
+		sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 100);
+		soundMap = new HashMap<Integer, Integer>();
+		soundMap.put(laser1, sp.load(this, R.raw.laser_001, 1));
+		soundMap.put(laser2, sp.load(this, R.raw.laser_002, 1));
+		soundMap.put(laser3, sp.load(this, R.raw.laser_003, 1));
+		soundMap.put(grenade, sp.load(this, R.raw.grenade, 1));
+
+		
+		pew = MediaPlayer.create(this, R.raw.pew_pew);
 		
 		
 	}
@@ -44,19 +94,27 @@ public class StressRelief extends Activity implements View.OnClickListener {
 	//On Click Method
 	@Override
 	public void onClick(View arg0) {
-		/*
-		switch (arg0.getId()){
+
+		hit = myRandom.nextInt(4)+1;
 		
-		case R.id.button_ID_That_Was_Clicked:
-			
-			break;
-			
-		case R.id.button_ID_That_Was_Clicked:
-			
-			break;
-			
-		}
-		*/
+		/* Plays the sounds. @ Parameters:
+		 * 1st is sound ID to play
+		 * 2nd is left volume (range 0.0 - 1.0)
+		 * 3rd is right volume (range 0.0 - 1.0)
+		 * 4th is priority (0 is lowest priority)
+		 * 5th is loop (0 = no loop | -1 = loop forever)
+		 * 6th is rate playback rate (1.0 = normal)(Range is 0.5-2.0)
+		 */
+		sp.play(hit, 1, 1, 0, 0, 1);    
+		       	
+	}
+	
+	//IE Long press it will call this method and in the onCreate, a diff thing will play
+	@Override
+	public boolean onLongClick(View arg0) {
+		
+		pew.start();
+		return false;
 	}
 	
 	protected void onPause() {

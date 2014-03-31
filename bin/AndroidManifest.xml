@@ -185,7 +185,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         <!-- This activity has a fun, stress-relief element by adding clickable portions to the screen-->
         <activity
             android:name=".StressRelief"
-            android:label="Stress Relief!"  >
+            android:label="Stress Relief!" 
+            android:theme="@android:style/Theme.Black">
+             >
         </activity>  
         
         <!-- This activity allows the user to enter commissions info for calculation -->

@@ -17,11 +17,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 package com.pgmacdesign.rsrtoolbox;
 
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-public class Calculator extends Activity implements View.OnClickListener {
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+
+public class Calculator extends Activity {
 
 	//Global Variables
 	
@@ -31,34 +38,43 @@ public class Calculator extends Activity implements View.OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.XML_FILE);
-		Initialize();
+		setContentView(R.layout.calculator);
 		
+		ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
 		
+		//May not need this...
+		try{
+		     ApplicationInfo info = getPackageManager()
+		                             .getApplicationInfo("com.android.calculator2", 0 );
+
+		    } catch( PackageManager.NameNotFoundException e ){
+		     //application doesn't exist
+		}
+		
+		//PackageManager pm;
+		final PackageManager pm = getPackageManager();
+		
+		List<PackageInfo> packs = pm.getInstalledPackages(0);  
+		
+		for (PackageInfo pi : packs) {
+			if( pi.packageName.toString().toLowerCase().contains("calcul")){
+			    HashMap<String, Object> map = new HashMap<String, Object>();
+			    map.put("appName", pi.applicationInfo.loadLabel(pm));
+			    map.put("packageName", pi.packageName);
+			    items.add(map);
+			}
+		}
+	
+		if(items.size()>=1){
+			String packageName = (String) items.get(0).get("packageName");
+			Intent i = pm.getLaunchIntentForPackage(packageName);
+			if (i != null)
+				startActivity(i);
+			} else{
+			    // Application not found
+			}
 	}
 
-	//Initialize Variables
-	private void Initialize(){
-		
-	}
-	
-	//On Click Method
-	@Override
-	public void onClick(View arg0) {
-		/*
-		switch (arg0.getId()){
-		
-		case R.id.button_ID_That_Was_Clicked:
-			
-			break;
-			
-		case R.id.button_ID_That_Was_Clicked:
-			
-			break;
-			
-		}
-		*/
-	}
 	
 	protected void onPause() {
 

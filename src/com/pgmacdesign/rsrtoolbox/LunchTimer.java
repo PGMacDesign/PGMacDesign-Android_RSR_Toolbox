@@ -19,51 +19,62 @@ package com.pgmacdesign.rsrtoolbox;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+//This class is currently on hold. It will eventually be implemented as a countdown timer to mark 30 minutes for lunch
 public class LunchTimer extends Activity implements View.OnClickListener {
 
 	//Global Variables
+	CountDownTimer cdt;
 	
+	EditText lunch_timer_edit_text_clock;
+	Button lunch_timer_start;
 	
 	//Main - When the activity starts
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.XML_FILE);
+		setContentView(R.layout.lunch_timer);
 		Initialize();
-		
-		
+
 	}
 
 	//Initialize Variables
 	private void Initialize(){
-		
+		lunch_timer_edit_text_clock = (EditText) findViewById(R.id.lunch_timer_edit_text_clock);
+		lunch_timer_start = (Button) findViewById(R.id.lunch_timer_start);
+		lunch_timer_start.setOnClickListener(this);
 	}
 	
 	//On Click Method
 	@Override
 	public void onClick(View arg0) {
-		/*
+		
 		switch (arg0.getId()){
 		
-		case R.id.button_ID_That_Was_Clicked:
-			
+		case R.id.lunch_timer_start:
+			cdt = new CountDownTimer(1800000, 1000) {
+
+			     public void onTick(long millisUntilFinished) {
+			    	 lunch_timer_edit_text_clock.setText("seconds remaining: " + millisUntilFinished / 1000);
+			     }
+
+			     public void onFinish() {
+			    	 lunch_timer_edit_text_clock.setText("done!");
+			     }
+			  };
+			  cdt.start();
 			break;
-			
-		case R.id.button_ID_That_Was_Clicked:
-			
-			break;
-			
-		}
-		*/
+		}	
 	}
 	
 	protected void onPause() {
 
 		super.onPause();
-		finish();
 	}
 
 }

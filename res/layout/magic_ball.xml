@@ -3,6 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Ask your yes or no question and then click the magic ball for your answer..."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    
+    
+    
+   
+    <ImageButton
+        android:id="@+id/magic_ball_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/magic_ball_image" />
+ 	
+ <!--
+    <Button
+        android:id="@+id/magic_ball_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer Me" />
+ 
+ -->
 </LinearLayout>

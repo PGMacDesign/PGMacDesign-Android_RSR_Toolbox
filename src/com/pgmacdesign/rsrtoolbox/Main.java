@@ -162,17 +162,6 @@ public class Main extends Activity implements OnItemClickListener {
 
         case 6:
         	try{
-	        	makeToast("Lunch Timer");
-	        	Intent intent2 = new Intent(v.getContext(), LunchTimer.class);
-		        startActivity(intent2);
-        	} catch (Exception e) {
-        		String error = e.toString();
-        		makeToast(error);
-        	}
-        	break;
-
-        case 7:
-        	try{
 	        	makeToast("Follow-Up");
 	        	Intent intent7 = new Intent(v.getContext(), FollowUp.class);
 		        startActivity(intent7);
@@ -182,7 +171,7 @@ public class Main extends Activity implements OnItemClickListener {
         	}
         	break;
         	
-        case 8:
+        case 7:
 	        try{
 	        	makeToast("Calculator");
 	        	Intent intent8 = new Intent(v.getContext(), Calculator.class);
@@ -192,7 +181,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 9:
+        case 8:
         	try{
 	        	makeToast("Share This App");
 	        	Intent intent9 = new Intent(v.getContext(), ShareThisApp.class);
@@ -202,7 +191,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 10:
+        case 9:
         	try{
 	        	makeToast("Edge");
 	        	Intent intent10 = new Intent(v.getContext(), Edge.class);
@@ -212,7 +201,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 11:
+        case 10:
         	try{
 	        	makeToast("Important Contact Numbers");
 	        	Intent intent11 = new Intent(v.getContext(), ImportantContactNumbers.class);
@@ -222,7 +211,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 12:
+        case 11:
         	try{
 	        	makeToast("Stress Relief");
 	        	Intent intent12 = new Intent(v.getContext(), StressRelief.class);
@@ -232,7 +221,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        case 13:
+        case 12:
         	try{
 	        	makeToast("Magic Ball");
 	        	Intent intent13 = new Intent(v.getContext(), MagicBall.class);
@@ -242,7 +231,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;   
-        case 14:   		
+        case 13:   		
     		//Reset the database with zeros
         	//Reset the month
 			try{
@@ -319,6 +308,20 @@ public class Main extends Activity implements OnItemClickListener {
 	}
 
 
+	//Will eventually add this code back in
+	/*
+	 * 
+        case 6:
+        	try{
+	        	makeToast("Lunch Timer");
+	        	Intent intent2 = new Intent(v.getContext(), LunchTimer.class);
+		        startActivity(intent2);
+        	} catch (Exception e) {
+        		String error = e.toString();
+        		makeToast(error);
+        	}
+        	break;
+	 */
 
 }
 	
