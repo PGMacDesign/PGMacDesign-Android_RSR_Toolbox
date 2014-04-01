@@ -3,6 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <ImageView
+        android:id="@+id/share_this_app_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/share_this_app" />
+
+    <Button
+        android:id="@+id/share_this_app_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share this app" />
 
 </LinearLayout>

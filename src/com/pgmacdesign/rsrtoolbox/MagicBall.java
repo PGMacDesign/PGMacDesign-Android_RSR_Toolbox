@@ -42,6 +42,12 @@ public class MagicBall extends Activity implements View.OnClickListener {
 	int yes_01 = 1;
 	int no_01 = 2; 
 	int maybe_01 = 3;
+	int yes_02 = 4;
+	int no_02 = 5; 
+	int maybe_02 = 6;
+	int yes_03 = 7;
+	int no_03 = 8; 
+	int maybe_03 = 9;
 	
 	//
 	int fSpeed = 1;
@@ -60,19 +66,30 @@ public class MagicBall extends Activity implements View.OnClickListener {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.magic_ball);
-		Initialize();
 		
 		sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 100);
 		soundMap = new HashMap<Integer, Integer>();
-		soundMap.put(maybe_01, sp.load(this, R.raw.adrian_maybe, 1));   //Change raw ID here
-		soundMap.put(yes_01, sp.load(this, R.raw.adrian_yes, 1));
-		soundMap.put(no_01, sp.load(this, R.raw.adrian_no, 1));
+		
+		Initialize();
+		
+
 	}
 
 	//Initialize Variables
 	private void Initialize(){
 		magic_ball_button = (ImageButton) findViewById(R.id.magic_ball_button);
 		magic_ball_button.setOnClickListener(this);
+		
+		//soundMap.put(yes_XX, sp.load(this, R.raw.robert_yes, 1)); //For robert as a standalone once all others are done
+		soundMap.put(maybe_01, sp.load(this, R.raw.adrian_maybe, 1));   //Change raw ID here
+		soundMap.put(yes_01, sp.load(this, R.raw.adrian_yes, 1));
+		soundMap.put(no_01, sp.load(this, R.raw.adrian_no, 1));
+		soundMap.put(maybe_02, sp.load(this, R.raw.eric_maybe, 1));   //Change raw ID here
+		soundMap.put(yes_02, sp.load(this, R.raw.eric_yes, 1));
+		soundMap.put(no_02, sp.load(this, R.raw.eric_no, 1));
+		soundMap.put(maybe_03, sp.load(this, R.raw.serena_maybe, 1));   //Change raw ID here
+		soundMap.put(yes_03, sp.load(this, R.raw.serena_yes, 1));
+		soundMap.put(no_03, sp.load(this, R.raw.serena_no, 1));
 		
 	}
 	
