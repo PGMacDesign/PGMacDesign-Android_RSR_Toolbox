@@ -16,6 +16,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 package com.pgmacdesign.rsrtoolbox;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -105,7 +108,7 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 			} else if (vaca_days_entered >= 3 && vaca_days_entered < 22){
 				quota_relief_percent = (vaca_days_entered/22);
 				Double dbl = quota_relief_percent * 100; //So it will be a %
-				dbl = (double) (Math.round(dbl*100000)/100000); //So it will be 4 decimal places (xx.xx%)
+				dbl = round(dbl, 2);
 				String str1 = Double.toString(dbl);
 				tv_quota_relief_percent.setText(str1 + "%");
 				
@@ -154,6 +157,15 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 		super.onPause();
 		quota_relief_percent = 0.0;
 		finish();
+	}
+	
+	//This method is for rounding numbers
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+	
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
 	}
 	
 	//Simple class that makes a popup (toast) with the activity name the user chose
