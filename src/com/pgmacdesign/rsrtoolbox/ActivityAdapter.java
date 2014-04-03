@@ -17,18 +17,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 package com.pgmacdesign.rsrtoolbox;
 
 import android.content.Context;
-import android.graphics.Point;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 //This class serves as the main image adapter for the images on the gridview of the main class
-public class ActivityAdapter extends BaseAdapter {
+public class ActivityAdapter extends BaseAdapter  {
 
+	private RelativeLayout[] items = new RelativeLayout[9];
+    private int width, height, itemWidth, itemHeight;
+    
 	//Array of Icons that will be used as menu choices
 	public static int[] imageOptions = {
 			R.drawable.vacation_quota, //Position 0
@@ -45,8 +50,8 @@ public class ActivityAdapter extends BaseAdapter {
 			R.drawable.important_contact_numbers, //Position 9
 			R.drawable.stress_relief, //Position 10
 			R.drawable.magic_ball, //Position 11
-			R.drawable.reset_commissions, //Position 12
-			R.drawable.blank //position 13
+			R.drawable.reset_commissions //Position 12
+			//R.drawable.blank //position 13 //For testing purposes
 	};
 	
 	private Context context;
@@ -82,20 +87,15 @@ public class ActivityAdapter extends BaseAdapter {
 		} else {
 			iv = new ImageView(context);
 			
-			float width1 = context.getResources().getDimension(R.dimen.activity_horizontal_margin); 
-			float height1 = context.getResources().getDimension(R.dimen.activity_vertical_margin); 
+			WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+			Display display = wm.getDefaultDisplay();
 			
-			//Below is all commented out code that I cannot get to work!
-			//LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
-			//convertView.setLayoutParams(new GridView.LayoutParams(params));
-			//DisplayMetrics metrics = new DisplayMetrics();
-			//getWindowManager().getDefaultDisplay().getMetrics(metrics);
+			float width2 = display.getWidth();
 			
-			//This code will auto-crop and resize images to fit the dimensions
-			//iv.setLayoutParams(new GridView.LayoutParams((int)mContext.getResources().getDimension(R.dimen.width), (int)mContext.getResources().getDimension(R.dimen.height)));
+			int length = (int) (width2/2);
+			
+			iv.setLayoutParams(new GridView.LayoutParams(length, length));  
 
-
-			iv.setLayoutParams(new GridView.LayoutParams(240, 240));
 			
 			//If the cropping size looks off, this will set gravity to center
 			iv.setScaleType(ScaleType.CENTER_CROP);

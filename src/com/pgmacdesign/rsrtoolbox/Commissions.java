@@ -36,6 +36,9 @@ public class Commissions extends Activity implements View.OnClickListener {
 	spiffs, final_commissions, final_commissions_plus_2_a_day, to_get_to_a_1dot4, daily_to_get_to_a_1dot4, 
 	to_get_to_a_1dot6, daily_to_get_to_a_1dot6 ;
 	
+	//Primitive Variables
+	double vacation_relief_percent;
+	
 	//Make changes to the Prefs File
 	public static final String PREFS_NAME = "RSRToolboxData";	
 	SharedPrefs sp = new SharedPrefs();
@@ -104,6 +107,14 @@ public class Commissions extends Activity implements View.OnClickListener {
 		//Shared Preferences
 		settings = getSharedPreferences(PREFS_NAME, 0);
 		editor = settings.edit();
+		
+		//Primitive Variables Defined
+		vacation_relief_percent = (1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+		//vacation_relief_percent = round(vacation_relief_percent, 4);
+		
+		
+		
+		
 	}
 	
 	//Gets the working days left from shared preferences
@@ -146,7 +157,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		String result = Double.toString(dbl);
 		
 		try{
-			dbl = (sp.getDouble(settings, "up_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			dbl = (sp.getDouble(settings, "up_quota", 0.0))*(vacation_relief_percent);
 			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
@@ -162,7 +173,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		String result = Double.toString(dbl);
 		
 		try{
-			dbl = (sp.getDouble(settings, "gg_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			dbl = (sp.getDouble(settings, "gg_quota", 0.0))*(vacation_relief_percent);
 			dbl = round(dbl, 0);
 			result = Double.toString(dbl);
 		} catch (Exception e){
@@ -278,7 +289,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			
-			dbl = (sp.getDouble(settings, "sales_dollars_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			dbl = (sp.getDouble(settings, "sales_dollars_quota", 0.0))*(vacation_relief_percent);
 			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
@@ -311,7 +322,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			double sdcurrent = (sp.getDouble(settings, "sales_dollars_current", 0.0)); 
-			double sdquota = ((sp.getDouble(settings, "sales_dollars_quota", 0.0)))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double sdquota = ((sp.getDouble(settings, "sales_dollars_quota", 0.0)))*(vacation_relief_percent);
 			double sdMultiplier = sdcurrent / sdquota;
 			dbl = sdMultiplier;
 			
@@ -350,8 +361,8 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 			//Upgrade_quota + GG_quota
-			double upquota = ((sp.getDouble(settings, "up_quota", 0.0)))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
-			double ggquota = ((sp.getDouble(settings, "gg_quota", 0.0)))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double upquota = ((sp.getDouble(settings, "up_quota", 0.0)))*(vacation_relief_percent);
+			double ggquota = ((sp.getDouble(settings, "gg_quota", 0.0)))*(vacation_relief_percent);
 			dbl = upquota + ggquota;
 			
 			sp.putDouble(editor, "pt_quota", dbl);
@@ -388,7 +399,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 		try{
 		//Query the database for the numbers needed and set them to variables
-			dbl = (sp.getDouble(settings, "acc_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			dbl = (sp.getDouble(settings, "sales_dollars_quota", 0.0))*(vacation_relief_percent);
 			dbl = round(dbl, 2);
 			result = Double.toString(dbl);
 		} catch (Exception e){
@@ -461,13 +472,15 @@ public class Commissions extends Activity implements View.OnClickListener {
 			//Setup all variables via pulls from database
 			double strategicMultiplier1 = sp.getDouble(settings, "strategic_multiplier", 0.0);
 			
-			double ggcurrent = sp.getDouble(settings, "gg_current", 0.0)*((1-(sp.getDouble(settings, "vaca_relief", 0.0))));
+			double ggcurrent = sp.getDouble(settings, "gg_current", 0.0)*((vacation_relief_percent));
 			double ggchargebacks = sp.getDouble(settings, "charge_backs", 0.0);
-			double ggquota = (sp.getDouble(settings, "gg_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double ggquota = (sp.getDouble(settings, "gg_quota", 0.0))*(vacation_relief_percent);
 			double ggpercent = (ggcurrent - ggchargebacks) / ggquota;			
 			double ggMultiplier = gg.GetGGMultiplier(ggpercent);
 			
-			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / ((sp.getDouble(settings, "sales_dollars_quota", 0.0)))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double denominator = ((sp.getDouble(settings, "sales_dollars_quota", 0.0)))*(vacation_relief_percent);
+			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / denominator;
+					
 			double spiffs = sp.getDouble(settings, "spiffs", 0.0);
 			double finalCheck = (1417.00 * strategicMultiplier1 * ggMultiplier * salesDollarsMultiplier) + spiffs;
 			
@@ -501,14 +514,16 @@ public class Commissions extends Activity implements View.OnClickListener {
 			
 			double twoMoreADay = 2*(sp.getDouble(settings, "work_days_left", 0.0));
 			
-			double ggcurrent = sp.getDouble(settings, "gg_current", 0.0)*((1-(sp.getDouble(settings, "vaca_relief", 0.0))));
+			double ggcurrent = sp.getDouble(settings, "gg_current", 0.0)*((vacation_relief_percent));
 			double ggcurrentPlusTwoADay = ggcurrent + twoMoreADay;
 			double ggchargebacks = sp.getDouble(settings, "charge_backs", 0.0);
-			double ggquota = (sp.getDouble(settings, "gg_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double ggquota = (sp.getDouble(settings, "gg_quota", 0.0))*(vacation_relief_percent);
 			double ggpercent = (ggcurrentPlusTwoADay - ggchargebacks) / ggquota;			
 			double ggMultiplier = gg.GetGGMultiplier(ggpercent);
 
-			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / (sp.getDouble(settings, "sales_dollars_quota", 0.0));
+			double denominator = ((sp.getDouble(settings, "sales_dollars_quota", 0.0)))*(vacation_relief_percent);
+			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / denominator;
+			
 			double spiffs = sp.getDouble(settings, "spiffs", 0.0);
 			double finalCheck = (1417.00 * strategicMultiplier1 * ggMultiplier * salesDollarsMultiplier) + spiffs;
 			
@@ -594,7 +609,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 			double acc_mult_rank;
 			int acc_rank;
 			
-			double acc_quota = (sp.getDouble(settings, "acc_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double acc_quota = (sp.getDouble(settings, "sales_dollars_quota", 0.0))*(vacation_relief_percent);
 			double acc_current = sp.getDouble(settings, "acc_current", 0.0);
 		
 			acc_mult_rank = acc_current / acc_quota;
@@ -613,8 +628,8 @@ public class Commissions extends Activity implements View.OnClickListener {
 			double pt_mult_rank;
 			int pt_rank;
 			
-			double ptquota1 = (sp.getDouble(settings, "up_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
-			double ptquota2 = (sp.getDouble(settings, "gg_quota", 0.0))*(1-(sp.getDouble(settings, "vaca_relief", 0.0)));
+			double ptquota1 = (sp.getDouble(settings, "up_quota", 0.0))*(vacation_relief_percent);
+			double ptquota2 = (sp.getDouble(settings, "gg_quota", 0.0))*(vacation_relief_percent);
 			double ptquota = ptquota1 + ptquota2;
 			double ptcurrent = sp.getDouble(settings, "pt_current", 0.0);
 			

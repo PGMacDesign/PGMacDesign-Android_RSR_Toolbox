@@ -169,7 +169,7 @@
 		        android:layout_height="wrap_content"
 		        android:text="Input Data" 
 		        />
-		<!-- NEXT -->
+		<!-- NEXT 
 	        <TextView 
 	            android:text="Strategic Pull-through Quota"
 				android:layout_width="wrap_content" 
@@ -189,6 +189,9 @@
 		        android:layout_height="wrap_content"
 		        android:text="Input Data" 
 		        />
+		        
+		        Left out at the moment as this can be calculated without entry needed
+		-->
 		<!-- NEXT -->
 	        <TextView 
 	            android:text="Strategic Pull Through Current Count"
@@ -209,7 +212,7 @@
 		        android:layout_height="wrap_content"
 		        android:text="Input Data" 
 		        />
-		<!-- NEXT -->
+		<!-- NEXT 
 	        <TextView 
 	            android:text="Strategic Accessory Quota"
 				android:layout_width="wrap_content" 
@@ -229,6 +232,9 @@
 		        android:layout_height="wrap_content"
 		        android:text="Input Data" 
 		        />
+		        
+		        Left out at the moment as this can be calculated without entry needed
+		-->
 		<!-- NEXT -->
 	        <TextView 
 	            android:text="Strategic Accessory Current Amount"

@@ -59,8 +59,6 @@ public class Main extends Activity implements OnItemClickListener {
 		gridView.setAdapter(new ActivityAdapter(getApplicationContext()));
 		
 		gridView.setOnItemClickListener(this);
-				
-
 		
 		//Check to see if the SharedPreferences file has been filled/ exists
 		if (sp.getDouble(settings, "at_risk", 0.0) > 999){ //Info has already been entered. Used 999 instead of 1417 as it may change at some point
@@ -81,13 +79,15 @@ public class Main extends Activity implements OnItemClickListener {
 			} catch (Exception e){
 				e.printStackTrace();
 			}
-		}
+		}	
+		
 	}
 
 	//This onItemClick method jumps to the ActivityAdapter class to determine which item was chosen from the grid and then opens the respective activity
 	@Override
 	public void onItemClick(AdapterView<?> parentView, View v, int position, long id) {
 
+		@SuppressWarnings("unused")
 		int activityChosen;
 		
 		//Calls the method to determine which point in the Array the choice is
@@ -242,7 +242,9 @@ public class Main extends Activity implements OnItemClickListener {
 				e.printStackTrace();
 			}
 			makeToast("Commissions Has Been Reset");
-	    
+			break;
+			
+			/*
         case 13:
         	try{
 	        	makeToast("TEST");
@@ -253,7 +255,7 @@ public class Main extends Activity implements OnItemClickListener {
         		makeToast(error);
         	}
         	break;
-        	
+        	*/
 	    }
 	    
 	    	

@@ -68,9 +68,9 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		gg_charge_backs = (EditText) findViewById(R.id.enter_commissions_information_edit_text_gg_charge_backs);
 		sales_dollars_quota = (EditText) findViewById(R.id.enter_commissions_information_edit_text_sales_dollars_quota);
 		sales_dollars_current = (EditText) findViewById(R.id.enter_commissions_information_edit_text_sales_dollars_current);
-		strategic_pull_through_quota = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_pull_through_quota);
+		//strategic_pull_through_quota = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_pull_through_quota);
 		strategic_pull_through_current = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_pull_through_current);
-		strategic_acc_quota = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_acc_quota);
+		//strategic_acc_quota = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_acc_quota);
 		strategic_accessory_current = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_acc_current);
 		spiffs = (EditText) findViewById(R.id.enter_commissions_information_edit_text_spiffs);
 		working_days_left = (EditText) findViewById(R.id.enter_commissions_information_edit_text_working_days_left);
@@ -82,9 +82,9 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		b_gg_charge_backs = (Button) findViewById(R.id.enter_commissions_information_button_gg_charge_backs);
 		b_sales_dollars_quota = (Button) findViewById(R.id.enter_commissions_information_button_sales_dollars_quota);
 		b_sales_dollars_current = (Button) findViewById(R.id.enter_commissions_information_button_sales_dollars_current);
-		b_strategic_pull_through_quota = (Button) findViewById(R.id.enter_commissions_information_button_strategic_pull_through_quota);
+		//b_strategic_pull_through_quota = (Button) findViewById(R.id.enter_commissions_information_button_strategic_pull_through_quota);
 		b_strategic_pull_through_current = (Button) findViewById(R.id.enter_commissions_information_button_strategic_pull_through_current);
-		b_strategic_acc_quota = (Button) findViewById(R.id.enter_commissions_information_button_strategic_acc_quota);
+		//b_strategic_acc_quota = (Button) findViewById(R.id.enter_commissions_information_button_strategic_acc_quota);
 		b_strategic_accessory_current = (Button) findViewById(R.id.enter_commissions_information_button_strategic_acc_current);
 		b_spiffs = (Button) findViewById(R.id.enter_commissions_information_button_spiffs);
 		b_working_days_left = (Button) findViewById(R.id.enter_commissions_information_button_working_days_left);
@@ -96,9 +96,9 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		b_gg_charge_backs.setOnClickListener(this);
 		b_sales_dollars_quota.setOnClickListener(this);
 		b_sales_dollars_current.setOnClickListener(this);
-		b_strategic_pull_through_quota.setOnClickListener(this);
+		//b_strategic_pull_through_quota.setOnClickListener(this);
 		b_strategic_pull_through_current.setOnClickListener(this);
-		b_strategic_acc_quota.setOnClickListener(this);
+		//b_strategic_acc_quota.setOnClickListener(this);
 		b_strategic_accessory_current.setOnClickListener(this);
 		b_spiffs.setOnClickListener(this);
 		b_working_days_left.setOnClickListener(this);
@@ -206,6 +206,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 			}
 			break;	
 			
+			/*
 		case R.id.enter_commissions_information_button_strategic_pull_through_quota:
 			
 			try {
@@ -220,6 +221,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(e.toString());
 			}
 			break;
+			*/
 			
 		case R.id.enter_commissions_information_button_strategic_pull_through_current:
 			
@@ -236,6 +238,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 			}
 			break;	
 			
+			/*
 		case R.id.enter_commissions_information_button_strategic_acc_quota:
 			
 			try {
@@ -250,6 +253,7 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 				makeToast(e.toString());
 			}
 			break;
+			*/
 			
 		case R.id.enter_commissions_information_button_strategic_acc_current:
 			
