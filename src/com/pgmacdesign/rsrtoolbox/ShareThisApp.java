@@ -59,7 +59,7 @@ public class ShareThisApp extends Activity implements View.OnClickListener{
 				  i.setType("text/plain");
 				  i.putExtra(Intent.EXTRA_SUBJECT, "RSR Toolbox");
 				  String sAux = "\nLet me recommend you this application, RSR Toolbox:\n\n";
-				  sAux = sAux + "-----------------https://play.google.com/store/apps/details?id=Orion.Soft \n\n   -----------INSERT PLAYSTORE LINK HERE";
+				  sAux = sAux + "https://play.google.com/store/apps/details?id=com.pgmacdesign.rsrtoolbox";
 				  i.putExtra(Intent.EXTRA_TEXT, sAux);  
 				  startActivity(Intent.createChooser(i, "Choose a Way to Share This App: "));
 			} catch(Exception e){ 

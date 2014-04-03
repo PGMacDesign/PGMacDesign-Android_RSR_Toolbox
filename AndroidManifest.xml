@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pgmacdesign.rsrtoolbox"
-    android:versionCode="1"
+    android:versionCode="2"
     android:versionName="1.0" >
 
     <uses-sdk
@@ -31,13 +31,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
     <!-- The wake lock is so you can keep the screen active on a certain class -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <!-- This is more or less a must to do anything internet related -->
-    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- This is needed to write to the storage, not necessarily meaning the SD card -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- Allows access to the vibrate function for the notification/ status bar -->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- The access network state is needed for admob -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"

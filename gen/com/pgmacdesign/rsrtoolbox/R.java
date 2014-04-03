@@ -201,11 +201,12 @@ public final class R {
         public static final int reset_commissions=0x7f020013;
         public static final int revenue_deficit=0x7f020014;
         public static final int rsr_toolbox_logo=0x7f020015;
-        public static final int scorecard=0x7f020016;
-        public static final int share_this_app=0x7f020017;
-        public static final int stress_relief=0x7f020018;
-        public static final int useful_skus=0x7f020019;
-        public static final int vacation_quota=0x7f02001a;
+        public static final int rsr_toolbox_play_store_link=0x7f020016;
+        public static final int scorecard=0x7f020017;
+        public static final int share_this_app=0x7f020018;
+        public static final int stress_relief=0x7f020019;
+        public static final int useful_skus=0x7f02001a;
+        public static final int vacation_quota=0x7f02001b;
     }
     public static final class id {
         public static final int Daily=0x7f0c0040;
