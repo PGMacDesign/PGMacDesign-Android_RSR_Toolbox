@@ -81,9 +81,9 @@ public class MagicBall extends Activity implements View.OnClickListener {
 	int yes_14 = 40;
 	int no_14 = 41; 
 	int maybe_14 = 42;
-	int yes_15 = 43;
-	int no_15 = 44; 
-	int maybe_15 = 45;
+	//int yes_15 = 43;
+	//int no_15 = 44; 
+	//int maybe_15 = 45;
 	
 	//
 	int fSpeed = 1;
@@ -92,7 +92,7 @@ public class MagicBall extends Activity implements View.OnClickListener {
 	MediaPlayer pew;
 	
 	Random myRandom = new Random();
-	int hit = myRandom.nextInt(45)+1;
+	int hit = myRandom.nextInt(42)+1;
 	
 	//Main, on Create
 	@Override
@@ -150,12 +150,12 @@ public class MagicBall extends Activity implements View.OnClickListener {
 		soundMap.put(yes_12, sp.load(this, R.raw.pat_yes, 1));
 		soundMap.put(no_12, sp.load(this, R.raw.pat_no, 1));
 		soundMap.put(maybe_12, sp.load(this, R.raw.pat_maybe, 1));
-		soundMap.put(yes_13, sp.load(this, R.raw.pat_2_yes, 1));
-		soundMap.put(no_13, sp.load(this, R.raw.pat_2_no, 1));
-		soundMap.put(maybe_13, sp.load(this, R.raw.pat_2_maybe, 1));   
-		soundMap.put(yes_15, sp.load(this, R.raw.pat_4_yes, 1));
-		soundMap.put(no_15, sp.load(this, R.raw.pat_4_no, 1));
-		soundMap.put(maybe_15, sp.load(this, R.raw.pat_4_maybe, 1));
+		//soundMap.put(yes_13, sp.load(this, R.raw.pat_2_yes, 1));
+		//soundMap.put(no_13, sp.load(this, R.raw.pat_2_no, 1));              //Removed temporarily will get better sound byte in 
+		//soundMap.put(maybe_13, sp.load(this, R.raw.pat_2_maybe, 1));   
+		soundMap.put(yes_13, sp.load(this, R.raw.pat_4_yes, 1));
+		soundMap.put(no_13, sp.load(this, R.raw.pat_4_no, 1));
+		soundMap.put(maybe_13, sp.load(this, R.raw.pat_4_maybe, 1));
 		soundMap.put(yes_14, sp.load(this, R.raw.pat_3_yes, 1));
 		soundMap.put(no_14, sp.load(this, R.raw.pat_3_no, 1));
 		soundMap.put(maybe_14, sp.load(this, R.raw.pat_3_maybe, 1));  
@@ -169,7 +169,7 @@ public class MagicBall extends Activity implements View.OnClickListener {
 		switch (arg0.getId()){
 		
 		case R.id.magic_ball_button:
-			hit = myRandom.nextInt(45)+1;
+			hit = myRandom.nextInt(42)+1;
 			sp.play(hit, 1, 1, 0, 0, 1);
 			break;
 		}

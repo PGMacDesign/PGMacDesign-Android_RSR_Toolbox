@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -40,9 +41,9 @@ public class Calculator extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calculator);
 		
+		//This first one should try to run the default calculator. Seems to be erroring out on HTCs, will add second section
 		ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
 		
-		//May not need this...
 		try{
 		     ApplicationInfo info = getPackageManager()
 		                             .getApplicationInfo("com.android.calculator2", 0 );
@@ -71,7 +72,16 @@ public class Calculator extends Activity {
 			if (i != null)
 				startActivity(i);
 			} else{
-			    // Application not found
+				final String CALCULATOR_PACKAGE ="com.android.calculator2";
+				final String CALCULATOR_CLASS ="com.android.calculator2.Calculator";
+				  Intent intent = new Intent();
+
+				    intent.setAction(Intent.ACTION_MAIN);
+				         intent.addCategory(Intent.CATEGORY_LAUNCHER);
+				        intent.setComponent(new ComponentName(
+				         CALCULATOR_PACKAGE,
+				         CALCULATOR_CLASS));
+		        finish();
 			}
 	}
 

@@ -61,10 +61,4 @@ public class GGMultiplier extends Activity{
 		return GGmultiplierActual;
 	}
 	
-	//Simple class that makes a popup (toast) with the activity name the user chose
-	public void makeToast(String activityChosen){
-		Toast.makeText(getApplicationContext(), activityChosen, Toast.LENGTH_SHORT).show();
-	}
-
-	
 }
