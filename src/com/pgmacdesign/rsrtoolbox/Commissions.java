@@ -37,7 +37,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 	to_get_to_a_1dot6, daily_to_get_to_a_1dot6 ;
 	
 	//Primitive Variables
-	double vacation_relief_percent;
+	double vacation_relief_percent, daysWorked;
 	
 	//Make changes to the Prefs File
 	public static final String PREFS_NAME = "RSRToolboxData";	
@@ -112,7 +112,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 		vacation_relief_percent = (1-(sp.getDouble(settings, "vaca_relief", 0.0)));
 		//vacation_relief_percent = round(vacation_relief_percent, 4);
 		
-		
+		daysWorked = 22.00-(sp.getDouble(settings, "work_days_left", 0.0));
 		
 		
 	}
@@ -267,7 +267,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 
 		try{
 			double netGs = (sp.getDouble(settings, "gg_current", 0.0)) - (sp.getDouble(settings, "charge_backs", 0.0));
-			double daysWorked = 22.00-(sp.getDouble(settings, "work_days_left", 0.0)); //Number of days worked already
+			//daysWorked = 22.00-(sp.getDouble(settings, "work_days_left", 0.0)); //Number of days worked already
 			double runRate = ((22 * netGs)/daysWorked); //Run rate
 			dbl = runRate;
 			
@@ -473,13 +473,20 @@ public class Commissions extends Activity implements View.OnClickListener {
 			double strategicMultiplier1 = sp.getDouble(settings, "strategic_multiplier", 0.0);
 			
 			double ggcurrent = sp.getDouble(settings, "gg_current", 0.0)*((vacation_relief_percent));
+			
+			double RRGGcurrent = (22*ggcurrent);
+			RRGGcurrent = RRGGcurrent / daysWorked;
+						
 			double ggchargebacks = sp.getDouble(settings, "charge_backs", 0.0);
 			double ggquota = (sp.getDouble(settings, "gg_quota", 0.0))*(vacation_relief_percent);
-			double ggpercent = (ggcurrent - ggchargebacks) / ggquota;			
+			
+			double ggpercent = (RRGGcurrent - ggchargebacks) / ggquota;			
 			double ggMultiplier = gg.GetGGMultiplier(ggpercent);
 			
 			double denominator = ((sp.getDouble(settings, "sales_dollars_quota", 0.0)))*(vacation_relief_percent);
-			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / denominator;
+			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0))*22;
+			salesDollarsMultiplier = salesDollarsMultiplier/daysWorked;
+			salesDollarsMultiplier = salesDollarsMultiplier / denominator;
 					
 			double spiffs = sp.getDouble(settings, "spiffs", 0.0);
 			double finalCheck = (1417.00 * strategicMultiplier1 * ggMultiplier * salesDollarsMultiplier) + spiffs;
@@ -516,13 +523,20 @@ public class Commissions extends Activity implements View.OnClickListener {
 			
 			double ggcurrent = sp.getDouble(settings, "gg_current", 0.0)*((vacation_relief_percent));
 			double ggcurrentPlusTwoADay = ggcurrent + twoMoreADay;
+			
+			double RRGGcurrent = (22*ggcurrentPlusTwoADay);
+			RRGGcurrent = RRGGcurrent / daysWorked;
+			
+			
 			double ggchargebacks = sp.getDouble(settings, "charge_backs", 0.0);
 			double ggquota = (sp.getDouble(settings, "gg_quota", 0.0))*(vacation_relief_percent);
 			double ggpercent = (ggcurrentPlusTwoADay - ggchargebacks) / ggquota;			
 			double ggMultiplier = gg.GetGGMultiplier(ggpercent);
 
 			double denominator = ((sp.getDouble(settings, "sales_dollars_quota", 0.0)))*(vacation_relief_percent);
-			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0)) / denominator;
+			double salesDollarsMultiplier = (sp.getDouble(settings, "sales_dollars_current", 0.0))*22;
+			salesDollarsMultiplier = salesDollarsMultiplier/daysWorked;
+			salesDollarsMultiplier = salesDollarsMultiplier / denominator;
 			
 			double spiffs = sp.getDouble(settings, "spiffs", 0.0);
 			double finalCheck = (1417.00 * strategicMultiplier1 * ggMultiplier * salesDollarsMultiplier) + spiffs;

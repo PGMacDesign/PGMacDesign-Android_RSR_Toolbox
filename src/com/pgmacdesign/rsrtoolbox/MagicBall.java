@@ -153,12 +153,13 @@ public class MagicBall extends Activity implements View.OnClickListener {
 		soundMap.put(yes_13, sp.load(this, R.raw.pat_2_yes, 1));
 		soundMap.put(no_13, sp.load(this, R.raw.pat_2_no, 1));
 		soundMap.put(maybe_13, sp.load(this, R.raw.pat_2_maybe, 1));   
+		soundMap.put(yes_15, sp.load(this, R.raw.pat_4_yes, 1));
+		soundMap.put(no_15, sp.load(this, R.raw.pat_4_no, 1));
+		soundMap.put(maybe_15, sp.load(this, R.raw.pat_4_maybe, 1));
 		soundMap.put(yes_14, sp.load(this, R.raw.pat_3_yes, 1));
 		soundMap.put(no_14, sp.load(this, R.raw.pat_3_no, 1));
 		soundMap.put(maybe_14, sp.load(this, R.raw.pat_3_maybe, 1));  
-		soundMap.put(yes_15, sp.load(this, R.raw.pat_4_yes, 1));
-		soundMap.put(no_15, sp.load(this, R.raw.pat_4_no, 1));
-		soundMap.put(maybe_15, sp.load(this, R.raw.pat_3_maybe, 1));
+
 		
 	}
 	
