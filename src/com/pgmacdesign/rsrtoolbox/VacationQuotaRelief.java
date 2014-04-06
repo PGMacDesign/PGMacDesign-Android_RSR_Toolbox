@@ -29,7 +29,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//This class calculates quota relief days obtained via personal time or vacation time off
+//This class calculates quota relief days obtained via personal time or vacation time off and also offers the option to input it into the commissions activity
 public class VacationQuotaRelief extends Activity implements View.OnClickListener {
 
 	//Global Variables

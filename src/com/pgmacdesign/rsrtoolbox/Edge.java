@@ -68,7 +68,7 @@ public class Edge extends Activity implements OnCheckedChangeListener {
 		edge_1year.setText("0");
 		edge_2year.setText("0");
 		
-		//Radio Buttons
+		//Radio Buttons -- Do not need these as radio group covers it
 		//edge_10gb_or_higher = (RadioButton) findViewById(R.id.edge_10gb_or_higher);
 		//edge_8gb_or_lower = (RadioButton) findViewById(R.id.edge_8gb_or_lower);
 		//edge_qualified_plan = (RadioButton) findViewById(R.id.edge_qualified_plan);
