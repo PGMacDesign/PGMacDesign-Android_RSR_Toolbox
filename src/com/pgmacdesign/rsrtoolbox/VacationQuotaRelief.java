@@ -156,7 +156,7 @@ public class VacationQuotaRelief extends Activity implements View.OnClickListene
 
 		super.onPause();
 		quota_relief_percent = 0.0;
-		finish();
+		//finish();
 	}
 	
 	//This method is for rounding numbers

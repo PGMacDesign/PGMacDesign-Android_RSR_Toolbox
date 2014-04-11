@@ -161,7 +161,7 @@ public class RevenueDeficit extends Activity implements View.OnClickListener {
 	protected void onPause() {
 
 		super.onPause();
-		finish();
+		//finish();
 	}
 
 }
