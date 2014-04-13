@@ -64,7 +64,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         <activity
             android:name=".Main"
             android:label="@string/app_name" 
-            android:theme="@android:style/Theme.Black">
+            android:theme="@android:style/Theme.Black"
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize"
+            >
             <intent-filter>
                 <action android:name="com.pgmacdesign.rsrtoolbox.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -76,6 +79,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             android:name=".AboutUs"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize"
             >
             <intent-filter>
                 <action android:name="com.pgmacdesign.rsrtoolbox.ABOUTUS" />
@@ -88,6 +93,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             android:name=".Prefs"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize"
             >
             <intent-filter>
                 <action android:name="com.pgmacdesign.rsrtoolbox.PREFS" />
@@ -100,6 +107,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             android:name=".BugReport"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize"
             >
             <intent-filter>
                 <action android:name="com.pgmacdesign.rsrtoolbox.BUGREPORT" />
@@ -116,55 +125,73 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         <!-- This activity is for delving into commissions, amounts earned, and ways to calculate more income -->
         <activity
             android:name=".Commissions"
-            android:label="Commissions"  >
+            android:label="Commissions"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>        
         
         <!-- This activity is designed to help make calculations with the Edge program easy and understandable -->
         <activity
             android:name=".Edge"
-            android:label="Edge"  >
+            android:label="Edge"  
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>        
         
         <!-- This activity inputs items into the Google Calendar with intention of them being followed up on. Mostly useful for Callbacks, OCCs, emails, etc -->
         <activity
             android:name=".FollowUp"
-            android:label="Follow-Up"  >
+            android:label="Follow-Up"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>        
         
         <!-- This activity is to help keep 30 minute lunches timely, alert when nearing the end of lunch, and remind the user to clock in/ out -->
         <activity
             android:name=".LunchTimer"
-            android:label="Lunch Timer"  >
+            android:label="Lunch Timer"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>        
         
         <!-- This activity calculates the number deficit to be at a certain revenue target. Will have default values as well as input values -->
         <activity
             android:name=".RevenueDeficit"
-            android:label="Revenue Deficit"  >
+            android:label="Revenue Deficit"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>        
         
         <!-- This activity will allow users to send the link for the application to other people via text/ email/ etc. Will have direct link to play store download -->
         <activity
             android:name=".ShareThisApp"
-            android:label="Share This App"  >
+            android:label="Share This App"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>        
         
         <!-- This activity will list off some of the most useful SKUs that are frequently being looked up -->
         <activity
             android:name=".UsefulSKUs"
-            android:label="Useful SKUs"  >
+            android:label="Useful SKUs"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>        
         
         <!-- This activity calculates quota relief based upon the number of vacation/ personal days the user has taken -->
         <activity
             android:name=".VacationQuotaRelief"
-            android:label="Vacation Quota Relief"  >
+            android:label="Vacation Quota Relief"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>        
         
         <!-- This activity lists off important contact numbers and email addresses that the user may find helpful-->
         <activity
             android:name=".ImportantContactNumbers"
-            android:label="Important Contact Numbers"  >
+            android:label="Important Contact Numbers"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>        
         
         <!-- This activity is a handler for the activity chosen by the user to determine which activity will open-->
@@ -176,21 +203,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         <!-- This activity Allows the user to input their work schedule into their Google calendar-->
         <activity
             android:name=".InputSchedule"
-            android:label="Input Schedule"  >
+            android:label="Input Schedule"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>          
         
         <!-- This activity has a fun, stress-relief element by adding clickable portions to the screen-->
         <activity
             android:name=".StressRelief"
             android:label="Stress Relief!" 
-            android:theme="@android:style/Theme.Black">
+            android:theme="@android:style/Theme.Black"  
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
              >
         </activity>  
         
         <!-- This activity allows the user to enter commissions info for calculation -->
         <activity
             android:name=".EnterCommissionsInfo"
-            android:label="Enter Information for Commissions"  >
+            android:label="Enter Information for Commissions"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>  
         
         <!-- This activity manages the central database for the entire application-->
@@ -220,7 +253,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         <!-- This activity if just a fun little 'magic 8-ball style randomizer -->
         <activity
             android:name=".MagicBall"
-            android:label="Magic Ball"  >
+            android:label="Magic Ball"    
+            android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity> 
         
         <!-- This activity is for Shared Preferences-->
@@ -242,124 +277,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             android:label="WORDS"  >
         </activity>        
         
-        
-         -->
-        <!-- This activity sends an email to someone with pre-designed fields. Theme is black -->
-        <activity
-            android:name=".Email"
-            android:label="@string/app_name" 
-            android:theme="@android:style/Theme.Black"
-            >
-        </activity>
-        
-        <!-- This activity takes a photo and then sets it as the background -->
-        <activity
-            android:name=".Camera"
-            android:label="Camera Application" 
-            android:screenOrientation="portrait"  >
-        </activity>
-        
-        <!-- This activity sends data as a bundle (package) to opened class -->
-        <activity
-            android:name=".Data"
-            android:label="Data Stuff"  >
-        </activity>
-        
-        <!-- This activity takes data from the data class and uses it. Transferred via a bundle -->
-        <activity
-            android:name=".OpenedClass"
-            android:label="Opened Class"  >
-        </activity>
-        
-        <!-- This activity has a 'falling' graphic (arrow) on a background  -->
-        <activity
-            android:name=".Graphics"
-            android:label="@string/app_name" >
-        </activity>
-        
-        <!-- This activity has a surface area for graphics setup  -->
-        <activity
-            android:name=".GraphicsSurface"
-            android:label="Graphics Canvas" >
-        </activity>
-        
-        <!-- This activity works with auditory things like short bursts, explosions, gunshots, etc -->
-        <activity
-            android:name=".SoundStuff"
-            android:label="Sound Stuff" >
-        </activity>
-        
-        <!-- This activity has a frame layout with a sliding drawer (similar to pull-down notification bar) -->
-        <activity
-            android:name=".Slider"
-            android:label="Sliding Drawer" >
-        </activity>
-        
-        <!-- This activity has tabs that can be toggled between including a stop-watch program -->
-        <activity
-            android:name=".Tabs"
-            android:label="Choose a Tab" >
-        </activity>  
-        
-        <!-- This activity creates a simple web browser -->
-        <activity
-            android:name=".SimpleBrowser"
-            android:label="SimpleBrowser" >
-        </activity>
-        
-        <!-- This activity creates a flipper-style section that rotates through kind of like flash cards/ slide-show -->
-        <activity
-            android:name=".Flipper"
-            android:label="Flip-Style Rotation" >
-        </activity>  
-        
-        <!-- This activity writes to the external data of the app (IS readable outside the app... for the most part)-->
-        <activity
-            android:name=".ExternalData"
-            android:label="Sharing Data To Files" >
-        </activity>          
-  
-        <!-- This activity writes to the internal data of the app (not readable outside of the app. When app is removed, data goes with it) -->
-        <activity
-            android:name=".InternalData"
-            android:label="Sharing Data To Files" >
-        </activity> 
-        
-        <!-- This activity Creates an SQL database via input and updates the tables -->
-        <activity
-            android:name=".SQLiteExample"
-            android:label="SQL Examples" >
-        </activity> 
-                
-        <!-- This activity Creates an SQL database via input and updates the tables -->
-        <activity
-            android:name=".SQLView"
-            android:label="SQL View" >
-            <intent-filter>
-                <action android:name="com.macdowell.thenewbostoneclipsetest01.SQLVIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity> 
-                        
-        <!-- This activity Works with the accelerometer within the droid -->
-        <activity
-            android:name=".Accelerate"
-            android:label="Accelerator Testing" >
-        </activity>        
-        
-        <!-- This activity pulls data from the internet, parses it, spits out the HTML-->
-        <activity
-            android:name=".HttpExample"
-            android:label="Web Data" >
-        </activity>        
-        
-        <!-- This activity parses weather stats from the website http://api.openweathermap.org/-->
-        <activity
-            android:name=".WeatherXMLParsing"
-            android:label="Get Weather Information" >
-        </activity>        
-        
-        <!-- 
         
         Widget class  
         <receiver 
@@ -385,40 +302,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
                     />
             </intent-filter>
         </activity>        
-        
-        <!-- This activity draws a simple triangle on a canvas-->
-        <activity
-            android:name=".GLExample"
-            android:label="Draw a Triangle" >
-        </activity>          
-        
-        <!-- This activity draws a simple triangle on a canvas-->
-        <activity
-            android:name=".Voice"
-            android:label="Test The Voice Recognition Software" >
-        </activity>
-       
-        <!-- This activity speaks words back to you via the text to voice features-->
-        <activity
-            android:name=".TextVoice"
-            android:label="Test the text to voice software" >
-        </activity>        
-        
-        <!-- This activity Creates a status bar icon. Useful for a reminder-->
-        <activity
-            android:name=".StatusBar"
-            android:label="Status Bar Icon" >
-        </activity>         
-        
-        <!-- This activity Creates a status bar icon. Useful for a reminder-->
-        <activity
-            android:name=".SeekBarVolume"
-            android:label="Adjust Media Volume" >
-        </activity> 
-        
-
-                
-        
         
         
     </application>
