@@ -628,11 +628,11 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 			acc_mult_rank = acc_current / acc_quota;
 			
-			if (acc_mult_rank >= 0.20 && acc_mult_rank < 0.3099) {
+			if (acc_mult_rank >= 0.21 && acc_mult_rank < 0.3199) {
 				acc_rank = 1;
-			} else if (acc_mult_rank >= 0.31 && acc_mult_rank < 0.4699){
+			} else if (acc_mult_rank >= 0.32 && acc_mult_rank < 0.4799){
 				acc_rank = 2;
-			} else if (acc_mult_rank >= 0.47){
+			} else if (acc_mult_rank >= 0.48){
 				acc_rank = 3;
 			} else {
 				acc_rank = 0;
@@ -649,11 +649,12 @@ public class Commissions extends Activity implements View.OnClickListener {
 			
 			pt_mult_rank = ptcurrent / ptquota;
 			
-			if(pt_mult_rank >= 0.14 && pt_mult_rank < 0.33) {
+			//Adjusted for June, 2014 numbers
+			if(pt_mult_rank >= 0.14 && pt_mult_rank < 0.3499) {
 				pt_rank = 1;
-			} else if (pt_mult_rank >= 0.33 && pt_mult_rank < 0.59){
+			} else if (pt_mult_rank >= 0.35 && pt_mult_rank < 0.6099){
 				pt_rank = 2;
-			} else if (pt_mult_rank >= 0.59) {
+			} else if (pt_mult_rank >= 0.61) {
 				pt_rank = 3;
 			} else {
 				pt_rank = 0;

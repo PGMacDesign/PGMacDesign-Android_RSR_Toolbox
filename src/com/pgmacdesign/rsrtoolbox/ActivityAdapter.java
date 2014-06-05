@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 package com.pgmacdesign.rsrtoolbox;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.Display;
 import android.view.View;
@@ -29,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 //This class serves as the main image adapter for the images on the gridview of the main class
+@SuppressLint("Instantiatable")
 public class ActivityAdapter extends BaseAdapter  {
 
 	private RelativeLayout[] items = new RelativeLayout[9];
@@ -57,6 +59,7 @@ public class ActivityAdapter extends BaseAdapter  {
 	private Context context;
 	
 	//Constructor to pass context back to Main class
+	@SuppressLint("Instantiatable")
 	public ActivityAdapter(Context applicationContext) {
 		
 		context = applicationContext;

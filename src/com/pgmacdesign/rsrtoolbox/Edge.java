@@ -138,7 +138,7 @@ public class Edge extends Activity implements OnCheckedChangeListener {
 			full_retail_cost = Double.parseDouble(edge_full_retail.getText().toString());
 		}
 		
-		double tempMonthlyPayment = full_retail_cost / 24;
+		double tempMonthlyPayment = full_retail_cost / 20;
 		
 		monthly_payment = tempMonthlyPayment - input_discount;
 		one_year = monthly_payment * 12;

@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 package com.pgmacdesign.rsrtoolbox;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,6 +27,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 //This class manages the database for the entire application
+@SuppressLint("Instantiatable")
 public class DatabaseAdmin extends SQLiteOpenHelper  {
 	
 	/*
@@ -146,7 +148,8 @@ public class DatabaseAdmin extends SQLiteOpenHelper  {
 	};
 
     //Constructor
-    public DatabaseAdmin(Context context) {
+    @SuppressLint("Instantiatable")
+	public DatabaseAdmin(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     

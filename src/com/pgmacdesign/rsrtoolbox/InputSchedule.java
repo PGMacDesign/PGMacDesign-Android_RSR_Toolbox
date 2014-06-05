@@ -72,7 +72,8 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 	//Buttons
 		Button input_schedule_button_daily_enter_calendar_event, input_schedule_button_daily_remind_me_later, input_schedule_button_meeting_enter_calendar_event,
 		input_schedule_button_meeting_remind_me_later, input_schedule_button_other_enter_calendar_event, input_schedule_button_other_remind_me_later;
-		
+	
+	//DatePickers
 		DatePicker input_schedule_datePicker_daily, input_schedule_datePicker_meeting, input_schedule_datePicker_other;
 	
 	//Misc Variables

@@ -71,7 +71,10 @@ public class Calculator extends Activity {
 			Intent i = pm.getLaunchIntentForPackage(packageName);
 			if (i != null)
 				startActivity(i);
-			} else{
+				finish();
+		}
+		
+			//Testing for HTC phones
 				final String CALCULATOR_PACKAGE ="com.android.calculator2";
 				final String CALCULATOR_CLASS ="com.android.calculator2.Calculator";
 				  Intent intent = new Intent();
@@ -82,7 +85,8 @@ public class Calculator extends Activity {
 				         CALCULATOR_PACKAGE,
 				         CALCULATOR_CLASS));
 		        finish();
-			}
+			
+		
 	}
 
 	

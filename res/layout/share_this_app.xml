@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ImageView
+    <ImageButton
         android:id="@+id/share_this_app_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.64"
+        android:layout_weight="0.52"
         android:src="@drawable/rsr_toolbox_play_store_link" />
 
     <Button

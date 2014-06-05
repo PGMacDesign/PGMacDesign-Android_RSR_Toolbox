@@ -305,7 +305,6 @@ public class FollowUp extends Activity implements View.OnClickListener, OnItemSe
 
 	protected void onPause() {
 		super.onPause();
-		finish();
 	}
 	
 	protected void onResume(){
