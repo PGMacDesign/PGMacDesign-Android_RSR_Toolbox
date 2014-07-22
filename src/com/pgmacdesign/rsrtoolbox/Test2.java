@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
+//This is a template for standard activity layout
 public class Test2 extends Activity implements View.OnClickListener {
 
 	//Shared Preferences

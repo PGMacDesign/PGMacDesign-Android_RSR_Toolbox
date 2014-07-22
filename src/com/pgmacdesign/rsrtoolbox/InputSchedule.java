@@ -440,7 +440,7 @@ public class InputSchedule extends Activity implements View.OnClickListener, OnI
 			//Convert those hours and minutes
 			daily_hour_end = hours1 / 3600; //18
 			daily_min_end = (minutes1*60) / 3600; //0
-		
+			
 		/*	
 		//This section gets the start times from the editTexts and calculates the end times for the meeting tab
 			if (input_schedule_edit_text_meeting_start_time_hour.getText().toString().equals("")){

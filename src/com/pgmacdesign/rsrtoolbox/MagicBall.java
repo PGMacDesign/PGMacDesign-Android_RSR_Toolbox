@@ -89,9 +89,6 @@ public class MagicBall extends Activity implements View.OnClickListener {
 	//
 	int fSpeed = 1;
 	
-	//Object for Media player
-	MediaPlayer pew;
-	
 	Random myRandom = new Random();
 	int hit = myRandom.nextInt(40)+1;
 	

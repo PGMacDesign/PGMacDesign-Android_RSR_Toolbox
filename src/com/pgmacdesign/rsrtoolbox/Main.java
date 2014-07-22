@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,6 +81,8 @@ public class Main extends Activity implements OnItemClickListener {
 				e.printStackTrace();
 			}
 		}	
+	
+        
 		
 	}
 
@@ -268,6 +271,8 @@ public class Main extends Activity implements OnItemClickListener {
 	
 	//Creates a boolean where the user hits the menu/ settings/ 3 little line button/ checkerbox (on the old Droid X).
 	public boolean onCreateOptionsMenu(android.view.Menu menu_settings) {
+		
+		//getMenuInflater().inflate(R.menu.main, menu_settings);   //This is the code for standard menu on top
 		
 		//menu inflater 
 		MenuInflater blowUp = getMenuInflater(); 

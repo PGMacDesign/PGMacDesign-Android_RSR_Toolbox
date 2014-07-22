@@ -95,7 +95,7 @@ public class FollowUp extends Activity implements View.OnClickListener, OnItemSe
 			editor = settings.edit();
 		
 		//Array Adapter for Spinner use with the daily tab
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, daily_paths);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, daily_paths); //The android.R.layout.simple_spinner_item is embedded system
 			
 		//Spinner setup
 			choice_spinner = (Spinner) findViewById(R.id.follow_up_choice_spinner); //Define from input_schedule.xml

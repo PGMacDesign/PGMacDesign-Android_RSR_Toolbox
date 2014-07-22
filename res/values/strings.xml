@@ -1,5 +1,10 @@
 <resources>
 
     <string name="app_name">RSR Toolbox</string>
+	<string name="action_settings">Settings</string>
+    <string name="title">title</string>
+   	<string name="link">link</string>
+   	<string name="description">Description</string>
+   	<string name="fetch">Fetch Feed</string>
 
 </resources>
