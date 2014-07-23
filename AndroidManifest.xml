@@ -35,6 +35,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
     <!-- Allows access to the vibrate function for the notification/ status bar -->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- The access network state is needed for admob -->
+    
+    <!-- Used for donations via the Google Play Store -->
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:allowBackup="true"
