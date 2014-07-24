@@ -211,11 +211,11 @@ public final class R {
     }
     public static final class id {
         public static final int Daily=0x7f0c0043;
-        public static final int Exit=0x7f0c008b;
+        public static final int Exit=0x7f0c008c;
         public static final int Meetings=0x7f0c0062;
         public static final int Other=0x7f0c006a;
         public static final int aboutus=0x7f0c0088;
-        public static final int action_settings=0x7f0c008c;
+        public static final int action_settings=0x7f0c008d;
         public static final int bugReport=0x7f0c0007;
         public static final int call_IT=0x7f0c0052;
         public static final int call_aol=0x7f0c004d;
@@ -250,6 +250,7 @@ public final class R {
         public static final int commissions_edit_text_vaca_relief=0x7f0c0018;
         public static final int commissions_edit_text_working_days_left=0x7f0c000c;
         public static final int donate_button=0x7f0c0023;
+        public static final int donate_money=0x7f0c008b;
         public static final int donate_spinner=0x7f0c0022;
         public static final int edge_10gb_or_higher=0x7f0c0026;
         public static final int edge_1year=0x7f0c002c;

@@ -18,17 +18,19 @@ package com.pgmacdesign.rsrtoolbox;
 
 import java.io.File;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -61,6 +63,7 @@ public class Main extends Activity implements OnItemClickListener {
 		
 		gridView.setOnItemClickListener(this);
 		
+		
 		//Check to see if the SharedPreferences file has been filled/ exists
 		if (sp.getDouble(settings, "at_risk", 0.0) > 999){ //Info has already been entered. Used 999 instead of 1417 as it may change at some point
 			//Do nothing for now
@@ -81,11 +84,16 @@ public class Main extends Activity implements OnItemClickListener {
 				e.printStackTrace();
 			}
 		}	
-	
-        
 		
+		toggleActionBar();
 	}
 
+	//TEST
+	private void toggleActionBar() {
+		  ActionBar actionBar = getActionBar();
+	}
+	//TEST
+	
 	//This onItemClick method jumps to the ActivityAdapter class to determine which item was chosen from the grid and then opens the respective activity
 	@Override
 	public void onItemClick(AdapterView<?> parentView, View v, int position, long id) {
@@ -245,6 +253,14 @@ public class Main extends Activity implements OnItemClickListener {
 				e.printStackTrace();
 			}
 			makeToast("Commissions Has Been Reset");
+			
+			try{
+				Intent intentD = new Intent(v.getContext(), Donate.class); 
+				startActivity(intentD);	
+			} catch (Exception e){
+				Log.d("Das Error", e.toString());
+			}
+			
 			break;
 			
 			/*
@@ -277,7 +293,7 @@ public class Main extends Activity implements OnItemClickListener {
 		//menu inflater 
 		MenuInflater blowUp = getMenuInflater(); 
 		blowUp.inflate(R.menu.cool_menu, menu_settings);
-		return true;
+		return super.onCreateOptionsMenu(menu_settings);
 		
 	}
 
@@ -305,7 +321,13 @@ public class Main extends Activity implements OnItemClickListener {
 			Intent intent3 = new Intent("com.pgmacdesign.rsrtoolbox.BUGREPORT");
 			startActivity(intent3);	
 			break;
-						
+			
+		case R.id.donate_money:
+			//
+			Intent intent4 = new Intent("com.pgmacdesign.rsrtoolbox.DONATE");
+			startActivity(intent4);	
+			break;
+			
 		case R.id.Exit:
 			//Exits / Closes the application
 			finish();

@@ -18,7 +18,10 @@ package com.pgmacdesign.rsrtoolbox;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.Display;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -117,5 +120,7 @@ public class ActivityAdapter extends BaseAdapter  {
 	public static int getActivityPosition(int position) {
 		return imageOptions[position];
 	}
+	
+	
 
 }

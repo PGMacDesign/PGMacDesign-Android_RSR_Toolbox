@@ -2,20 +2,28 @@ package com.pgmacdesign.rsrtoolbox;
 
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender.SendIntentException;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
 
@@ -41,8 +49,14 @@ public class Donate extends Activity implements View.OnClickListener, OnItemSele
 	//Misc
 		String donate_amount_string;
 		int donate_amount_int;
-		String base64EncodedPublicKey;
+		String inAppID = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl5OixjcBpSOF1AKINQhOCHSayREQsiuh5zUQaTmt7/OVYgn0lLQFk+RjuaXk+8mhb15LmpN"
+				+ "PRvFy70nG7BQ8o8ZXbLJ18y2C40xgWdi1rdYVdBguxyykmxuiC77FNP583+VOZMIp5jR868DToBJjThfaJtlMsyKjsT7PHcHR979NBAXR+auY4Oob6WIqutVdv"
+				+ "TGkFO0XpzBOHEc1MfQ4n5V1y9u9SyY6cjTVZ9KXsqrya2RrFQsHdwoFsSBQ22iIXBrtzoqYSBm+95GygdJxdbLyF/1KgligBRJ2kKPYZYKqqAiRkXZ5rUshY82"
+				+ "ec9w7+6WwKOL0Eq6+wA2qohzmmQIDAQAB";
 		ServiceConnection mServiceConn;
+		
+	//Button
+		Button donate_button;
 	
 	//Main - When the activity starts
 	@Override
@@ -63,17 +77,21 @@ public class Donate extends Activity implements View.OnClickListener, OnItemSele
 		settings = getSharedPreferences(PREFS_NAME, 0);
 		editor = settings.edit();
 		
+		//Button
+		donate_button = (Button) findViewById(R.id.donate_button);
+		donate_button.setOnClickListener(this);
+		
 		//Initialize Misc Variables
 		donate_amount_string = "1";
 		donate_amount_int = 1;
-		base64EncodedPublicKey = "123";
+		//base64EncodedPublicKey = "123";
 		
 		//SKU list
-		skuList.add("donate_$1");
-		skuList.add("donate_$5");
-		skuList.add("donate_$10");
-		skuList.add("donate_$20");
-		skuList.add("donate_$other");
+		skuList.add("donate_1_dollar");
+		skuList.add("donate_5_dollars");
+		skuList.add("donate_10_dollar");
+		skuList.add("donate_20_dollars");
+		//skuList.add("donate_$other");
 		querySkus = new Bundle();
 		//querySkus.putStringArrayList(“ITEM_ID_LIST”, skuList); //?
 		
@@ -108,8 +126,48 @@ public class Donate extends Activity implements View.OnClickListener, OnItemSele
 		
 		case R.id.donate_button:
 			
-			//Starts the intent to donate
-
+			ArrayList skuList = new ArrayList();
+			skuList.add(inAppID);
+			
+			Bundle querySkus = new Bundle();
+			querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
+			
+			Bundle skuDetails;
+			
+			try{
+				skuDetails = mService.getSkuDetails(3, getPackageName(), "inapp", querySkus);
+				
+				int response = skuDetails.getInt("RESPONSE_CODE");
+				
+				if (response == 0){
+					ArrayList<String> responseList = skuDetails.getStringArrayList("DETAILS_LIST");
+					
+					for (String thisResponse : responseList){
+						JSONObject object = new JSONObject (thisResponse);
+						String sku = object.getString("productid");
+						String price = object.getString("price");
+						
+						if (sku.equals(inAppID)){
+							Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "GIANT_STRING_OF_CHARACTERS_FROM_STORE");
+							
+							PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
+							startIntentSenderForResult(
+									pendingIntent.getIntentSender(),
+									1001, new Intent(), Integer.valueOf(0),
+									Integer.valueOf(0), Integer.valueOf(0));
+						}
+					}
+				}
+			} catch (RemoteException e){
+				//
+				Log.d("Das Error Yo", e.toString());
+			} catch (JSONException e){
+				//
+				Log.d("Das Error Yo", e.toString());
+			} catch (SendIntentException e){
+				//
+				Log.d("Das Error Yo", e.toString());
+			}
 			
 			
 			
@@ -122,6 +180,28 @@ public class Donate extends Activity implements View.OnClickListener, OnItemSele
 		
 	}
 
+	//OnActivity
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		
+		if (requestCode == 1001){
+			String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+		
+		
+			if (resultCode == RESULT_OK){
+				try{
+					JSONObject jo = new JSONObject(purchaseData);
+					String sku = jo.getString(inAppID);
+					Toast.makeText(Donate.this, 
+							"Thank you for your donation of: " + sku + "!", 
+							Toast.LENGTH_SHORT).show();
+				} catch (JSONException e){
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	
 	//Used for the spinner choice
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {

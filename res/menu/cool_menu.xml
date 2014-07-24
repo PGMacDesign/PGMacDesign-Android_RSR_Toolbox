@@ -24,24 +24,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
     <item
         android:id="@+id/aboutus"
         android:title="About Us"
-        android:numericShortcut="1"
-        android:alphabeticShortcut="a"
+        android:showAsAction="ifRoom"
         />
-    <!-- Numeric shortcut (hit 1) or alphabetic (a) for opening -->
         
     <item
         android:id="@+id/preferences"
         android:title="Preferences"
+        android:showAsAction="ifRoom"
         />
     
     <item
         android:id="@+id/send_Bug_Report"
         android:title="Send Bug Report"
+        android:showAsAction="ifRoom"
         />
+    
+    <item
+        android:id="@+id/donate_money"
+        android:title="Donate"
+        android:showAsAction="ifRoom"
+        />    
     
     <item
         android:id="@+id/Exit"
         android:title="Exit"
+        android:showAsAction="ifRoom"
         />
     
     
