@@ -135,20 +135,29 @@ public class Donate extends Activity implements View.OnClickListener, OnItemSele
 			Bundle skuDetails;
 			
 			try{
+				
+				Log.d("Look Here", "Line " + "139" + " works.");
 				skuDetails = mService.getSkuDetails(3, getPackageName(), "inapp", querySkus);
 				
 				int response = skuDetails.getInt("RESPONSE_CODE");
 				
 				if (response == 0){
 					ArrayList<String> responseList = skuDetails.getStringArrayList("DETAILS_LIST");
+					Log.d("Look Here", "Line " + "146" + " works.");
 					
 					for (String thisResponse : responseList){
 						JSONObject object = new JSONObject (thisResponse);
 						String sku = object.getString("productid");
 						String price = object.getString("price");
+						Log.d("Look Here", "Line " + "152" + " works.");
 						
 						if (sku.equals(inAppID)){
-							Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "GIANT_STRING_OF_CHARACTERS_FROM_STORE");
+							Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl5Oix"
+									+ "jcBpSOF1AKINQhOCHSayREQsiuh5zUQaTmt7/OVYgn0lLQFk+RjuaXk+8mhb15LmpN"
+									+ "PRvFy70nG7BQ8o8ZXbLJ18y2C40xgWdi1rdYVdBguxyykmxuiC77FNP583+VOZMIp5jR868DToBJjThfaJtlMsyKjsT7PHcHR979NBAXR+auY4Oob6WIqutVdv"
+									+ "TGkFO0XpzBOHEc1MfQ4n5V1y9u9SyY6cjTVZ9KXsqrya2RrFQsHdwoFsSBQ22iIXBrtzoqYSBm+95GygdJxdbLyF/1KgligBRJ2kKPYZYKqqAiRkXZ5rUshY82"
+									+ "ec9w7+6WwKOL0Eq6+wA2qohzmmQIDAQAB");
+							Log.d("Look Here", "Line " + "160" + " works.");
 							
 							PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
 							startIntentSenderForResult(
@@ -183,9 +192,11 @@ public class Donate extends Activity implements View.OnClickListener, OnItemSele
 	//OnActivity
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		
+		Log.d("Look Here", "Line " + "195" + " works.");
+		
 		if (requestCode == 1001){
 			String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
-		
+			Log.d("Look Here", "Line " + "199" + " works.");
 		
 			if (resultCode == RESULT_OK){
 				try{
@@ -194,7 +205,11 @@ public class Donate extends Activity implements View.OnClickListener, OnItemSele
 					Toast.makeText(Donate.this, 
 							"Thank you for your donation of: " + sku + "!", 
 							Toast.LENGTH_SHORT).show();
+					Log.d("Look Here", "Line " + "208" + " works.");
 				} catch (JSONException e){
+					Toast.makeText(Donate.this, 
+							"Oh Noes! Something Went Wrong?!?!", 
+							Toast.LENGTH_SHORT).show();
 					e.printStackTrace();
 				}
 			}
