@@ -6,5 +6,11 @@
    	<string name="link">link</string>
    	<string name="description">Description</string>
    	<string name="fetch">Fetch Feed</string>
-
+    
+    <string name="main_button_purchase_passport_text">Purchase Passport</string>
+    <string name="main_cont_desc_image_passport">purchased passport</string>
+    <string name="activity_startup_label">Loading</string>
+    <string name="activity_main_label">Main Menu</string>
+    <string name="activity_purchase_label">Making Purchase</string>
+   	
 </resources>

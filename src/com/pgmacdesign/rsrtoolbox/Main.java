@@ -255,7 +255,7 @@ public class Main extends Activity implements OnItemClickListener {
 			makeToast("Commissions Has Been Reset");
 			
 			try{
-				Intent intentD = new Intent(v.getContext(), Donate.class); 
+				Intent intentD = new Intent(v.getContext(), com.pgmacdesign.rsrtoolbox.inappbilling.MainActivity.class); 
 				startActivity(intentD);	
 			} catch (Exception e){
 				Log.d("Das Error", e.toString());

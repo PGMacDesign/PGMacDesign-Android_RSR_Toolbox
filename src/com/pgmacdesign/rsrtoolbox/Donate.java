@@ -43,7 +43,8 @@ public class Donate extends Activity implements View.OnClickListener, OnItemSele
 		String[]donate_choices = {"$1", "$5", "$10", "$20"};
 		
 	//List to ping the Google server 
-		ArrayList<String> skuList = new ArrayList<String> ();
+		ArrayList skuList = new ArrayList ();
+		//ArrayList<String> skuList = new ArrayList<String> ();
 		Bundle querySkus;
 			
 	//Misc
@@ -154,7 +155,7 @@ public class Donate extends Activity implements View.OnClickListener, OnItemSele
 						Log.d("Look Here", "Line " + "154" + " works.");
 						
 						if (sku.equals(inAppID)){
-							Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "donate_1_dollar");
+							Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "donate_1_dollar_managed");
 							
 							
 							
