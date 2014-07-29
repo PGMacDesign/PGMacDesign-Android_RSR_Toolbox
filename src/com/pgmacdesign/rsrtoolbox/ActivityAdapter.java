@@ -55,8 +55,9 @@ public class ActivityAdapter extends BaseAdapter  {
 			R.drawable.important_contact_numbers, //Position 9
 			R.drawable.stress_relief, //Position 10
 			R.drawable.magic_ball, //Position 11
-			R.drawable.reset_commissions //Position 12
-			//R.drawable.blank //position 13 //For testing purposes
+			R.drawable.reset_commissions, //Position 12
+			R.drawable.piggy_bank_edited //Position 13
+			//R.drawable.blank //position 14 //For testing purposes
 	};
 	
 	private Context context;

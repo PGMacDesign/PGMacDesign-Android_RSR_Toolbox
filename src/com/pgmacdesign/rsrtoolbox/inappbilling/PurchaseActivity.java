@@ -70,8 +70,19 @@ public abstract class PurchaseActivity extends PGMacActivity implements OnIabSet
     public void onIabPurchaseFinished(IabResult result, Purchase info) {
         if (result.isFailure()) {
             dealWithPurchaseFailed(result);
-        } else if (PurchaseSKUs.SKU.equals(info.getSku())) {
+            
+        } else if (PurchaseSKUs.SKU_1_DOLLAR.equals(info.getSku())) {
             dealWithPurchaseSuccess(result, info);
+            
+        } else if (PurchaseSKUs.SKU_5_DOLLARS.equals(info.getSku())) {
+            dealWithPurchaseSuccess(result, info);
+            
+        } else if (PurchaseSKUs.SKU_10_DOLLARS.equals(info.getSku())) {
+            dealWithPurchaseSuccess(result, info);
+            
+        } else if (PurchaseSKUs.SKU_20_DOLLARS.equals(info.getSku())) {
+            dealWithPurchaseSuccess(result, info);
+            
         }
         finish();
     }

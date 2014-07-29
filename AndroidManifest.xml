@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pgmacdesign.rsrtoolbox"
-    android:versionCode="9"
-    android:versionName="1.4" >
+    android:versionCode="@string/version_code"
+    android:versionName="@string/version_name" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -270,6 +270,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         <activity
             android:name=".Donate"
             android:label="Donate" >
+            <intent-filter>
+                <action android:name="com.pgmacdesign.rsrtoolbox.DONATE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>         
            
 	    <activity

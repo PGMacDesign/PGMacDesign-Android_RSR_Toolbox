@@ -9,6 +9,18 @@
         android:layout_width="wrap_content"
         android:text="Patrick MacDowell is the lead programmer for the RSR Toolbox project and head of PGMacDesign. He endeavors to make his apps as effective and well-written as possible. If you have any suggestions or bugs to report, please send in a report in the contact us section as we always appreciate feedback. Thank you for using RSR Toolbox">       
     </TextView>
+  
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="\n\n" >
+        </TextView>    
+        
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/version_name_user" >"
+        </TextView>    
         
 
 </LinearLayout>

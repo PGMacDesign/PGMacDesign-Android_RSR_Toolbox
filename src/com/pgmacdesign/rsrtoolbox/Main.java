@@ -254,27 +254,19 @@ public class Main extends Activity implements OnItemClickListener {
 			}
 			makeToast("Commissions Has Been Reset");
 			
-			try{
-				Intent intentD = new Intent(v.getContext(), com.pgmacdesign.rsrtoolbox.inappbilling.MainActivity.class); 
-				startActivity(intentD);	
-			} catch (Exception e){
-				Log.d("Das Error", e.toString());
-			}
-			
 			break;
 			
-			/*
         case 13:
         	try{
-	        	makeToast("TEST");
-	        	Intent intent13 = new Intent(v.getContext(), UsefulSKUs.class);
+	        	makeToast("Donate");
+	        	Intent intent13 = new Intent(v.getContext(), Donate.class);
 		        startActivity(intent13);
         	} catch (Exception e) {
         		String error = e.toString();
         		makeToast(error);
         	}
         	break;
-        	*/
+        	
 	    }
 	    
 	    	

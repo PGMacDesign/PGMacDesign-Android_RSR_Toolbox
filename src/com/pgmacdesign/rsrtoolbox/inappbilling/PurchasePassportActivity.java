@@ -2,6 +2,7 @@ package com.pgmacdesign.rsrtoolbox.inappbilling;
 
 import android.os.Bundle;
 
+import com.pgmacdesign.rsrtoolbox.Donate;
 import com.pgmacdesign.vending.billing.util.IabResult;
 import com.pgmacdesign.vending.billing.util.Purchase;
 
@@ -28,13 +29,32 @@ public class PurchasePassportActivity extends PurchaseActivity {
 
     @Override
     protected void dealWithIabSetupFailure() {
-        popBurntToast("Sorry buying a passport is not available at this current time");
+        popBurntToast("Donation failed. /Bad Programmer!");
         finish();
     }
 
     @Override
     protected void dealWithIabSetupSuccess() {
-        purchaseItem(PurchaseSKUs.SKU);
+        
+    	//pulls from the Donate class to check on the String result of the spinner to determine the donation amount
+    	String decision = com.pgmacdesign.rsrtoolbox.Donate.user_donate_choice;
+    	
+    	if (decision == "donate_1_dollar"){
+    		purchaseItem(PurchaseSKUs.SKU_1_DOLLAR);
+    		
+    	} else if (decision == "donate_5_dollars"){
+    		purchaseItem(PurchaseSKUs.SKU_5_DOLLARS);
+    		
+    	} else if (decision == "donate_10_dollars"){
+    		purchaseItem(PurchaseSKUs.SKU_10_DOLLARS);
+    		
+    	} else if (decision == "donate_20_dollasr"){
+    		purchaseItem(PurchaseSKUs.SKU_20_DOLLARS);
+    		
+    	}else {
+    		purchaseItem(PurchaseSKUs.SKU_1_DOLLAR);
+    	}
+    	        
     }
 
     @Override

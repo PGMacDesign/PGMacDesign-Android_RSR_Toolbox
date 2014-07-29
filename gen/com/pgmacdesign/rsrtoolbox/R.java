@@ -199,15 +199,16 @@ public final class R {
         public static final int pgmacdesign_logo_blue=0x7f020010;
         public static final int pgmacdesign_logo_silver_square=0x7f020011;
         public static final int pgmacdesign_splash_screen=0x7f020012;
-        public static final int reset_commissions=0x7f020013;
-        public static final int revenue_deficit=0x7f020014;
-        public static final int rsr_toolbox_logo=0x7f020015;
-        public static final int rsr_toolbox_play_store_link=0x7f020016;
-        public static final int scorecard=0x7f020017;
-        public static final int share_this_app=0x7f020018;
-        public static final int stress_relief=0x7f020019;
-        public static final int useful_skus=0x7f02001a;
-        public static final int vacation_quota=0x7f02001b;
+        public static final int piggy_bank_edited=0x7f020013;
+        public static final int reset_commissions=0x7f020014;
+        public static final int revenue_deficit=0x7f020015;
+        public static final int rsr_toolbox_logo=0x7f020016;
+        public static final int rsr_toolbox_play_store_link=0x7f020017;
+        public static final int scorecard=0x7f020018;
+        public static final int share_this_app=0x7f020019;
+        public static final int stress_relief=0x7f02001a;
+        public static final int useful_skus=0x7f02001b;
+        public static final int vacation_quota=0x7f02001c;
     }
     public static final class id {
         public static final int Daily=0x7f0c0045;
@@ -249,18 +250,18 @@ public final class R {
         public static final int commissions_edit_text_upgrade_quota=0x7f0c0010;
         public static final int commissions_edit_text_vaca_relief=0x7f0c001a;
         public static final int commissions_edit_text_working_days_left=0x7f0c000e;
-        public static final int donate_button=0x7f0c0025;
+        public static final int donate_button=0x7f0c0026;
         public static final int donate_money=0x7f0c008d;
-        public static final int donate_spinner=0x7f0c0024;
-        public static final int edge_10gb_or_higher=0x7f0c0028;
+        public static final int donate_spinner=0x7f0c0025;
+        public static final int edge_10gb_or_higher=0x7f0c0029;
         public static final int edge_1year=0x7f0c002e;
         public static final int edge_2year=0x7f0c002f;
-        public static final int edge_8gb_or_lower=0x7f0c0029;
-        public static final int edge_full_retail=0x7f0c0026;
-        public static final int edge_monthly_cost=0x7f0c002c;
-        public static final int edge_other=0x7f0c002b;
-        public static final int edge_price_plans=0x7f0c0027;
-        public static final int edge_qualified_plan=0x7f0c002a;
+        public static final int edge_8gb_or_lower=0x7f0c002a;
+        public static final int edge_full_retail=0x7f0c0027;
+        public static final int edge_monthly_cost=0x7f0c002d;
+        public static final int edge_other=0x7f0c002c;
+        public static final int edge_price_plans=0x7f0c0028;
+        public static final int edge_qualified_plan=0x7f0c002b;
         public static final int enter_commissions_information_button_gg_charge_backs=0x7f0c003a;
         public static final int enter_commissions_information_button_gg_current=0x7f0c0038;
         public static final int enter_commissions_information_button_gg_quota=0x7f0c0036;
@@ -347,7 +348,7 @@ public final class R {
         public static final int textView1=0x7f0c000c;
         public static final int textView2=0x7f0c000d;
         public static final int textView3=0x7f0c0023;
-        public static final int textView4=0x7f0c002d;
+        public static final int textView4=0x7f0c0024;
         public static final int textView5=0x7f0c0030;
         public static final int textView55=0x7f0c005f;
         public static final int vacation_quota_relief_button_calculate=0x7f0c0087;
@@ -439,17 +440,18 @@ public final class R {
         public static final int tubig_yes=0x7f050031;
     }
     public static final class string {
-        public static final int action_settings=0x7f090001;
-        public static final int activity_main_label=0x7f090009;
-        public static final int activity_purchase_label=0x7f09000a;
-        public static final int activity_startup_label=0x7f090008;
+        public static final int action_settings=0x7f090004;
+        public static final int activity_main_label=0x7f09000a;
+        public static final int activity_purchase_label=0x7f09000b;
+        public static final int activity_startup_label=0x7f090009;
         public static final int app_name=0x7f090000;
-        public static final int description=0x7f090004;
-        public static final int fetch=0x7f090005;
-        public static final int link=0x7f090003;
-        public static final int main_button_purchase_passport_text=0x7f090006;
-        public static final int main_cont_desc_image_passport=0x7f090007;
-        public static final int title=0x7f090002;
+        public static final int description=0x7f090007;
+        public static final int fetch=0x7f090008;
+        public static final int link=0x7f090006;
+        public static final int title=0x7f090005;
+        public static final int version_code=0x7f090001;
+        public static final int version_name=0x7f090002;
+        public static final int version_name_user=0x7f090003;
     }
     public static final class style {
         /** 

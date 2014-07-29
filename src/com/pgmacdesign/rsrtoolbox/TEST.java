@@ -16,19 +16,69 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 package com.pgmacdesign.rsrtoolbox;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
+import org.json.JSONObject;
+
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
+import android.util.Log;
 
 //This is just test code. Hold here until needed
 public class TEST {
 
 	
-	
+	/*
+	 
+	  This checks on purchases from in-app billing
+	  if (response == 0){
+					ArrayList<String> responseList = skuDetails.getStringArrayList("DETAILS_LIST");
+					Log.d("Look Here", "Line " + "148" + " works.");
+					
+					for (String thisResponse : responseList){
+						JSONObject object = new JSONObject (thisResponse);
+						String sku = object.getString("productid");
+						String price = object.getString("price");
+						Log.d("Look Here", "Line " + "154" + " works.");
+						
+						if (sku.equals(inAppID)){
+							Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "donate_1_dollar_managed");
+							
+							
+							
+							
+							Log.d("Look Here", "Line " + "162" + " works.");
+							
+							PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
+							startIntentSenderForResult(
+									pendingIntent.getIntentSender(),
+									1001, new Intent(), Integer.valueOf(0),
+									Integer.valueOf(0), Integer.valueOf(0));
+						}
+					}
+				} else if (response == 1){
+					Log.d("Response Code Error:", "BILLING_RESPONSE_RESULT_USER_CANCELED");
+				} else if (response == 3){
+					Log.d("Response Code Error:", "BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE");
+				} else if (response == 4){
+					Log.d("Response Code Error:", "BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE");
+				} else if (response == 5){
+					Log.d("Response Code Error:", "BILLING_RESPONSE_RESULT_DEVELOPER_ERROR");
+				} else if (response == 6){
+					Log.d("Response Code Error:", "BILLING_RESPONSE_RESULT_ERROR");
+				} else if (response == 7){
+					Log.d("Response Code Error:", "BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED");
+				} else if (response == 8){
+					Log.d("Response Code Error:", "BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED");
+				}
+	 
+	 */
 	
 	
 

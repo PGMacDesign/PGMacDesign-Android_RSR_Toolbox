@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 /**
- * This activity holds the button to purchase a passport
- * when the result is received if the passport was successfully purchase it shows the picture
+ * This activity holds the button to donate
+ * 
  * 
  * 
  * 
@@ -26,6 +26,7 @@ public class MainActivity extends PGMacActivity implements MainMenu {
     }
 
     @Override
+    //Need to change this from the xml defined to the seOnClickListener instead
     public void onPurchaseItemClick(View v) {
         navigate().toPurchasePassportActivityForResult();
     }
@@ -43,13 +44,13 @@ public class MainActivity extends PGMacActivity implements MainMenu {
     }
 
     private void dealWithSuccessfulPurchase() {
-        Log.d("Passport purchased");
-        popToast("Passport purchased");
+        Log.d("Donation Complete. Thank you!");
+        popToast("Donation Complete. Thank you!");
         passportImage.setVisibility(View.VISIBLE);
     }
 
     private void dealWithFailedPurchase() {
-        Log.d("Passport purchase failed");
-        popToast("Failed to purchase passport");
+        Log.d("Donation Failed /Fail Programmer!");
+        popToast("Donation Failed /Fail Programmer!");
     }
 }

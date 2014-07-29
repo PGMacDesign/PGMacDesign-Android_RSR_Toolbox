@@ -10,7 +10,7 @@ package com.pgmacdesign.rsrtoolbox.inappbilling;
 public class PurchaseSKUs {
 
     //public static final String SKU = "android.test.purchased"; // Replace this with your item ID;
-	public static final String SKU = "donate_10_dollars"; // Replace this with your item ID;
+	//public static final String SKU = "donate_10_dollars"; // Replace this with your item ID;
     
     public static final String SKU_1_DOLLAR_MANAGED = "donate_1_dollar_managed"; 
     public static final String SKU_5_DOLLARS_MANAGED = "donate_5_dollars_managed";
