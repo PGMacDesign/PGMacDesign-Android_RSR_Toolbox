@@ -48,7 +48,7 @@ public class PurchasePassportActivity extends PurchaseActivity {
     	} else if (decision == "donate_10_dollars"){
     		purchaseItem(PurchaseSKUs.SKU_10_DOLLARS);
     		
-    	} else if (decision == "donate_20_dollasr"){
+    	} else if (decision == "donate_20_dollars"){
     		purchaseItem(PurchaseSKUs.SKU_20_DOLLARS);
     		
     	}else {
