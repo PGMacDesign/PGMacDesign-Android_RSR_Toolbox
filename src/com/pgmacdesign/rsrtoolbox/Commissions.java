@@ -628,11 +628,11 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 			acc_mult_rank = acc_current / acc_quota;
 			
-			if (acc_mult_rank >= 0.21 && acc_mult_rank < 0.3199) {
+			if (acc_mult_rank >= 0.16 && acc_mult_rank < 0.2699) {
 				acc_rank = 1;
-			} else if (acc_mult_rank >= 0.32 && acc_mult_rank < 0.4799){
+			} else if (acc_mult_rank >= 0.27 && acc_mult_rank < 0.4299){
 				acc_rank = 2;
-			} else if (acc_mult_rank >= 0.48){
+			} else if (acc_mult_rank >= 0.43){
 				acc_rank = 3;
 			} else {
 				acc_rank = 0;
