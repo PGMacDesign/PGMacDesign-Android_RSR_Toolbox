@@ -620,6 +620,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 			editor = settings.edit();
 		
 		//Accessory Strategic Calculations
+			//Last updated September, 2014
 			double acc_mult_rank;
 			int acc_rank;
 			
