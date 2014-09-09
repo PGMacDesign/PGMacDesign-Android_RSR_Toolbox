@@ -21,7 +21,21 @@ public class ETFCalculator {
 
 	
 	
+	//ETFs 
+	/*
 	
+	
+	$350 on smartphones -- Down $10 each month
+	
+	$175 on basic phones -- Down $5 each month
+	
+	Allow for options of "purchased when" as well as "when is your upgrade" for inverted calculating
+	
+	
+	
+	
+	
+	*/
 	
 	
 	/*
