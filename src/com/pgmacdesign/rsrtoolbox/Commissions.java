@@ -620,7 +620,7 @@ public class Commissions extends Activity implements View.OnClickListener {
 			editor = settings.edit();
 		
 		//Accessory Strategic Calculations
-			//Last updated September, 2014
+			//Last updated October, 2014
 			double acc_mult_rank;
 			int acc_rank;
 			
@@ -629,11 +629,11 @@ public class Commissions extends Activity implements View.OnClickListener {
 		
 			acc_mult_rank = acc_current / acc_quota;
 			
-			if (acc_mult_rank >= 0.16 && acc_mult_rank < 0.2699) {
+			if (acc_mult_rank >= 0.14 && acc_mult_rank < 0.2499) {
 				acc_rank = 1;
-			} else if (acc_mult_rank >= 0.27 && acc_mult_rank < 0.4299){
+			} else if (acc_mult_rank >= 0.25 && acc_mult_rank < 0.4099){
 				acc_rank = 2;
-			} else if (acc_mult_rank >= 0.43){
+			} else if (acc_mult_rank >= 0.41){
 				acc_rank = 3;
 			} else {
 				acc_rank = 0;
@@ -650,12 +650,12 @@ public class Commissions extends Activity implements View.OnClickListener {
 			
 			pt_mult_rank = ptcurrent / ptquota;
 			
-			//Adjusted for June, 2014 numbers
-			if(pt_mult_rank >= 0.14 && pt_mult_rank < 0.3499) {
+			//Adjusted for October, 2014 numbers
+			if(pt_mult_rank >= 0.12 && pt_mult_rank < 0.3299) {
 				pt_rank = 1;
-			} else if (pt_mult_rank >= 0.35 && pt_mult_rank < 0.6099){
+			} else if (pt_mult_rank >= 0.33 && pt_mult_rank < 0.5899){
 				pt_rank = 2;
-			} else if (pt_mult_rank >= 0.61) {
+			} else if (pt_mult_rank >= 0.59) {
 				pt_rank = 3;
 			} else {
 				pt_rank = 0;
