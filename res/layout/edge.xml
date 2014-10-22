@@ -50,25 +50,25 @@
             android:id="@+id/edge_10gb_or_higher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share Everything 10GB or higher" />
+            android:text="More Everything 10GB or higher" />
 
         <RadioButton
             android:id="@+id/edge_8gb_or_lower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share Everything 8GB or lower" />
+            android:text="More Everything 8GB or lower" />
 
         <RadioButton
             android:id="@+id/edge_qualified_plan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Other plan that DOES qualify for $10" />        
+            android:text="Other plan that DOES qualify for $15" />        
         
         <RadioButton
             android:id="@+id/edge_other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Other plan that DOESN'T qualify for $10" />
+            android:text="Other plan that DOESN'T qualify for $15" />
     </RadioGroup>
 
     <TextView
@@ -120,9 +120,9 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:text="Remember that only smartphones will get a discount and only if they stay on that specific number that received the upgrade!" />
+        android:text="Remember that only smartphones will get a discount and only if they stay on that specific number that received the upgrade! Also, note that you can upgrade once every 18 months on Edge" />
     
 </LinearLayout>

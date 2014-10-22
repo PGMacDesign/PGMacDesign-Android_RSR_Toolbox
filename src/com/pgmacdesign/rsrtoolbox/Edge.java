@@ -99,7 +99,7 @@ public class Edge extends Activity implements OnCheckedChangeListener {
 			break;
 			
 		case R.id.edge_8gb_or_lower:
-			discount = 10.00;
+			discount = 15.00;
 			CalculateNumbers(discount);
 			edge_monthly_cost.setText(Double.toString(monthly_payment));
 			edge_1year.setText(Double.toString(one_year));
@@ -108,7 +108,7 @@ public class Edge extends Activity implements OnCheckedChangeListener {
 			break;
 			
 		case R.id.edge_qualified_plan:
-			discount = 10.00;
+			discount = 15.00;
 			CalculateNumbers(discount);
 			edge_monthly_cost.setText(Double.toString(monthly_payment));
 			edge_1year.setText(Double.toString(one_year));
@@ -138,7 +138,7 @@ public class Edge extends Activity implements OnCheckedChangeListener {
 			full_retail_cost = Double.parseDouble(edge_full_retail.getText().toString());
 		}
 		
-		double tempMonthlyPayment = full_retail_cost / 20;
+		double tempMonthlyPayment = full_retail_cost / 24;
 		
 		monthly_payment = tempMonthlyPayment - input_discount;
 		one_year = monthly_payment * 12;

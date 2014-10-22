@@ -440,18 +440,16 @@ public final class R {
         public static final int tubig_yes=0x7f050031;
     }
     public static final class string {
-        public static final int action_settings=0x7f090004;
-        public static final int activity_main_label=0x7f09000a;
-        public static final int activity_purchase_label=0x7f09000b;
-        public static final int activity_startup_label=0x7f090009;
+        public static final int action_settings=0x7f090002;
+        public static final int activity_main_label=0x7f090008;
+        public static final int activity_purchase_label=0x7f090009;
+        public static final int activity_startup_label=0x7f090007;
         public static final int app_name=0x7f090000;
-        public static final int description=0x7f090007;
-        public static final int fetch=0x7f090008;
-        public static final int link=0x7f090006;
-        public static final int title=0x7f090005;
-        public static final int version_code=0x7f090001;
-        public static final int version_name=0x7f090002;
-        public static final int version_name_user=0x7f090003;
+        public static final int description=0x7f090005;
+        public static final int fetch=0x7f090006;
+        public static final int link=0x7f090004;
+        public static final int title=0x7f090003;
+        public static final int version_name_user=0x7f090001;
     }
     public static final class style {
         /** 

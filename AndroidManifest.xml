@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pgmacdesign.rsrtoolbox"
-    android:versionCode="@string/version_code"
-    android:versionName="@string/version_name" >
+    android:versionCode="12"
+    android:versionName="1.42" >
 
     <uses-sdk
         android:minSdkVersion="14"
