@@ -613,8 +613,9 @@ public class Commissions extends Activity implements View.OnClickListener {
 	*/
 	
 	//This method calculates and writes the strategic multiplier value
+	//Strategic multiplier has been deprecated by Verizon as of 2014-11-01. Defaulting to 1.0
 	public void GetStrategicMultiplier(){
-		
+		/*
 		//Setup Shared Preferences stuff first
 			settings = getSharedPreferences(PREFS_NAME, 0);
 			editor = settings.edit();
@@ -699,9 +700,10 @@ public class Commissions extends Activity implements View.OnClickListener {
 			} else {
 				strategic_multiplier = 0.8;
 			}
+			*/
 		
 		//Finally, write the strategic multiplier to the shared preferences
-			sp.putDouble(editor, "strategic_multiplier", strategic_multiplier);
+			sp.putDouble(editor, "strategic_multiplier", 1.0);
 			editor.commit();
 	}
 	
