@@ -24,6 +24,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+//This is where people input their commissions information that puts into shared preferences and calculates their commissions payout (estimated)
+//Updated on 2014-11-03 to remove strategic multiplier stuff
 public class EnterCommissionsInfo extends Activity implements View.OnClickListener {
 
 	
@@ -31,12 +33,10 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 	DatabaseAdmin db = new DatabaseAdmin(this);
 	
 	//EditText windows pulled from the xml
-	EditText upgrade_quota, gg_quota, gg_current, gg_charge_backs, sales_dollars_quota, sales_dollars_current, working_days_left,
-	strategic_pull_through_quota, strategic_pull_through_current, strategic_acc_quota, strategic_accessory_current, spiffs;
+	EditText upgrade_quota, gg_quota, gg_current, gg_charge_backs, sales_dollars_quota, sales_dollars_current, working_days_left, spiffs;
 	
 	//Buttons pulled from the xml
-	Button b_upgrade_quota, b_gg_quota, b_gg_current, b_gg_charge_backs, b_sales_dollars_quota, b_sales_dollars_current, b_working_days_left,
-	b_strategic_pull_through_quota, b_strategic_pull_through_current, b_strategic_acc_quota, b_strategic_accessory_current, b_spiffs;
+	Button b_upgrade_quota, b_gg_quota, b_gg_current, b_gg_charge_backs, b_sales_dollars_quota, b_sales_dollars_current, b_working_days_left, b_spiffs;
 	
 	//Make changes to the Prefs File
 	public static final String PREFS_NAME = "RSRToolboxData";	
@@ -68,10 +68,6 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		gg_charge_backs = (EditText) findViewById(R.id.enter_commissions_information_edit_text_gg_charge_backs);
 		sales_dollars_quota = (EditText) findViewById(R.id.enter_commissions_information_edit_text_sales_dollars_quota);
 		sales_dollars_current = (EditText) findViewById(R.id.enter_commissions_information_edit_text_sales_dollars_current);
-		//strategic_pull_through_quota = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_pull_through_quota);
-		strategic_pull_through_current = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_pull_through_current);
-		//strategic_acc_quota = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_acc_quota);
-		strategic_accessory_current = (EditText) findViewById(R.id.enter_commissions_information_edit_text_strategic_acc_current);
 		spiffs = (EditText) findViewById(R.id.enter_commissions_information_edit_text_spiffs);
 		working_days_left = (EditText) findViewById(R.id.enter_commissions_information_edit_text_working_days_left);
 		
@@ -82,10 +78,6 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		b_gg_charge_backs = (Button) findViewById(R.id.enter_commissions_information_button_gg_charge_backs);
 		b_sales_dollars_quota = (Button) findViewById(R.id.enter_commissions_information_button_sales_dollars_quota);
 		b_sales_dollars_current = (Button) findViewById(R.id.enter_commissions_information_button_sales_dollars_current);
-		//b_strategic_pull_through_quota = (Button) findViewById(R.id.enter_commissions_information_button_strategic_pull_through_quota);
-		b_strategic_pull_through_current = (Button) findViewById(R.id.enter_commissions_information_button_strategic_pull_through_current);
-		//b_strategic_acc_quota = (Button) findViewById(R.id.enter_commissions_information_button_strategic_acc_quota);
-		b_strategic_accessory_current = (Button) findViewById(R.id.enter_commissions_information_button_strategic_acc_current);
 		b_spiffs = (Button) findViewById(R.id.enter_commissions_information_button_spiffs);
 		b_working_days_left = (Button) findViewById(R.id.enter_commissions_information_button_working_days_left);
 		
@@ -96,10 +88,6 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 		b_gg_charge_backs.setOnClickListener(this);
 		b_sales_dollars_quota.setOnClickListener(this);
 		b_sales_dollars_current.setOnClickListener(this);
-		//b_strategic_pull_through_quota.setOnClickListener(this);
-		b_strategic_pull_through_current.setOnClickListener(this);
-		//b_strategic_acc_quota.setOnClickListener(this);
-		b_strategic_accessory_current.setOnClickListener(this);
 		b_spiffs.setOnClickListener(this);
 		b_working_days_left.setOnClickListener(this);
 		
@@ -206,69 +194,6 @@ public class EnterCommissionsInfo extends Activity implements View.OnClickListen
 			}
 			break;	
 			
-			/*
-		case R.id.enter_commissions_information_button_strategic_pull_through_quota:
-			
-			try {
-				String str1 = strategic_pull_through_quota.getText().toString();
-				double dbl = Double.parseDouble(str1);
-
-				sp.putDouble(editor, "pt_quota", dbl);
-				editor.commit();
-				makeToast(success);
-
-			} catch (Exception e){
-				makeToast(e.toString());
-			}
-			break;
-			*/
-			
-		case R.id.enter_commissions_information_button_strategic_pull_through_current:
-			
-			try {
-				String str1 = strategic_pull_through_current.getText().toString();
-				double dbl = Double.parseDouble(str1);
-
-				sp.putDouble(editor, "pt_current", dbl);
-				editor.commit();
-				makeToast(success);
-
-			} catch (Exception e){
-				makeToast(e.toString());
-			}
-			break;	
-			
-			/*
-		case R.id.enter_commissions_information_button_strategic_acc_quota:
-			
-			try {
-				String str1 = strategic_acc_quota.getText().toString();
-				double dbl = Double.parseDouble(str1);
-
-				sp.putDouble(editor, "acc_quota", dbl);
-				editor.commit();
-				makeToast(success);
-
-			} catch (Exception e){
-				makeToast(e.toString());
-			}
-			break;
-			*/
-			
-		case R.id.enter_commissions_information_button_strategic_acc_current:
-			
-			try {
-				String str1 = strategic_accessory_current.getText().toString();
-				double dbl = Double.parseDouble(str1);
-
-				sp.putDouble(editor, "acc_current", dbl);
-				editor.commit();
-				makeToast(success);
-
-			} catch (Exception e){
-				makeToast(e.toString());
-			}
-			break;	
 			
 		case R.id.enter_commissions_information_button_spiffs:
 			
